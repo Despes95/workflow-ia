@@ -8,7 +8,7 @@
 ## 🎯 Focus Actuel
 
 - **Mission en cours** : Valider le tuto tutorial-optimisation-v2.6 phase par phase
-- **Prochaine étape** : Phase 6 — Leçons globales (ou clore le tuto)
+- **Prochaine étape** : Phase 7 — Momentum Transfer
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
 - **État git** : Phases 1-5 ✅ + autonomie complète — commit 29d28da
 
@@ -43,6 +43,7 @@
 - 2026-02-25 | Claude Code | Phase 2 amélioration memory.md | memory.md, pre-commit hook | Stable
 - 2026-02-25 | Claude Code | Phase 3 vault Obsidian | scripts/obsidian-sync.sh | Stable
 - 2026-02-25 | Claude Code | Déplacement git repo dans workflow-ia/ | git subtree split | Stable
+- 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
 
 ---
 
@@ -54,7 +55,7 @@
 - [x] Phase 4 — Connexion vault
 - [x] Phase 5 — Slash commands
 - [x] Autonomie complète workflow-ia (settings + install-commands + tutorial-valider)
-- [ ] Phase 6 — Leçons globales
+- [x] Phase 6 — Leçons globales
 - [ ] Phase 7 — Momentum Transfer
 
 ---
