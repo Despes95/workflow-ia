@@ -53,11 +53,11 @@
 
 ### Historique
 
-- 2026-02-25 | Claude Code | Phase 3 vault Obsidian | scripts/obsidian-sync.sh | Stable
 - 2026-02-25 | Claude Code | Déplacement git repo dans workflow-ia/ | git subtree split | Stable
 - 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
 - 2026-02-25 | Claude Code | Phase 7 momentum transfer | memory.md + switch.md + AGENTS.md | Stable
 - 2026-02-25 | Claude Code | Clôture tuto — /backup + wikilinks /close + prompts-et-commandes | Stable
+- 2026-02-25 | Claude Code | Unification prompt fin-de-session Gemini/OpenCode + tracker tuto | prompts-et-commandes.md | Stable
 
 ---
 
@@ -86,6 +86,7 @@
 - Custom commands visibles seulement si `claude` lancé depuis le dossier contenant `.claude/commands/` — utiliser `install-commands.sh` pour un accès global 🌐
 - ~/.gemini/settings.json avait une section security.auth à préserver — toujours lire avant d'écraser
 - git subtree split réécrit les SHA — les anciens SHA (0ccee34, af2f545, ecb24b2) ne sont plus valides, remplacés par (c76414b, 31faaff, 7ed0855)
+- Tous les AIs (Claude, Gemini, OpenCode) ont les mêmes capacités sur le vault — prompt fin-de-session unifié (obsidian-sync + wikilinks + push) 🌐
 
 ---
 

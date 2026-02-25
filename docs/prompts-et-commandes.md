@@ -55,12 +55,23 @@ Attends ma réponse puis :
 #### Gemini CLI / OpenCode
 
 ```
-Fin de session. Mets à jour memory.md EN ENTIER :
-Focus Actuel, Fichiers clés (maturités), Récap sessions (5 max),
-Todo, Bugs, Leçons, Contraintes.
-Montre le diff avant d'écrire. Attends ma confirmation.
-Puis : git add memory.md && git commit -m "chore: fin de session"
+Fin de session. Demande-moi ce qui s'est passé.
+Attends ma réponse puis :
+1. Extrais les action items
+2. Identifie décisions (→ decisions.md), bugs (→ bugs.md), leçons (→ lessons.md, 🌐 si transversal)
+3. Montre le diff complet de memory.md que tu proposes
+4. Attends ma validation explicite avant d'écrire quoi que ce soit
+5. Après validation :
+   a. Lance `bash scripts/obsidian-sync.sh`
+   b. Dans l'entrée sessions.md créée, ajoute les wikilinks :
+      - Si décisions → `→ [[decisions]]`
+      - Si bugs → `→ [[bugs]]`
+      - Si leçons → `→ [[lessons]]`
+   c. `git add memory.md && git commit -m "chore: fin de session" && git push`
 ```
+
+> Note Gemini CLI : les commandes bash s'exécutent avec `!bash ...` ou via le shell natif.
+> Note OpenCode : les commandes bash s'exécutent normalement.
 
 ---
 
