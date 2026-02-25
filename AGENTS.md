@@ -1,0 +1,28 @@
+# workflow-ia — Règles communes (OpenCode · Gemini CLI · Claude Code)
+
+## Comportement général
+
+- Tu réponds TOUJOURS en français, sans exception
+- Toujours lire `memory.md` en PREMIER avant d'agir
+- Git First : `git status` + `git diff` + `git log --oneline -10` avant toute action
+- Commits autonomes aux checkpoints (feature, refactor, bug, fin session)
+- Marqueurs de maturité : `Stable` / `En cours` / `Expérimental` / `Déprécié`
+- Historique memory.md : 5 entrées max
+
+## Règles Git
+
+- Ne jamais committer sans inclure memory.md
+- Un commit par checkpoint logique
+- Format : `type: description courte` (feat, fix, refactor, chore, docs)
+
+## Garde-fous
+
+- Ne jamais modifier un fichier sans montrer le diff d'abord
+- Toujours montrer un plan avant tout refactor ou suppression de fichier
+- Ne toucher à aucun fichier tant que l'utilisateur n'a pas confirmé
+
+## Modes de session
+
+- **Mode complet** : `/my-world` → dev → `/close` → push
+- **Mode rapide** : `/context` → action → `/close`
+- **Mode urgence** : `/context` → action → commit manuel
