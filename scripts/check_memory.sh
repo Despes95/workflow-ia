@@ -5,7 +5,7 @@ ERRORS=0
 echo "🔍 Vérification de $FILE..."
 [ ! -f "$FILE" ] && echo "❌ ERREUR : $FILE introuvable" && exit 1
 
-SECTIONS=("Focus Actuel" "Architecture" "Récap sessions" "Todo" "Bugs connus" "Leçons apprises" "Contraintes")
+SECTIONS=("Focus Actuel" "Architecture" "Récap sessions" "Todo" "Bugs connus" "Leçons apprises" "Contraintes & Interdits")
 for section in "${SECTIONS[@]}"; do
   count=$(grep -c "$section" "$FILE" 2>/dev/null); count=${count:-0}
   [ "$count" -gt 1 ] && echo "❌ DOUBLON : '$section' ($count fois)" && ERRORS=$((ERRORS+1))
