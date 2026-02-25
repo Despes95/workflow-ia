@@ -3,6 +3,7 @@
 # ============================================================
 # install-commands.sh — Déploie les custom slash commands
 # Usage depuis workflow-ia : bash scripts/install-commands.sh
+# Usage global             : bash scripts/install-commands.sh --global
 # Usage sur un projet      : bash /chemin/vers/workflow-ia/scripts/install-commands.sh --project
 # ============================================================
 
@@ -16,6 +17,16 @@ COMMANDS_SRC="$REPO_DIR/.claude/commands"
 MODE="${1:-}"
 
 echo -e "${CYAN}📦 Déploiement des custom slash commands...${NC}"
+
+# -- Mode --global : déploie dans ~/.claude/commands/
+if [ "$MODE" = "--global" ]; then
+  TARGET="$HOME/.claude/commands"
+  mkdir -p "$TARGET"
+  cp "$COMMANDS_SRC/"*.md "$TARGET/"
+  echo -e "${GREEN}✓ Commands déployées globalement dans : $TARGET${NC}"
+  ls "$TARGET/"
+  exit 0
+fi
 
 # -- Mode --project : déploie dans le projet courant
 if [ "$MODE" = "--project" ]; then
@@ -57,6 +68,9 @@ for cmd in "${COMMANDS[@]}"; do
   echo -e "  ${GREEN}/$cmd${NC}"
 done
 
+echo ""
+echo -e "${CYAN}Pour déployer globalement (tous projets) :${NC}"
+echo -e "  bash $SCRIPT_DIR/install-commands.sh --global"
 echo ""
 echo -e "${CYAN}Pour déployer sur un projet existant :${NC}"
 echo -e "  cd /c/IA/Projects/<ton-projet>"
