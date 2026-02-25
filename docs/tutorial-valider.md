@@ -1,0 +1,586 @@
+# Tutorial validé — workflow-ia v2.6
+
+> Version nettoyée et validée du `tutorial-optimisation-v2.6.md`
+> Chaque phase est validée, implémentée, et documentée avec les écarts réels.
+> Les références à `_setup` ont été remplacées par les chemins `workflow-ia/`.
+
+**Repo de référence :** `C:\IA\Projects\workflow-ia\`
+**Commit de référence de la validation complète :** voir tableau ci-dessous
+
+---
+
+## Vue d'ensemble
+
+| Phase | Statut | Commit | Durée réelle |
+|---|---|---|---|
+| Phase 1 — Unification règles IA | ✅ Stable | `c76414b` | ~30 min |
+| Phase 2 — Amélioration memory.md | ✅ Stable | `31faaff` | ~20 min |
+| Phase 3 — Vault Obsidian | ✅ Stable | `7ed0855` | ~45 min |
+| Déplacement git repo | ✅ Stable | `40b0a6e` | ~20 min |
+| Phase 4 — Connexion vault | ✅ Stable | `ecced2e` | ~20 min |
+| Phase 5 — Custom slash commands | ✅ Stable | `ecced2e` | ~30 min |
+
+---
+
+## Phase 1 — Unification règles IA ✅ (commit `c76414b`)
+
+### Objectif
+
+Passer de 3 fichiers de règles (`GEMINI.md`, `CLAUDE.md`, `AGENTS.md`) à 1 seul
+fichier source (`AGENTS.md`) que tous les outils IA chargent.
+
+### Étape 1.1 — Configurer Gemini CLI pour lire AGENTS.md
+
+```bash
+# 📍 Depuis Git Bash — n'importe où
+# ATTENTION : lire le fichier existant avant d'écraser (section security.auth à préserver)
+cat ~/.gemini/settings.json
+```
+
+Mettre à jour en préservant les clés existantes :
+
+```bash
+cat > ~/.gemini/settings.json << 'EOF'
+{
+  "contextFileName": "AGENTS.md",
+  "general": {
+    "defaultApprovalMode": "plan"
+  },
+  "experimental": {
+    "plan": true
+  }
+}
+EOF
+
+cat ~/.gemini/settings.json | grep contextFileName
+# ✅ Doit afficher : "contextFileName": "AGENTS.md"
+```
+
+> ⚠️ **Écart réel :** Le fichier `~/.gemini/settings.json` contenait déjà une section
+> `security.auth` à préserver. Toujours lire avant d'écraser.
+
+### Étape 1.2 — Créer CLAUDE.md pointant vers AGENTS.md
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+cat > CLAUDE.md << 'EOF'
+# workflow-ia — Règles Claude Code
+
+@AGENTS.md
+
+## Règles spécifiques Claude Code
+
+- Toujours utiliser Plan Mode avant de toucher au code
+- Confirmer avec l'utilisateur avant tout refactor touchant plus de 3 fichiers
+- Ne jamais modifier un fichier sans montrer le diff d'abord
+EOF
+
+grep "@AGENTS.md" CLAUDE.md
+# ✅ Doit afficher : @AGENTS.md
+```
+
+### Étape 1.3 — Créer AGENTS.md (source unique)
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+cat > AGENTS.md << 'EOF'
+# workflow-ia — Règles communes (OpenCode · Gemini CLI · Claude Code)
+
+## Comportement général
+
+- Tu réponds TOUJOURS en français, sans exception
+- Toujours lire `memory.md` en PREMIER avant d'agir
+- Git First : `git status` + `git diff` + `git log --oneline -10` avant toute action
+- Commits autonomes aux checkpoints (feature, refactor, bug, fin session)
+- Marqueurs de maturité : `Stable` / `En cours` / `Expérimental` / `Déprécié`
+- Historique memory.md : 5 entrées max
+
+## Règles Git
+
+- Ne jamais committer sans inclure memory.md
+- Un commit par checkpoint logique
+- Format : `type: description courte` (feat, fix, refactor, chore, docs)
+
+## Garde-fous
+
+- Ne jamais modifier un fichier sans montrer le diff d'abord
+- Toujours montrer un plan avant tout refactor ou suppression de fichier
+- Ne toucher à aucun fichier tant que l'utilisateur n'a pas confirmé
+
+## Modes de session
+
+- **Mode complet** : `/my-world` → dev → `/close` → push
+- **Mode rapide** : `/context` → action → `/close`
+- **Mode urgence** : `/context` → action → commit manuel
+EOF
+
+wc -l AGENTS.md
+# ✅ Doit afficher > 20 lignes
+```
+
+### Vérification Phase 1
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+cat ~/.gemini/settings.json | grep contextFileName   # → "contextFileName": "AGENTS.md"
+grep "@AGENTS.md" CLAUDE.md                          # → @AGENTS.md
+wc -l AGENTS.md                                      # → > 20 lignes
+```
+
+### Commit Phase 1
+
+```bash
+git add AGENTS.md CLAUDE.md memory.md
+git commit -m "feat: phase 1 - unification règles IA (AGENTS.md source unique)"
+```
+
+---
+
+## Phase 2 — Amélioration memory.md ✅ (commit `31faaff`)
+
+### Objectif
+
+Structurer `memory.md` avec des sections claires pour que l'IA trouve
+l'information immédiatement, sans explorer le projet.
+
+### Étape 2.1 — Créer memory.md structuré
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+cat > memory.md << 'EOF'
+# workflow-ia — Memory
+
+**Dernière mise à jour :** YYYY-MM-DD
+**Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
+
+---
+
+## 🎯 Focus Actuel
+
+- **Mission en cours** : [ce sur quoi tu travailles]
+- **Prochaine étape** : [la prochaine chose à faire]
+- **Zone sensible** : AGENTS.md — ne pas modifier sans validation
+- **État git** : Propre
+
+---
+
+## 🏗️ Architecture
+
+- **Objectif** : Projet test pour valider le workflow IA du tuto v2.6
+- **Stack** : Markdown + Git Bash + Windows 11
+- **Workflow dev** : Lire tuto → créer fichiers → vérifier → commit
+
+---
+
+## 📁 Fichiers clés
+
+- `AGENTS.md` — règles communes à tous les outils IA — Stable
+- `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
+- `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
+
+---
+
+## 📜 Récap sessions (5 max)
+
+### Résumé global
+
+- Projet initialisé.
+
+### Historique
+
+- YYYY-MM-DD | Claude Code | [ce qui a été fait] | [fichiers] | Stable
+
+---
+
+## ✅ Todo
+
+- [ ] Phase X
+
+---
+
+## 🐛 Bugs connus
+
+- Aucun connu actuellement
+
+---
+
+## 📝 Leçons apprises
+
+- [leçon]
+
+---
+
+## ⛔ Contraintes & Interdits
+
+- Ne jamais modifier AGENTS.md sans validation explicite
+EOF
+```
+
+### Étape 2.2 — Installer le hook pre-commit
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+cat > .git/hooks/pre-commit << 'HOOKEOF'
+#!/bin/bash
+# Vérifie que memory.md est inclus dans chaque commit
+if ! git diff --cached --name-only | grep -q "memory.md"; then
+  echo "⛔ Commit bloqué : memory.md doit être inclus"
+  exit 1
+fi
+
+# Vérifie les sections obligatoires
+check() {
+  if ! grep -q "$1" memory.md; then
+    echo "⛔ Section manquante dans memory.md : $1"
+    exit 1
+  fi
+}
+check "Focus Actuel"
+check "Architecture"
+check "Fichiers clés"
+check "sessions"
+check "Todo"
+check "Contraintes"
+HOOKEOF
+chmod +x .git/hooks/pre-commit
+```
+
+### Vérification Phase 2
+
+```bash
+grep "Fichiers clés" memory.md    # → section présente
+cat .git/hooks/pre-commit | head -5  # → script présent
+```
+
+### Commit Phase 2
+
+```bash
+git add memory.md .git/hooks/pre-commit
+git commit -m "feat: phase 2 - memory.md structuré + pre-commit hook"
+```
+
+---
+
+## Phase 3 — Vault Obsidian ✅ (commit `7ed0855`)
+
+### Objectif
+
+Créer `scripts/obsidian-sync.sh` pour synchroniser `memory.md` vers un vault
+Obsidian structuré dans `_forge/workflow-ia/`.
+
+> ⚠️ **Écart réel :** Le vault `_forge/workflow-ia/` était déjà partiellement peuplé
+> (fichiers créés lors de sessions précédentes). Le script s'est adapté sans écraser
+> les fichiers existants (logique `if [ ! -f "$TARGET" ]`).
+
+### Structure cible dans Obsidian
+
+```
+C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\_forge\
+└── workflow-ia\
+    ├── index.md
+    ├── sessions.md
+    ├── decisions.md
+    ├── bugs.md
+    ├── features.md
+    ├── lessons.md
+    ├── architecture.md
+    └── ideas.md
+```
+
+### Étape 3.1 — Créer obsidian-sync.sh
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+mkdir -p scripts
+
+cat > scripts/obsidian-sync.sh << 'SYNCEOF'
+#!/bin/bash
+
+# ============================================================
+# obsidian-sync.sh — Sync memory.md → vault Obsidian structuré
+# Usage : bash scripts/obsidian-sync.sh
+# ============================================================
+
+set -euo pipefail
+
+RED='\033[0;31m'; YELLOW='\033[1;33m'; GREEN='\033[0;32m'; CYAN='\033[0;36m'; NC='\033[0m'
+
+PROJECT_NAME=$(basename "$PWD")
+OBSIDIAN_BASE="${USERPROFILE}/iCloudDrive/iCloud~md~obsidian/_forge"
+FORGE_DIR="$OBSIDIAN_BASE/$PROJECT_NAME"
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M")
+DATE=$(date +"%Y-%m-%d")
+SESSION_ID=$(date +%s)
+
+echo -e "${CYAN}📚 Sync Obsidian — $PROJECT_NAME${NC}"
+
+if [ ! -f "memory.md" ]; then
+  echo -e "${RED}ERREUR : memory.md introuvable dans $PWD${NC}"
+  exit 1
+fi
+
+mkdir -p "$FORGE_DIR"
+
+# Initialiser les fichiers s'ils n'existent pas
+for template in index sessions decisions bugs features lessons architecture ideas; do
+  TARGET="$FORGE_DIR/$template.md"
+  if [ ! -f "$TARGET" ]; then
+    echo "# $PROJECT_NAME — $template" > "$TARGET"
+    echo -e "${GREEN}✓ Créé : $template.md${NC}"
+  fi
+done
+
+# Snapshot dans sessions.md
+echo -e "\n---\n## $TIMESTAMP  <!-- session-id: $SESSION_ID -->" >> "$FORGE_DIR/sessions.md"
+cat memory.md >> "$FORGE_DIR/sessions.md"
+echo -e "${GREEN}✓ Snapshot ajouté dans sessions.md${NC}"
+
+# Extraire bugs
+BUGS=$(awk '/^## 🐛/,/^## /' memory.md | grep -v "^## " | grep -v "^$" | grep -v "Aucun connu")
+if [ -n "$BUGS" ]; then
+  echo -e "\n---\n### $DATE\n$BUGS" >> "$FORGE_DIR/bugs.md"
+  echo -e "${GREEN}✓ Bugs extraits${NC}"
+fi
+
+# Extraire leçons
+LESSONS=$(awk '/^## 📝 Leçons/,/^## /' memory.md | grep -v "^## " | grep -v "^$" | grep "^-")
+if [ -n "$LESSONS" ]; then
+  echo -e "\n---\n### $DATE\n$LESSONS" >> "$FORGE_DIR/lessons.md"
+  echo -e "${GREEN}✓ Leçons extraites${NC}"
+fi
+
+# Mettre à jour index.md
+sed -i "s/\*\*Dernière sync :\*\*.*/\*\*Dernière sync :\*\* $DATE/" "$FORGE_DIR/index.md" 2>/dev/null || \
+  echo "**Dernière sync :** $DATE" >> "$FORGE_DIR/index.md"
+echo -e "${GREEN}✓ index.md mis à jour${NC}"
+
+echo -e "\n${GREEN}════════════════════════════════════${NC}"
+echo -e "${GREEN}✅ Sync terminée → $FORGE_DIR${NC}"
+echo -e "${GREEN}════════════════════════════════════${NC}"
+SYNCEOF
+
+chmod +x scripts/obsidian-sync.sh
+```
+
+### Étape 3.2 — Lancer la première sync
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+bash scripts/obsidian-sync.sh
+
+# Vérifier
+ls "${USERPROFILE}/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/"
+# ✅ Doit afficher les fichiers .md
+```
+
+### Commit Phase 3
+
+```bash
+git add scripts/obsidian-sync.sh memory.md
+git commit -m "feat: phase 3 - obsidian-sync.sh (pure bash, v2.6)"
+```
+
+---
+
+## Déplacement git repo ✅ (commit `40b0a6e`)
+
+> Cette étape n'est pas dans le tuto original. Elle a été réalisée pour avoir
+> un repo propre dans `workflow-ia/` sans préfixe de chemin.
+
+### Contexte
+
+Le repo était initialement dans `C:\IA\Projects\` avec un préfixe `workflow-ia/`
+dans tous les chemins git. On l'a déplacé dans `C:\IA\Projects\workflow-ia\`
+via `git subtree split`.
+
+### Correction post-déplacement du hook pre-commit
+
+```bash
+# Le hook référençait workflow-ia/memory.md — corriger en memory.md
+sed -i 's|workflow-ia/memory.md|memory.md|g' .git/hooks/pre-commit
+```
+
+> ⚠️ **Leçon :** `git subtree split` réécrit les SHA. Les anciens SHA
+> (0ccee34, af2f545, ecb24b2) sont obsolètes après cette opération.
+
+---
+
+## Phase 4 — Connexion vault ✅ (commit `ecced2e`)
+
+### Objectif
+
+Ajouter la section `## Vault Obsidian` dans `AGENTS.md` pour que l'IA sache
+où lire le vault et quels fichiers consulter en début de session.
+
+### Étape 4.1 — Ajouter la section Vault dans AGENTS.md
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+cat >> AGENTS.md << 'EOF'
+
+## Vault Obsidian
+
+Le vault `_forge/workflow-ia/` contient la mémoire long terme du projet.
+Chemin d'accès direct : `C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\_forge\workflow-ia\`
+
+Fichiers à lire en début de session si le contexte est flou :
+- `index.md` → point d'entrée, liens vers tout le reste
+- `architecture.md` → état de l'archi et fichiers clés
+- `sessions.md` → historique chronologique
+- `decisions.md` → pourquoi telle archi, alternatives rejetées
+- `bugs.md` → bugs résolus et patterns à éviter
+- `lessons.md` → leçons réutilisables
+
+Règle d'or : tu lis le vault, tu ne l'écris pas sans validation explicite.
+EOF
+
+tail -15 AGENTS.md
+# ✅ Doit afficher la nouvelle section
+```
+
+### Commit Phase 4
+
+```bash
+git add AGENTS.md memory.md
+git commit -m "feat: phase 4 - vault connexion (section Vault Obsidian dans AGENTS.md)"
+```
+
+---
+
+## Phase 5 — Custom slash commands ✅ (commit `ecced2e`)
+
+### Objectif
+
+Installer les 10 custom slash commands Claude Code dans `.claude/commands/`
+et les versionner dans le repo.
+
+> **Changement par rapport au tuto original :** Le script `install-commands.sh`
+> est maintenant dans `workflow-ia/scripts/` (plus dans `_setup/`).
+> Il utilise des chemins relatifs au repo via `SCRIPT_DIR` et `REPO_DIR`.
+
+### Les 10 commandes
+
+| Commande | Usage |
+|---|---|
+| `/my-world` | Début de journée — charge tout le vault |
+| `/today` | Matin — plan du jour |
+| `/close` | Soir — fin de session, mise à jour memory.md |
+| `/context` | Début de session projet — contexte court terme |
+| `/emerge` | Surface les patterns implicites |
+| `/challenge` | Pression-test des croyances |
+| `/connect` | Ponts non-évidents entre les fichiers |
+| `/trace` | Timeline d'une décision |
+| `/ideas` | Améliorations depuis les patterns |
+| `/global-connect` | Vue macro cross-projets |
+
+### Étape 5.1 — Vérifier que les commands sont en place
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+ls .claude/commands/
+# ✅ Doit afficher les 10 fichiers .md
+```
+
+### Étape 5.2 — Tester install-commands.sh (mode check local)
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+bash scripts/install-commands.sh
+# ✅ Doit afficher : "✓ Tous les commands sont présents dans workflow-ia"
+```
+
+### Étape 5.3 — Déployer sur un autre projet
+
+```bash
+# 📍 Depuis /c/IA/Projects/<ton-projet>
+cd /c/IA/Projects/<ton-projet>
+bash /c/IA/Projects/workflow-ia/scripts/install-commands.sh --project
+
+ls .claude/commands/
+# ✅ Doit afficher les 10 fichiers .md
+```
+
+### Étape 5.4 — Versionner les commands
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+# Vérifier que .claude/ n'est pas ignoré
+grep ".claude" .gitignore || echo "non ignoré — OK"
+
+git add .claude/commands/
+git commit -m "feat: phase 5 - custom slash commands Claude Code"
+```
+
+### Commit Phase 4+5 (réalisé en un seul commit)
+
+```bash
+git add AGENTS.md .claude/commands/ memory.md
+git commit -m "feat: phase 4+5 - vault connexion + slash commands"
+```
+
+---
+
+## Autonomie complète — Structure finale
+
+Après validation des 5 phases, `workflow-ia` est autonome et ne dépend d'aucune
+infrastructure externe.
+
+### Structure complète
+
+```
+workflow-ia/
+├── AGENTS.md                   ← règles communes tous outils IA
+├── CLAUDE.md                   ← @AGENTS.md + règles Claude
+├── memory.md                   ← mémoire court terme
+├── .claude/
+│   ├── settings.local.json     ← permissions Claude Code
+│   └── commands/               ← 10 custom slash commands
+│       ├── my-world.md
+│       ├── today.md
+│       ├── close.md
+│       ├── context.md
+│       ├── emerge.md
+│       ├── challenge.md
+│       ├── connect.md
+│       ├── trace.md
+│       ├── ideas.md
+│       └── global-connect.md
+├── scripts/
+│   ├── obsidian-sync.sh        ← sync memory.md → vault Obsidian
+│   └── install-commands.sh     ← déploie les commands sur un projet
+└── docs/
+    ├── tutorial-optimisation-v2.6.md   ← référence originale (lecture seule)
+    └── tutorial-valider.md             ← ce fichier
+```
+
+### Vérification finale
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+
+# Structure
+ls .claude/
+ls .claude/commands/    # → 10 .md + settings.local.json
+ls scripts/             # → obsidian-sync.sh + install-commands.sh
+
+# Tester install-commands.sh
+bash scripts/install-commands.sh
+
+# Aucune ref _setup dans les fichiers de prod
+grep -rn "_setup" . --include="*.sh" --include="*.md" \
+  --exclude-dir=".git" --exclude="tutorial-*.md"
+# → Résultat attendu : 0 match
+```
+
+---
+
+## Écarts réels vs tuto original
+
+| # | Écart | Raison |
+|---|---|---|
+| 1 | `~/.gemini/settings.json` avait une section `security.auth` | Toujours lire avant d'écraser |
+| 2 | Vault déjà partiellement peuplé en Phase 3 | Script protège les fichiers existants |
+| 3 | `git subtree split` a réécrit les SHA | SHA anciens invalides après déplacement |
+| 4 | Hook pre-commit référençait un chemin préfixé | Corrigé après déplacement du repo |
+| 5 | `install-commands.sh` dans `scripts/` au lieu de `_setup/` | workflow-ia est autonome, pas dépendant de _setup |
+| 6 | Phases 4 et 5 commitées ensemble | Logiquement liées dans la même session |

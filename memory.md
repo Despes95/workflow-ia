@@ -73,5 +73,4 @@
 
 ## ⛔ Contraintes & Interdits
 
-- Ne jamais toucher C:\IA\_setup — travail uniquement dans workflow-ia/
 - Ne jamais modifier AGENTS.md sans validation explicite
