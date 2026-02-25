@@ -7,7 +7,7 @@
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Auto-close /close + remplissage vault ✅ (architecture, decisions, features, ideas)
+- **Mission en cours** : check_memory.sh + prompts cross-outil + daily notes backlog ✅
 - **Prochaine étape** : Phase 8 — Rehydration vault → memory.md
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
 - **État git** : Phases 1-7 ✅ + clôture tuto — commit 89259ac
@@ -41,6 +41,7 @@
 - `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
 - `docs/prompts-et-commandes.md` — référence opérationnelle prompts + 12 commandes — Stable
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian (pure bash v2.6) — Stable
+- `scripts/check_memory.sh` — garde-fou intégrité memory.md (doublons, sections, lignes) — Stable
 - `.claude/commands/*.md` — 12 custom slash commands (backup + wikilinks dans close) — Stable
 
 ---
@@ -53,11 +54,10 @@
 
 ### Historique
 
-- 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
-- 2026-02-25 | Claude Code | Phase 7 momentum transfer | memory.md + switch.md + AGENTS.md | Stable
 - 2026-02-25 | Claude Code | Clôture tuto — /backup + wikilinks /close + prompts-et-commandes | Stable
-- 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | prompts-et-commandes.md + close.md | Stable
+- 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | Stable
 - 2026-02-25 | Claude Code | Auto-close /close + remplissage vault (architecture, decisions, features, ideas) | Stable
+- 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
 
 ---
 

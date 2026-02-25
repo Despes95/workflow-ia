@@ -101,6 +101,15 @@ Puis :
 > Note Gemini CLI : préfixer les commandes bash avec `!` (ex: `!bash scripts/obsidian-sync.sh`).
 > Note OpenCode : les commandes bash s'exécutent normalement.
 
+### Reprise cross-outil (Gemini / OpenCode après Claude)
+
+Après `/close` (memory.md + vault à jour) :
+→ utiliser directement le prompt **Démarrage Gemini CLI / OpenCode** ci-dessus.
+Gemini lira `memory.md` + vault et connaîtra tout ce qui s'est passé.
+
+Si la session **n'est pas clôturée** (pas fait /close) :
+→ faire `/switch` d'abord pour capturer le momentum dans memory.md.
+
 ---
 
 ## Les 12 commandes slash
@@ -406,6 +415,23 @@ Identifie :
 
 ⚠️ Ne touche à aucun fichier. Présente les suggestions, attends validation avant toute écriture.
 ```
+
+---
+
+## Vérification système
+
+### check_memory.sh — Intégrité de memory.md
+
+```bash
+bash scripts/check_memory.sh
+```
+
+Vérifie :
+- Toutes les sections obligatoires sont présentes (Focus Actuel, Architecture, Récap sessions…)
+- Aucun doublon de section
+- Nombre de lignes raisonnable (⚠️ si > 120 lignes)
+
+Exit 0 = OK · Exit 1 = problèmes détectés → réécrire memory.md en entier (Read → modifier → Write).
 
 ---
 
