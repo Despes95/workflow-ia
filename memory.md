@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-25
+**Dernière mise à jour :** 2026-02-25 (commands globales + /close v2)
 **Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : check_memory.sh + prompts cross-outil + daily notes backlog ✅
-- **Prochaine étape** : Phase 8 — Rehydration vault → memory.md
+- **Mission en cours** : Commands globales `~/.claude/commands/` + `/close` prompt v2 ✅
+- **Prochaine étape** : Déboguer "Unknown skill" /close sur Windows
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Phases 1-7 ✅ + clôture tuto — commit 89259ac
+- **État git** : +2 commits (047260e + 1a791b1) — 2 ahead of origin/master
 
 ---
 
@@ -54,10 +54,10 @@
 
 ### Historique
 
-- 2026-02-25 | Claude Code | Clôture tuto — /backup + wikilinks /close + prompts-et-commandes | Stable
 - 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | Stable
 - 2026-02-25 | Claude Code | Auto-close /close + remplissage vault (architecture, decisions, features, ideas) | Stable
 - 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
+- 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | En cours (bug Unknown skill)
 
 ---
 
@@ -73,12 +73,13 @@
 - [x] Phase 7 — Momentum Transfer
 - [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
 - [ ] Ajouter remote GitHub sur workflow-ia → `git remote add origin <url>` (le push /close est déjà prêt)
+- [ ] Déboguer /close "Unknown skill" avec `~/.claude/commands/` sur Windows (Task #1)
 
 ---
 
 ## 🐛 Bugs connus
 
-- `/close` "Unknown skill" si `claude` lancé hors de `workflow-ia/` → fix : `cd workflow-ia && claude`, ou `bash scripts/install-commands.sh` pour global
+- `/close` "Unknown skill" persistant même avec `~/.claude/commands/` global — cause inconnue sur Windows/MINGW64 (Task #1)
 
 ---
 
@@ -89,6 +90,7 @@
 - git subtree split réécrit les SHA — les anciens SHA (0ccee34, af2f545, ecb24b2) ne sont plus valides, remplacés par (c76414b, 31faaff, 7ed0855)
 - Tous les AIs (Claude, Gemini, OpenCode) ont les mêmes capacités sur le vault — prompt fin-de-session unifié (obsidian-sync + wikilinks + push) 🌐
 - Pattern grep de check_memory.sh doit correspondre au titre de section exact — un mot-clé court capte aussi les champs volatiles (ex: "Contraintes" → faux positif) 🌐
+- `~/.claude/commands/` global ne résout pas "Unknown skill" sur Windows/MINGW64 — mécanisme Claude Code à investiguer 🌐
 
 ---
 
