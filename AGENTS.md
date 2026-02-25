@@ -41,3 +41,12 @@ Fichiers à lire en début de session si le contexte est flou :
 - `lessons.md` → leçons réutilisables
 
 Règle d'or : tu lis le vault, tu ne l'écris pas sans validation explicite.
+
+## Règle de reprise (Handoff)
+
+Si la section `## 🧠 Momentum (Handoff)` de `memory.md` n'est **pas vide** :
+- Adopte immédiatement le style et l'intention décrits
+- Ta première réponse commence par : "Reprise du momentum : [résumé d'une phrase]"
+- **Ne commence pas à coder avant que l'utilisateur ait confirmé la reprise**
+- Une fois confirmé : remets les 5 lignes à `—` (garde le titre, efface le contenu)
+  pour éviter toute confusion dans les sessions suivantes

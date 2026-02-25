@@ -8,9 +8,21 @@
 ## 🎯 Focus Actuel
 
 - **Mission en cours** : Valider le tuto tutorial-optimisation-v2.6 phase par phase
-- **Prochaine étape** : Phase 7 — Momentum Transfer
+- **Prochaine étape** : Tuto validé ✅ — décider Phase 8 ou clore
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
 - **État git** : Phases 1-5 ✅ + autonomie complète — commit 29d28da
+
+---
+
+## 🧠 Momentum (Handoff)
+
+> Section volatile — remplie par l'IA avant un switch, effacée après reprise.
+
+- **Pensée en cours** : —
+- **Vibe / Style** : —
+- **Contraintes actives** : —
+- **Le prochain petit pas** : —
+- **Contexte chaud** : —
 
 ---
 
@@ -44,6 +56,7 @@
 - 2026-02-25 | Claude Code | Phase 3 vault Obsidian | scripts/obsidian-sync.sh | Stable
 - 2026-02-25 | Claude Code | Déplacement git repo dans workflow-ia/ | git subtree split | Stable
 - 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
+- 2026-02-25 | Claude Code | Phase 7 momentum transfer | memory.md + switch.md + AGENTS.md | Stable
 
 ---
 
@@ -56,7 +69,7 @@
 - [x] Phase 5 — Slash commands
 - [x] Autonomie complète workflow-ia (settings + install-commands + tutorial-valider)
 - [x] Phase 6 — Leçons globales
-- [ ] Phase 7 — Momentum Transfer
+- [x] Phase 7 — Momentum Transfer
 
 ---
 
