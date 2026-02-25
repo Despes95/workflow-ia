@@ -10,7 +10,7 @@
 - **Mission en cours** : Valider le tuto tutorial-optimisation-v2.6 phase par phase
 - **Prochaine étape** : Phase 4 — Connexion vault
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Phase 3 terminée (obsidian-sync.sh)
+- **État git** : Phase 3 terminée — repo déplacé dans workflow-ia/ (git subtree split)
 
 ---
 
@@ -42,6 +42,7 @@
 - 2026-02-25 | Claude Code | Phase 1 unification règles IA | AGENTS.md, CLAUDE.md | Stable
 - 2026-02-25 | Claude Code | Phase 2 amélioration memory.md | memory.md, pre-commit hook | Stable
 - 2026-02-25 | Claude Code | Phase 3 vault Obsidian | scripts/obsidian-sync.sh | Stable
+- 2026-02-25 | Claude Code | Déplacement git repo dans workflow-ia/ | git subtree split | Stable
 
 ---
 
@@ -66,6 +67,7 @@
 ## 📝 Leçons apprises
 
 - ~/.gemini/settings.json avait une section security.auth à préserver — toujours lire avant d'écraser
+- git subtree split réécrit les SHA — les anciens SHA (0ccee34, af2f545, ecb24b2) ne sont plus valides, remplacés par (c76414b, 31faaff, 7ed0855)
 
 ---
 
