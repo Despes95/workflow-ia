@@ -43,34 +43,62 @@ Ne touche à rien d'autre avant confirmation.
 #### Claude Code (ou tape /close)
 
 ```
-Fin de session. Demande-moi ce qui s'est passé.
+Fin de session.
+Fais d'abord `git status` + `git log --oneline -5`.
+Demande-moi ensuite : "Qu'est-ce qui s'est passé ?"
+
 Attends ma réponse puis :
 1. Extrais les action items
-2. Identifie décisions (→ decisions.md), bugs (→ bugs.md), leçons (→ lessons.md, 🌐 si transversal)
-3. Remplis les callouts `> [!decision]` / `> [!insight]` / `> [!warning]` dans sessions.md
-4. Montre le diff complet de memory.md que tu proposes
-5. Attends ma validation explicite avant d'écrire quoi que ce soit
+2. Identifie décisions (→ decisions.md)
+3. Identifie bugs (→ bugs.md)
+4. Identifie leçons (→ lessons.md, 🌐 si transversal)
+5. Montre le diff complet de memory.md que tu proposes
+
+⚠️ Attends ma validation explicite avant d'écrire quoi que ce soit.
+
+6. Après validation :
+   a. Lance `bash scripts/obsidian-sync.sh`
+   b. Dans l'entrée sessions.md créée, remplis les callouts :
+      - `> [!decision]` ← décisions identifiées
+      - `> [!insight]` ← leçons identifiées
+      - `> [!warning]` ← bugs / anti-patterns
+   c. Ajoute les wikilinks dans l'entrée sessions.md :
+      - Si décisions → `→ [[decisions]]`
+      - Si bugs → `→ [[bugs]]`
+      - Si leçons → `→ [[lessons]]`
+   d. `git add memory.md && git commit -m "chore: fin de session" && git push`
 ```
 
 #### Gemini CLI / OpenCode
 
 ```
-Fin de session. Demande-moi ce qui s'est passé.
+Fin de session.
+Fais d'abord `git status` + `git log --oneline -5`.
+Demande-moi ensuite : "Qu'est-ce qui s'est passé ?"
+
 Attends ma réponse puis :
 1. Extrais les action items
-2. Identifie décisions (→ decisions.md), bugs (→ bugs.md), leçons (→ lessons.md, 🌐 si transversal)
-3. Montre le diff complet de memory.md que tu proposes
-4. Attends ma validation explicite avant d'écrire quoi que ce soit
-5. Après validation :
+2. Identifie décisions (→ decisions.md)
+3. Identifie bugs (→ bugs.md)
+4. Identifie leçons (→ lessons.md, 🌐 si transversal)
+5. Montre le diff complet de memory.md que tu proposes
+
+⚠️ Attends ma validation explicite avant d'écrire quoi que ce soit.
+
+6. Après validation :
    a. Lance `bash scripts/obsidian-sync.sh`
-   b. Dans l'entrée sessions.md créée, ajoute les wikilinks :
+   b. Dans l'entrée sessions.md créée, remplis les callouts :
+      - `> [!decision]` ← décisions identifiées
+      - `> [!insight]` ← leçons identifiées
+      - `> [!warning]` ← bugs / anti-patterns
+   c. Ajoute les wikilinks dans l'entrée sessions.md :
       - Si décisions → `→ [[decisions]]`
       - Si bugs → `→ [[bugs]]`
       - Si leçons → `→ [[lessons]]`
-   c. `git add memory.md && git commit -m "chore: fin de session" && git push`
+   d. `git add memory.md && git commit -m "chore: fin de session" && git push`
 ```
 
-> Note Gemini CLI : les commandes bash s'exécutent avec `!bash ...` ou via le shell natif.
+> Note Gemini CLI : préfixer les commandes bash avec `!` (ex: `!bash scripts/obsidian-sync.sh`).
 > Note OpenCode : les commandes bash s'exécutent normalement.
 
 ---

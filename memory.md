@@ -7,7 +7,7 @@
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Tuto validé ✅ — clôture complète phases 1-7
+- **Mission en cours** : Prompt fin-de-session unifié ✅ — git status + callouts + full workflow
 - **Prochaine étape** : Phase 8 — Rehydration vault → memory.md
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
 - **État git** : Phases 1-7 ✅ + clôture tuto — commit 89259ac
@@ -57,7 +57,7 @@
 - 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
 - 2026-02-25 | Claude Code | Phase 7 momentum transfer | memory.md + switch.md + AGENTS.md | Stable
 - 2026-02-25 | Claude Code | Clôture tuto — /backup + wikilinks /close + prompts-et-commandes | Stable
-- 2026-02-25 | Claude Code | Unification prompt fin-de-session Gemini/OpenCode + tracker tuto | prompts-et-commandes.md | Stable
+- 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | prompts-et-commandes.md + close.md | Stable
 
 ---
 
