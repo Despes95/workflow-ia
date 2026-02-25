@@ -11,3 +11,11 @@ Attends ma réponse, puis :
 
 ⚠️ Tu proposes les mises à jour, je valide, PUIS tu écris.
 Ne modifie aucun fichier sans confirmation explicite de ma part.
+
+6. Après validation, lance `bash scripts/obsidian-sync.sh`
+7. Dans l'entrée sessions.md qui vient d'être créée, ajoute les [[wikilinks]] :
+   - Si des décisions ont été prises → `→ [[decisions]]`
+   - Si des bugs ont été rencontrés → `→ [[bugs]]`
+   - Si des leçons ont été identifiées → `→ [[lessons]]`
+8. Commit et push :
+   `git add memory.md && git commit -m "chore: fin de session" && git push`

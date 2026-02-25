@@ -7,10 +7,10 @@
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Valider le tuto tutorial-optimisation-v2.6 phase par phase
-- **Prochaine étape** : Tuto validé ✅ — décider Phase 8 ou clore
+- **Mission en cours** : Tuto validé ✅ — clôture complète phases 1-7
+- **Prochaine étape** : Phase 8 — Rehydration vault → memory.md
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Phases 1-5 ✅ + autonomie complète — commit 29d28da
+- **État git** : Phases 1-7 ✅ + clôture tuto — commit à faire
 
 ---
 
@@ -39,7 +39,9 @@
 - `AGENTS.md` — règles communes à tous les outils IA — Stable
 - `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
 - `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
+- `docs/prompts-et-commandes.md` — référence opérationnelle prompts + 12 commandes — Stable
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian (pure bash v2.6) — Stable
+- `.claude/commands/*.md` — 12 custom slash commands (backup + wikilinks dans close) — Stable
 
 ---
 
@@ -51,12 +53,11 @@
 
 ### Historique
 
-- 2026-02-25 | Claude Code | Phase 1 unification règles IA | AGENTS.md, CLAUDE.md | Stable
-- 2026-02-25 | Claude Code | Phase 2 amélioration memory.md | memory.md, pre-commit hook | Stable
 - 2026-02-25 | Claude Code | Phase 3 vault Obsidian | scripts/obsidian-sync.sh | Stable
 - 2026-02-25 | Claude Code | Déplacement git repo dans workflow-ia/ | git subtree split | Stable
 - 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
 - 2026-02-25 | Claude Code | Phase 7 momentum transfer | memory.md + switch.md + AGENTS.md | Stable
+- 2026-02-25 | Claude Code | Clôture tuto — /backup + wikilinks /close + prompts-et-commandes | Stable
 
 ---
 
@@ -70,6 +71,7 @@
 - [x] Autonomie complète workflow-ia (settings + install-commands + tutorial-valider)
 - [x] Phase 6 — Leçons globales
 - [x] Phase 7 — Momentum Transfer
+- [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
 
 ---
 
