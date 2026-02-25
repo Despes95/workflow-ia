@@ -26,3 +26,18 @@
 - **Mode complet** : `/my-world` → dev → `/close` → push
 - **Mode rapide** : `/context` → action → `/close`
 - **Mode urgence** : `/context` → action → commit manuel
+
+## Vault Obsidian
+
+Le vault `_forge/workflow-ia/` contient la mémoire long terme du projet.
+Chemin d'accès direct : `C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\_forge\workflow-ia\`
+
+Fichiers à lire en début de session si le contexte est flou :
+- `index.md` → point d'entrée, liens vers tout le reste
+- `architecture.md` → état de l'archi et fichiers clés
+- `sessions.md` → historique chronologique
+- `decisions.md` → pourquoi telle archi, alternatives rejetées
+- `bugs.md` → bugs résolus et patterns à éviter
+- `lessons.md` → leçons réutilisables
+
+Règle d'or : tu lis le vault, tu ne l'écris pas sans validation explicite.
