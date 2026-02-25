@@ -10,7 +10,7 @@
 - **Mission en cours** : Tuto validé ✅ — clôture complète phases 1-7
 - **Prochaine étape** : Phase 8 — Rehydration vault → memory.md
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Phases 1-7 ✅ + clôture tuto — commit à faire
+- **État git** : Phases 1-7 ✅ + clôture tuto — commit 89259ac
 
 ---
 
@@ -77,12 +77,13 @@
 
 ## 🐛 Bugs connus
 
-- Aucun connu actuellement
+- `/close` "Unknown skill" si `claude` lancé hors de `workflow-ia/` → fix : `cd workflow-ia && claude`, ou `bash scripts/install-commands.sh` pour global
 
 ---
 
 ## 📝 Leçons apprises
 
+- Custom commands visibles seulement si `claude` lancé depuis le dossier contenant `.claude/commands/` — utiliser `install-commands.sh` pour un accès global 🌐
 - ~/.gemini/settings.json avait une section security.auth à préserver — toujours lire avant d'écraser
 - git subtree split réécrit les SHA — les anciens SHA (0ccee34, af2f545, ecb24b2) ne sont plus valides, remplacés par (c76414b, 31faaff, 7ed0855)
 
