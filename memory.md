@@ -72,6 +72,7 @@
 - [x] Phase 6 — Leçons globales
 - [x] Phase 7 — Momentum Transfer
 - [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
+- [ ] Ajouter remote GitHub sur workflow-ia → `git remote add origin <url>` (le push /close est déjà prêt)
 
 ---
 
