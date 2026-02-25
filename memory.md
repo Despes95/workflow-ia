@@ -8,9 +8,9 @@
 ## 🎯 Focus Actuel
 
 - **Mission en cours** : Valider le tuto tutorial-optimisation-v2.6 phase par phase
-- **Prochaine étape** : Phase 3 — Vault Obsidian
+- **Prochaine étape** : Phase 4 — Connexion vault
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (commit 0ccee34)
+- **État git** : Phase 3 terminée (obsidian-sync.sh)
 
 ---
 
@@ -27,6 +27,7 @@
 - `AGENTS.md` — règles communes à tous les outils IA — Stable
 - `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
 - `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
+- `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian (pure bash v2.6) — Stable
 
 ---
 
@@ -39,14 +40,16 @@
 ### Historique
 
 - 2026-02-25 | Claude Code | Phase 1 unification règles IA | AGENTS.md, CLAUDE.md | Stable
+- 2026-02-25 | Claude Code | Phase 2 amélioration memory.md | memory.md, pre-commit hook | Stable
+- 2026-02-25 | Claude Code | Phase 3 vault Obsidian | scripts/obsidian-sync.sh | Stable
 
 ---
 
 ## ✅ Todo
 
 - [x] Phase 1 — Unification règles IA
-- [ ] Phase 2 — Amélioration memory.md
-- [ ] Phase 3 — Vault Obsidian
+- [x] Phase 2 — Amélioration memory.md
+- [x] Phase 3 — Vault Obsidian
 - [ ] Phase 4 — Connexion vault
 - [ ] Phase 5 — Slash commands
 - [ ] Phase 6 — Leçons globales
