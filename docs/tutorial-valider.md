@@ -500,6 +500,22 @@ ls .claude/commands/
 # ✅ Doit afficher les 10 fichiers .md
 ```
 
+### Étape 5.3b — Déployer globalement (tous projets)
+
+```bash
+# 📍 Depuis /c/IA/Projects/workflow-ia
+bash scripts/install-commands.sh --global
+# → Copie dans ~/.claude/commands/
+# ✅ Doit afficher : "✓ Commands déployées globalement dans : /c/Users/<user>/.claude/commands"
+
+ls ~/.claude/commands/
+# ✅ Doit lister les 12 fichiers .md
+```
+
+> **Note Windows :** Sur Windows avec Claude Code, `~/.claude/commands/` peut ne pas être détecté
+> automatiquement selon le contexte de lancement. Si `/close` retourne "Unknown skill",
+> utiliser `--project` depuis le dossier actif comme fallback.
+
 ### Étape 5.4 — Versionner les commands
 
 ```bash
