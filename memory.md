@@ -8,9 +8,9 @@
 ## 🎯 Focus Actuel
 
 - **Mission en cours** : Valider le tuto tutorial-optimisation-v2.6 phase par phase
-- **Prochaine étape** : Phase 4 — Connexion vault
+- **Prochaine étape** : Phase 6 — Leçons globales (ou clore le tuto)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Phase 3 terminée — repo déplacé dans workflow-ia/ (git subtree split)
+- **État git** : Phases 1-5 ✅ + autonomie complète — commit 29d28da
 
 ---
 
@@ -51,8 +51,9 @@
 - [x] Phase 1 — Unification règles IA
 - [x] Phase 2 — Amélioration memory.md
 - [x] Phase 3 — Vault Obsidian
-- [ ] Phase 4 — Connexion vault
-- [ ] Phase 5 — Slash commands
+- [x] Phase 4 — Connexion vault
+- [x] Phase 5 — Slash commands
+- [x] Autonomie complète workflow-ia (settings + install-commands + tutorial-valider)
 - [ ] Phase 6 — Leçons globales
 - [ ] Phase 7 — Momentum Transfer
 
