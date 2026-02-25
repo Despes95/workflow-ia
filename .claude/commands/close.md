@@ -5,21 +5,23 @@ Fais d'abord `git status` + `git log --oneline -10` + `git diff HEAD~3..HEAD`.
 
 Puis :
 1. Extrais les action items depuis les commits et diffs
-2. Identifie les décisions prises (candidates pour `decisions.md`)
-3. Identifie les bugs rencontrés (candidats pour `bugs.md`)
-4. Identifie les leçons (candidates pour `lessons.md` — marque 🌐 si transversal)
-5. Montre le diff `memory.md` que tu proposes
+2. Identifie décisions (→ decisions.md)
+3. Identifie bugs (→ bugs.md)
+4. Identifie leçons (→ lessons.md, 🌐 si transversal)
+5. Montre le diff complet de memory.md que tu proposes
    - Si memory.md doit changer : écris les changements, puis enchaîne
    - Si memory.md est déjà à jour : enchaîne directement
 
-6. Lance `bash scripts/obsidian-sync.sh`
-7. Dans l'entrée sessions.md créée, remplis les callouts :
-   - `> [!decision]` ← décisions identifiées en étape 2
-   - `> [!insight]` ← leçons identifiées en étape 4
-   - `> [!warning]` ← bugs / anti-patterns identifiés en étape 3
-8. Dans l'entrée sessions.md, ajoute les [[wikilinks]] :
-   - Si des décisions ont été prises → `→ [[decisions]]`
-   - Si des bugs ont été rencontrés → `→ [[bugs]]`
-   - Si des leçons ont été identifiées → `→ [[lessons]]`
-9. Commit et push (si remote configuré) :
-   `git add memory.md && git commit -m "chore: fin de session" && git remote | grep -q . && git push || true`
+6. Après analyse :
+   a. Lance `bash scripts/obsidian-sync.sh`
+   b. Dans l'entrée sessions.md créée, remplis les callouts :
+      - `> [!decision]` ← décisions identifiées
+      - `> [!insight]` ← leçons identifiées
+      - `> [!warning]` ← bugs / anti-patterns
+   c. Ajoute les wikilinks dans l'entrée sessions.md :
+      - Si décisions → `→ [[decisions]]`
+      - Si bugs → `→ [[bugs]]`
+      - Si leçons → `→ [[lessons]]`
+   d. `git add memory.md && git commit -m "chore: fin de session" && git push`
+      - Revois ce qui a été accompli et identifie les changements à reporter dans `docs/tutorial-valider.md`
+      - Si le tuto général a évolué, mets à jour `docs/tutorial-valider.md` en conséquence
