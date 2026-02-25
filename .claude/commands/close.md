@@ -21,5 +21,5 @@ Puis :
    - Si des décisions ont été prises → `→ [[decisions]]`
    - Si des bugs ont été rencontrés → `→ [[bugs]]`
    - Si des leçons ont été identifiées → `→ [[lessons]]`
-9. Commit et push :
-   `git add memory.md && git commit -m "chore: fin de session" && git push`
+9. Commit et push (si remote configuré) :
+   `git add memory.md && git commit -m "chore: fin de session" && git remote | grep -q . && git push || true`
