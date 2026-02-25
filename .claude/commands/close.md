@@ -1,10 +1,10 @@
 # /close — Rituel de fin de journée
 
-Fais d'abord `git status` + `git log --oneline -5`.
-Demande-moi ensuite : "Qu'est-ce qui s'est passé aujourd'hui ?"
-Attends ma réponse, puis :
+Fais d'abord `git status` + `git log --oneline -10` + `git diff HEAD~3..HEAD`.
+À partir de l'historique git, infère ce qui s'est passé durant cette session.
 
-1. Extrais les action items de ma réponse
+Puis :
+1. Extrais les action items depuis les commits et diffs
 2. Identifie les décisions prises (candidates pour `decisions.md`)
 3. Identifie les bugs rencontrés (candidats pour `bugs.md`)
 4. Identifie les leçons (candidates pour `lessons.md` — marque 🌐 si transversal)

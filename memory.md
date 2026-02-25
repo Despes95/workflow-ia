@@ -7,7 +7,7 @@
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Prompt fin-de-session unifié ✅ — git status + callouts + full workflow
+- **Mission en cours** : Auto-close /close + remplissage vault ✅ (architecture, decisions, features, ideas)
 - **Prochaine étape** : Phase 8 — Rehydration vault → memory.md
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
 - **État git** : Phases 1-7 ✅ + clôture tuto — commit 89259ac
@@ -53,11 +53,11 @@
 
 ### Historique
 
-- 2026-02-25 | Claude Code | Déplacement git repo dans workflow-ia/ | git subtree split | Stable
 - 2026-02-25 | Claude Code | Phase 6 leçons globales | _forge/_global/lessons.md + index.md | Stable
 - 2026-02-25 | Claude Code | Phase 7 momentum transfer | memory.md + switch.md + AGENTS.md | Stable
 - 2026-02-25 | Claude Code | Clôture tuto — /backup + wikilinks /close + prompts-et-commandes | Stable
 - 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | prompts-et-commandes.md + close.md | Stable
+- 2026-02-25 | Claude Code | Auto-close /close + remplissage vault (architecture, decisions, features, ideas) | Stable
 
 ---
 
