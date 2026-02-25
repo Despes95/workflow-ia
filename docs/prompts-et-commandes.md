@@ -53,10 +53,10 @@ Puis :
 3. Identifie bugs (→ bugs.md)
 4. Identifie leçons (→ lessons.md, 🌐 si transversal)
 5. Montre le diff complet de memory.md que tu proposes
+   - Si memory.md doit changer : écris les changements, puis enchaîne
+   - Si memory.md est déjà à jour : enchaîne directement
 
-⚠️ Attends ma validation explicite avant d'écrire quoi que ce soit.
-
-6. Après validation :
+6. Après analyse :
    a. Lance `bash scripts/obsidian-sync.sh`
    b. Dans l'entrée sessions.md créée, remplis les callouts :
       - `> [!decision]` ← décisions identifiées
@@ -82,10 +82,10 @@ Puis :
 3. Identifie bugs (→ bugs.md)
 4. Identifie leçons (→ lessons.md, 🌐 si transversal)
 5. Montre le diff complet de memory.md que tu proposes
+   - Si memory.md doit changer : écris les changements, puis enchaîne
+   - Si memory.md est déjà à jour : enchaîne directement
 
-⚠️ Attends ma validation explicite avant d'écrire quoi que ce soit.
-
-6. Après validation :
+6. Après analyse :
    a. Lance `bash scripts/obsidian-sync.sh`
    b. Dans l'entrée sessions.md créée, remplis les callouts :
       - `> [!decision]` ← décisions identifiées
@@ -207,12 +207,11 @@ Puis :
 2. Identifie les décisions prises (candidates pour `decisions.md`)
 3. Identifie les bugs rencontrés (candidats pour `bugs.md`)
 4. Identifie les leçons (candidates pour `lessons.md` — marque 🌐 si transversal)
-5. Montre-moi le diff `memory.md` que tu proposes
+5. Montre le diff `memory.md` que tu proposes
+   - Si memory.md doit changer : écris les changements, puis enchaîne
+   - Si memory.md est déjà à jour : enchaîne directement
 
-⚠️ Tu proposes les mises à jour, je valide, PUIS tu écris.
-Ne modifie aucun fichier sans confirmation explicite de ma part.
-
-6. Après validation, lance `bash scripts/obsidian-sync.sh`
+6. Lance `bash scripts/obsidian-sync.sh`
 7. Dans l'entrée sessions.md créée, remplis les callouts :
    - `> [!decision]` ← décisions identifiées en étape 2
    - `> [!insight]` ← leçons identifiées en étape 4
