@@ -113,6 +113,7 @@
 - OpenCode : `/start`, `/stranger`, `/close` testés et fonctionnent en mode interactif `opencode .` 🌐
 - Commands pensée : ajouter le chemin DespesNotes `_daily/` enrichit le contexte avec les notes personnelles 🌐
 - Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor) — lecture seule
+- commands-list.cmd : ém-dash cause erreurs CMD Windows — utiliser ASCII uniquement 🌐
 
 ---
 
