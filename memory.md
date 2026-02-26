@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-26 (commands multi-outils Gemini + OpenCode)
+**Dernière mise à jour :** 2026-02-26 (/start + 13 commands Obsidian + commands-list.cmd)
 **Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Handoff — valider commandes Gemini/OpenCode en session réelle
-- **Prochaine étape** : Tester `/close` dans Gemini CLI + vérifier syntaxe TOML effective
+- **Mission en cours** : 26 commands déployées (3 outils) — /start + 13 Obsidian + batch existant
+- **Prochaine étape** : bash scripts/install-commands.sh --all → tester /start et /ghost
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : f299e9b — sync complet, pushé sur origin/master
+- **État git** : 26 commands × 3 outils + commands-list.cmd créés
 
 ---
 
@@ -42,9 +42,10 @@
 - `docs/prompts-et-commandes.md` — référence opérationnelle prompts + 12 commandes — Stable
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian (pure bash v2.6) — Stable
 - `scripts/check_memory.sh` — garde-fou intégrité memory.md (doublons, sections, lignes) — Stable
-- `.claude/commands/*.md` — 12 custom slash commands (backup + wikilinks dans close) — Stable
-- `.gemini/commands/*.toml` — 12 commands Gemini CLI (TOML, `{{args}}`, `@{}`, `!{}`) — Stable
-- `.opencode/commands/*.md` — 12 commands OpenCode (MD frontmatter, `$ARGUMENTS`, `@`, `!`) — Stable
+- `.claude/commands/*.md` — 26 custom slash commands (12 orig + /start + 13 Obsidian) — Stable
+- `.gemini/commands/*.toml` — 26 commands Gemini CLI (TOML, `{{args}}`, `@{}`, `!{}`) — Stable
+- `.opencode/commands/*.md` — 26 commands OpenCode (MD frontmatter, `$ARGUMENTS`, `@`, `!`) — Stable
+- `docs/commands-list.cmd` — Windows batch double-clic, affiche les 26 commandes — Stable
 
 ---
 
@@ -61,6 +62,7 @@
 - 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
 - 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | Stable (bug résolu : relancer Claude Code)
 - 2026-02-26 | Claude Code | Commands multi-outils Gemini (TOML) + OpenCode (MD) + install --all | Stable
+- 2026-02-26 | Claude Code | /start + 13 commands Obsidian × 3 outils + commands-list.cmd (26 total) | Stable
 
 ---
 
@@ -77,7 +79,9 @@
 - [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
 - [x] Commands multi-outils — Gemini (TOML) + OpenCode (MD) + install --all/--gemini/--opencode
 - [x] Ajouter remote GitHub sur workflow-ia → déjà configuré, push actif depuis plusieurs sessions
+- [x] /start + 13 commands Obsidian × 3 outils + docs/commands-list.cmd
 - [ ] Tester commandes Gemini CLI + OpenCode en session réelle
+- [ ] Lancer install-commands.sh --all pour déployer les 14 nouvelles commandes globalement
 
 ---
 
@@ -96,6 +100,7 @@
 - Pattern grep de check_memory.sh doit correspondre au titre de section exact — un mot-clé court capte aussi les champs volatiles (ex: "Contraintes" → faux positif) 🌐
 - `~/.claude/commands/` global : "Unknown skill" se résout en relançant Claude Code — toujours redémarrer après install 🌐
 - Commands multi-outils : adapter le format par outil (`{{args}}`/Gemini, `$ARGUMENTS`/OpenCode) mais le contenu prompt reste identique 🌐
+- `install-commands.sh` couvre automatiquement les nouveaux fichiers via glob `*.md`/`*.toml` — pas besoin de modifier le script pour les nouvelles commandes 🌐
 
 ---
 
