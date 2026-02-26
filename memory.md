@@ -7,10 +7,10 @@
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Commands multi-outils — Gemini (TOML) + OpenCode (MD) ✅
-- **Prochaine étape** : Ajouter remote GitHub + push ; tester Gemini CLI sans mode plan
+- **Mission en cours** : Handoff — valider commandes Gemini/OpenCode en session réelle
+- **Prochaine étape** : Tester `/close` dans Gemini CLI + vérifier syntaxe TOML effective
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : commit 768dca1 — 25 fichiers (24 créés + 1 modifié)
+- **État git** : f299e9b — sync complet, pushé sur origin/master
 
 ---
 
@@ -18,11 +18,11 @@
 
 > Section volatile — remplie par l'IA avant un switch, effacée après reprise.
 
-- **Pensée en cours** : —
-- **Vibe / Style** : —
-- **Contraintes actives** : —
-- **Le prochain petit pas** : —
-- **Contexte chaud** : —
+- **Pensée en cours** : Les formats TOML/MD ont été créés mais jamais testés en Gemini CLI ni OpenCode — la syntaxe `!{cmd}` / `@{path}` est supposée, pas confirmée
+- **Vibe / Style** : Pragmatique + procédural — plan précis → implémentation → vérification → commit ; aucune spéculation sans test
+- **Contraintes actives** : Ne pas modifier AGENTS.md ; remote GitHub déjà configuré (push réussi vers github.com/Despes95/workflow-ia)
+- **Le prochain petit pas** : Lancer Gemini CLI et taper `/close` — observer si le TOML est parsé et si `!{cmd}` déclenche bien une commande shell
+- **Contexte chaud** : La Todo "Ajouter remote GitHub" est déjà faite (on pousse depuis plusieurs sessions) — la cocher. Le vrai risque est que Gemini CLI ne supporte pas encore les custom commands TOML de cette façon — à vérifier dans la doc officielle avant de se fier au format
 
 ---
 
@@ -76,7 +76,7 @@
 - [x] Phase 7 — Momentum Transfer
 - [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
 - [x] Commands multi-outils — Gemini (TOML) + OpenCode (MD) + install --all/--gemini/--opencode
-- [ ] Ajouter remote GitHub sur workflow-ia → `git remote add origin <url>` (le push /close est déjà prêt)
+- [x] Ajouter remote GitHub sur workflow-ia → déjà configuré, push actif depuis plusieurs sessions
 - [ ] Tester commandes Gemini CLI + OpenCode en session réelle
 
 ---
