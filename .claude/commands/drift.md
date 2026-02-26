@@ -1,9 +1,10 @@
 # /drift — Identifie les sujets que tu évites silencieusement
 
 Lis dans cet ordre :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (20 dernières entrées)
-2. `memory.md` (section Todo)
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/ideas.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (15 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (20 dernières entrées)
+3. `memory.md` (section Todo)
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/ideas.md`
 
 Identifie le drift — les sujets ou projets qui :
 - Sont présents dans les todos ou ideas mais absents des sessions récentes

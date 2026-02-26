@@ -2,19 +2,19 @@ description = "Charge mon monde entier — tous projets actifs + vault global"
 prompt = """
 Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
-## 1. Vault global
+## 1. Daily Notes
+Lis :
+- @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/} (7 dernières notes)
+
+## 2. Vault global
 Lis :
 - @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md}
 - @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md}
 
-## 2. Projets actifs (workflow-ia)
+## 3. Projets actifs (workflow-ia)
 Lis :
 - @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md}
 - @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md}
-
-## 3. Obsidian CLI (si disponible)
-!{obsidian find-orphans 2>/dev/null || echo "Obsidian CLI non disponible"}
-!{obsidian list-backlinks _forge/_global/lessons.md 2>/dev/null || echo ""}
 
 ## 4. Résumé
 Réponds avec exactement 5 points :

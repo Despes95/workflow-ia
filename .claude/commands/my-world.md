@@ -2,18 +2,15 @@
 
 Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
-## 1. Vault global
+## 1. Daily Notes
+- Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (7 dernières notes)
+
+## 2. Vault global
 - Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 - Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md`
 
-## 2. Projets actifs
+## 3. Projets actifs
 Pour chaque projet listé dans `_global/index.md`, lis son `index.md` et son `architecture.md`.
-
-## 3. Obsidian CLI (si disponible)
-```
-obsidian find-orphans
-obsidian list-backlinks _forge/_global/lessons.md
-```
 
 ## 4. Résumé
 Réponds avec exactement 5 points :

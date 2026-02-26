@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-26 (OpenCode validé — test commands /start, /stranger, /close)
+**Dernière mise à jour :** 2026-02-26 (28 commands + DespesNotes + improve/audit)
 **Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : OpenCode validé — tester Gemini CLI
-- **Prochaine étape** : Tester Gemini CLI (TOML) en session réelle
+- **Mission en cours** : Commands DEV/PENSÉE réorganisées — DespesNotes intégré
+- **Prochaine étape** : Tester Gemini CLI (TOML) + installer commands global
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre — tout pushé
+- **État git** : Modifié — 48 fichiers (44 modifiés + 4 nouveaux)
 
 ---
 
@@ -35,15 +35,17 @@
 - `AGENTS.md` — règles communes à tous les outils IA — Stable
 - `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
 - `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
-- `docs/prompts-et-commandes.md` — référence opérationnelle prompts + 12 commandes — Stable
-- `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian (pure bash v2.6) — Stable
-- `scripts/check_memory.sh` — garde-fou intégrité memory.md (doublons, sections, lignes) — Stable
-- `.claude/commands/*.md` — 26 custom slash commands (12 orig + /start + 13 Obsidian) — Stable
-- `.gemini/commands/*.toml` — 26 commands Gemini CLI (TOML, `{{args}}`, `@{}`, `!{}`) — Stable
-- `.opencode/commands/*.md` — 26 commands OpenCode (MD frontmatter, `$ARGUMENTS`, `@`, `!`) — Stable
-- `docs/commands-list.cmd` — Windows batch double-clic, affiche les 26 commandes — Stable
-- `new-project.cmd` — launcher Windows bootstrap nouveau projet en 1 clic — Stable
-- `scripts/new-project.sh` — script bootstrap complet (stack workflow-ia) — Stable
+- `docs/prompts-et-commandes.md` — référence opérationnelle 28 commandes — Stable
+- `docs/commands-list.cmd` — Windows batch, affiche 28 commandes — Stable
+- `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — Stable
+- `scripts/check_memory.sh` — garde-fou intégrité memory.md — Stable
+- `.claude/commands/*.md` — 28 custom slash commands Claude — Stable
+- `.gemini/commands/*.toml` — 28 commands Gemini CLI (TOML) — Stable
+- `.opencode/commands/*.md` — 28 commands OpenCode (MD) — Stable
+- `README.md` — documentation principale — Nouveau
+- `.gitignore` — exclusions standards — Nouveau
+- `new-project.cmd` — launcher Windows bootstrap — Stable
+- `scripts/new-project.sh` — script bootstrap complet — Stable
 
 ---
 
@@ -51,17 +53,17 @@
 
 ### Résumé global
 
-- Stack complète : 26 commandes × 3 outils, vault Obsidian, bootstrapper new-project.cmd/.sh opérationnel.
-- OpenCode validé : commands testées fonctionnent en mode interactif.
+- Stack complète : 28 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
+- DespesNotes intégré : commands PENSÉE lisent `_daily/`.
+- Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor).
 
 ### Historique
 
+- 2026-02-26 | Claude Code | 28 commands + DespesNotes + improve/audit + README | Stable
 - 2026-02-26 | Claude Code | Test commands OpenCode (/start, /stranger, /close) + plan test Gemini CLI | Stable
 - 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
-- 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | Stable (bug résolu : relancer Claude Code)
-- 2026-02-26 | Claude Code | Commands multi-outils Gemini (TOML) + OpenCode (MD) + install --all | Stable
-- 2026-02-26 | Claude Code | /start + 13 commands Obsidian × 3 outils + commands-list.cmd (26 total) | Stable
-- 2026-02-26 | Claude Code | new-project.cmd/.sh — bootstrapper nouveau projet en 1 clic | Stable
+- 2026-02-25 | Claude Code | Commands globales + /close prompt v2 | Stable
+- 2026-02-26 | Claude Code | Commands multi-outils Gemini + OpenCode + install --all | Stable
 
 ---
 
@@ -72,17 +74,18 @@
 - [x] Phase 3 — Vault Obsidian
 - [x] Phase 4 — Connexion vault
 - [x] Phase 5 — Slash commands
-- [x] Autonomie complète workflow-ia (settings + install-commands + tutorial-valider)
+- [x] Autonomie complète workflow-ia
 - [x] Phase 6 — Leçons globales
 - [x] Phase 7 — Momentum Transfer
-- [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
-- [x] Commands multi-outils — Gemini (TOML) + OpenCode (MD) + install --all/--gemini/--opencode
-- [x] Ajouter remote GitHub sur workflow-ia → déjà configuré, push actif depuis plusieurs sessions
-- [x] /start + 13 commands Obsidian × 3 outils + docs/commands-list.cmd
-- [x] Tester commandes OpenCode en session réelle (/start, /stranger, /close fonctionnent) 🌐
+- [x] Clôture tuto — prompts-et-commandes.md + /backup
+- [x] Commands multi-outils — 28 commands × 3 outils
+- [x] README.md + .gitignore créés
+- [x] Commands DEV réorganisées (DEV/PENSÉE)
+- [x] DespesNotes intégré aux 16 commands pensée
+- [x] Nouvelles commands /improve + /audit
+- [x] Tester commandes OpenCode (/start, /stranger, /close) 🌐
 - [ ] Tester commandes Gemini CLI (TOML) en session réelle
-- [ ] Lancer install-commands.sh --all pour déployer les 14 nouvelles commandes globalement
-- [x] new-project.cmd/.sh — bootstrapper nouveau projet en 1 clic
+- [ ] Lancer install-commands.sh --all pour déployer les 28 commandes globalement
 
 ---
 
@@ -108,6 +111,8 @@
 - OpenCode custom slash commands : nécessitent le mode interactif — `opencode run` ne les reconnaît pas 🌐
 - OpenCode dossier global Windows : `%APPDATA%\opencode\commands\` (pas ~/.config/) 🌐
 - OpenCode : `/start`, `/stranger`, `/close` testés et fonctionnent en mode interactif `opencode .` 🌐
+- Commands pensée : ajouter le chemin DespesNotes `_daily/` enrichit le contexte avec les notes personnelles 🌐
+- Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor) — lecture seule
 
 ---
 

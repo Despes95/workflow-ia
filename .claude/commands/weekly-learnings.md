@@ -1,7 +1,8 @@
 # /weekly-learnings — Résumé hebdomadaire des insights
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (7 dernières entrées — environ 1 semaine)
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (7 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (7 dernières entrées)
 
 Compile un résumé hebdomadaire prêt à l'export :
 

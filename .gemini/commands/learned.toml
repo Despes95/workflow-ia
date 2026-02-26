@@ -1,8 +1,9 @@
 description = "Transforme les apprentissages récents en post 'What I Learned'"
 prompt = """
 Lis dans cet ordre :
-1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md} (5 dernières entrées)
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md}
+1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/} (7 dernières notes)
+2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md} (5 dernières entrées)
+3. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md}
 
 Produis un post structuré "What I Learned" :
 

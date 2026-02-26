@@ -1,8 +1,9 @@
 # /compound — Trace l'évolution d'une question dans le vault
 
 Lis dans cet ordre :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (toutes les entrées)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (toutes les notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (toutes les entrées)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
 
 Question à tracer : $ARGUMENTS
 

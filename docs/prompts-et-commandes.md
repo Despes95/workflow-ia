@@ -4,6 +4,15 @@
 
 ---
 
+## Daily Notes
+
+Ce projet utilise **DespesNotes** pour la réflexion personnelle :
+- Chemin : `C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\DespesNotes\_daily\`
+
+Les commands Pensée lisent automatiquement ces notes pour fournir un contexte plus riche.
+
+---
+
 ## Prompts manuels
 
 ### Démarrage de session
@@ -112,24 +121,43 @@ Si la session **n'est pas clôturée** (pas fait /close) :
 
 ---
 
-## Les 12 commandes slash
+## Les 26 commandes slash
 
-### Tableau récap
+### DEV (10)
 
 | Commande | Usage | Lecture seule |
 |---|---|---|
-| /my-world | Début de journée | ✅ |
+| /start | Démarrage contexte complet | ✅ |
+| /context | Contexte projet | ✅ |
 | /today | Matin — plan du jour | ✅ |
-| /context | Début de session | ✅ |
 | /close | Fin de session (écrit memory.md) | ⚠️ |
+| /close-day | Revue journée | ✅ |
 | /backup | Sauvegarde complète | ⚠️ |
 | /switch | Handoff vers autre IA | ⚠️ |
+| /schedule | Planification énergie | ✅ |
+| /7plan | 7 prochains jours | ✅ |
+| /map | Vue topologique vault | ✅ |
+
+### PENSÉE (16)
+
+| Commande | Usage | Lecture seule |
+|---|---|---|
+| /weekly-learnings | Résumé hebdomadaire | ✅ |
+| /learned | Post "What I Learned" | ✅ |
+| /graduate | Daily → notes permanentes | ✅ |
+| /backlinks | Liens manquants | ✅ |
+| /compound | Question diff moments | ✅ |
+| /stranger | Portrait externe | ✅ |
+| /drift | Sujets évités | ✅ |
+| /contradict | Croyances incompatibles | ✅ |
+| /ghost | Répond comme toi | ✅ |
+| /trace | Évolution décision | ✅ |
 | /emerge | Patterns implicites | ✅ |
-| /challenge | Pression-test | ✅ |
-| /connect | Ponts entre domaines | ✅ |
-| /trace | Timeline d'une décision | ✅ |
+| /connect | Ponts domaines | ✅ |
+| /challenge | Test croyances | ✅ |
 | /ideas | Améliorations | ✅ |
 | /global-connect | Cross-projets | ✅ |
+| /my-world | Tous projets | ✅ |
 
 ### Contenu de chaque commande
 
@@ -140,18 +168,15 @@ Si la session **n'est pas clôturée** (pas fait /close) :
 
 Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
-## 1. Vault global
+## 1. Daily Notes
+Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (7 dernières notes)
+
+## 2. Vault global
 - Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 - Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md`
 
-## 2. Projets actifs
+## 3. Projets actifs
 Pour chaque projet listé dans `_global/index.md`, lis son `index.md` et son `architecture.md`.
-
-## 3. Obsidian CLI (si disponible)
-```
-obsidian find-orphans
-obsidian list-backlinks _forge/_global/lessons.md
-```
 
 ## 4. Résumé
 Réponds avec exactement 5 points :
@@ -295,9 +320,10 @@ Prépare un handoff propre. Exécute dans cet ordre :
 # /emerge — Surface les patterns implicites
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (les 10 dernières entrées)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (10 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (les 10 dernières entrées)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 
 Cherche des idées que mes notes IMPLIQUENT mais que je n'ai jamais formulées explicitement.
 Pas ce que j'ai écrit — ce que mes patterns suggèrent que je pense ou que je veux faire.
@@ -316,9 +342,10 @@ Format de réponse :
 # /challenge — Pression-test mes croyances
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (10 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
 
 Prends une croyance ou un pattern que je semble avoir
 (ex : "je préfère toujours X", "je déteste Y", "je contourne toujours Z").
@@ -336,10 +363,11 @@ Sois bienveillant mais direct.
 # /connect — Ponts entre domaines
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
-4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (10 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
+5. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 
 Trouve 3 connexions non-évidentes entre les patterns de ces fichiers.
 
@@ -361,9 +389,10 @@ Format : "J'observe que [A] + [B] → ce qui suggère que [insight actionnable]"
 Sujet à tracer : $ARGUMENTS
 
 Lis dans l'ordre :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/architecture.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (toutes les notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/architecture.md`
 
 Trace l'évolution de "$ARGUMENTS" dans le temps.
 
@@ -382,10 +411,11 @@ Format de réponse :
 # /ideas — Génère des améliorations depuis les patterns
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (les 30 dernières entrées si dispo)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/ideas.md`
-4. `memory.md` (sections Todo et Bugs)
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (15 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (les 30 dernières entrées si dispo)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/ideas.md`
+5. `memory.md` (sections Todo et Bugs)
 
 Analyse les patterns récurrents et les problèmes que j'ai contournés plutôt que résolus.
 
@@ -402,9 +432,10 @@ Propose 3 angles d'amélioration ou d'évolution, format :
 # /global-connect — Patterns cross-projets
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (10 dernières notes)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
 
 Compare les patterns du projet actuel avec les patterns globaux.
 
