@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-26 (new-project.cmd/.sh — bootstrapper nouveau projet)
+**Dernière mise à jour :** 2026-02-26 (OpenCode validé — test commands /start, /stranger, /close)
 **Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Bootstrapper livré — new-project.cmd/.sh opérationnel (78 commands × 3 outils)
-- **Prochaine étape** : Tester Gemini CLI + OpenCode en session réelle
+- **Mission en cours** : OpenCode validé — tester Gemini CLI
+- **Prochaine étape** : Tester Gemini CLI (TOML) en session réelle
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre — tout pushé (26 commands × 3 outils + bootstrapper)
+- **État git** : Propre — tout pushé
 
 ---
 
@@ -52,9 +52,11 @@
 ### Résumé global
 
 - Stack complète : 26 commandes × 3 outils, vault Obsidian, bootstrapper new-project.cmd/.sh opérationnel.
+- OpenCode validé : commands testées fonctionnent en mode interactif.
 
 ### Historique
 
+- 2026-02-26 | Claude Code | Test commands OpenCode (/start, /stranger, /close) + plan test Gemini CLI | Stable
 - 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
 - 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | Stable (bug résolu : relancer Claude Code)
 - 2026-02-26 | Claude Code | Commands multi-outils Gemini (TOML) + OpenCode (MD) + install --all | Stable
