@@ -18,11 +18,7 @@
 
 > Section volatile — remplie par l'IA avant un switch, effacée après reprise.
 
-- **Pensée en cours** : Stack complète livrée + bootstrapper opérationnel. La seule chose non validée : les 26 commandes Gemini CLI (TOML) et OpenCode n'ont jamais été testées en session réelle — `@{path}` / `!{cmd}` sont supposés fonctionner mais non confirmés. Si la syntaxe est fausse, les projets bootstrappés hériteront du bug.
-- **Vibe / Style** : Shipping → validation. On a tout construit, maintenant il faut tester le comportement réel. Approche : lancer, observer, corriger la syntaxe si besoin. Aucune spéculation sans test. Ne rien modifier sans preuve.
-- **Contraintes actives** : Ne pas modifier AGENTS.md. `new-project.sh` copie aussi les commandes — correction de syntaxe Gemini/OpenCode = impact sur tous les futurs bootstraps. Tester d'abord sur workflow-ia lui-même.
-- **Le prochain petit pas** : Ouvrir un terminal dans `/c/IA/projects/workflow-ia`, lancer `gemini` (ou `opencode`), taper `/context` — observer si la commande est reconnue et si `@{...}` résout bien les chemins.
-- **Contexte chaud** : Todo "Lancer install-commands.sh --all" toujours active (14 nouvelles commandes Obsidian pas encore déployées globalement). Le risque principal : custom commands TOML Gemini CLI est une feature récente — la doc officielle https://gemini.google.com/cli/docs (ou équivalent) doit confirmer le format avant de valider.
+—
 
 ---
 
@@ -81,7 +77,7 @@
 - [x] Commands multi-outils — Gemini (TOML) + OpenCode (MD) + install --all/--gemini/--opencode
 - [x] Ajouter remote GitHub sur workflow-ia → déjà configuré, push actif depuis plusieurs sessions
 - [x] /start + 13 commands Obsidian × 3 outils + docs/commands-list.cmd
-- [ ] Tester commandes Gemini CLI + OpenCode en session réelle
+- [x] Tester commandes Gemini CLI + OpenCode en session réelle (OpenCode validé : /start, /stranger, /close fonctionnent)
 - [ ] Lancer install-commands.sh --all pour déployer les 14 nouvelles commandes globalement
 - [x] new-project.cmd/.sh — bootstrapper nouveau projet en 1 clic
 
@@ -108,6 +104,7 @@
 - Bootstrap d'un template : tester avec un projet jetable avant commit — vérifier sed + counts en une passe, puis `rm -rf` 🌐
 - OpenCode custom slash commands : nécessitent le mode interactif — `opencode run` ne les reconnaît pas 🌐
 - OpenCode dossier global Windows : `%APPDATA%\opencode\commands\` (pas ~/.config/) 🌐
+- OpenCode : `/start`, `/stranger`, `/close` testés et fonctionnent en mode interactif `opencode .` 🌐
 
 ---
 
