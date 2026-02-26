@@ -2,17 +2,17 @@
 chcp 65001 >nul
 echo.
 echo ===========================================
-echo   workflow-ia ^— Commandes disponibles
+echo   workflow-ia -- Commandes disponibles
 echo   Claude Code ^| Gemini CLI ^| OpenCode
 echo ===========================================
 echo.
-echo Vault: DespesNotes\_daily + _forge/workflow-ia
+echo Vault: C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\DespesNotes\_daily
 echo.
-echo [DEV — Session ^& Planification]
-echo   /start           Demarre une session ^— contexte complet + git status
+echo [DEV]
+echo   /start           Demarre une session -- contexte complet + git status
 echo   /context         Recharge le contexte du projet actif
-echo   /today           Rituel du matin ^— priorites du jour
-echo   /close           Rituel de fin de journee ^— vault sync + commit
+echo   /today           Rituel du matin -- priorites du jour
+echo   /close           Rituel de fin de journee -- vault sync + commit
 echo   /close-day       Revoit la journee, capture les apprentissages
 echo   /backup          Sauvegarde vault + git push
 echo   /switch          Passage de relais vers une autre IA
@@ -22,10 +22,10 @@ echo   /map             Vue topologique du vault
 echo   /improve         Propose des ameliorations techniques
 echo   /audit           Analyse bugs et refactorisation
 echo.
-echo [PENSÉE — Reflexion ^& Identity]
+echo [PENSEE]
 echo   /weekly-learnings   Resume hebdomadaire des insights
 echo   /learned           Transforme les lecons en post "What I Learned"
-echo   /graduate          Idees des daily notes ^-^> notes permanentes
+echo   /graduate          Idees des daily notes --^> notes permanentes
 echo   /backlinks         Notes qui devraient se lier mais ne le font pas
 echo   /compound          Meme question a differents moments du vault
 echo   /stranger          Portrait de toi vu de l'exterieur
@@ -43,7 +43,7 @@ echo.
 echo -------------------------------------------
 echo   Total : 28 commandes
 echo   Compatibles : Claude Code, Gemini CLI, OpenCode
-echo   Daily notes : C:\...\DespesNotes\_daily\
+echo   Daily notes : C:\...\DespesNotes\_daily
 echo -------------------------------------------
 echo.
 pause
