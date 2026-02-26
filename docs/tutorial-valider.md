@@ -672,6 +672,78 @@ grep -rn "_setup" . --include="*.sh" --include="*.md" \
 
 ---
 
+## Phase 7 — /start + 13 commands Obsidian × 3 outils ✅ (commit `0b8cd68`)
+
+**Objectif :** Passer de 12 à 26 commandes — ajouter `/start` (démarrage froid) et 13 commandes
+orientées vault Obsidian, disponibles dans les 3 outils.
+
+### Différence /start vs /context
+
+| | `/start` | `/context` |
+|---|---|---|
+| Lit CLAUDE.md/AGENTS.md | ✅ | ❌ |
+| Lit memory.md | ✅ | ✅ |
+| Lit vault index + architecture | ✅ | ✅ |
+| Fait git status + log | ✅ | ❌ |
+| **Vocation** | **Démarrage froid** | **Rechargement rapide** |
+
+### Étape 7.1 — Créer /start (3 outils)
+
+```bash
+# .claude/commands/start.md (prompt littéral + $ARGUMENTS implicite)
+# .gemini/commands/start.toml ({{args}}, @{path}, !{cmd})
+# .opencode/commands/start.md (frontmatter + @path + !cmd)
+```
+
+Contenu du prompt `/start` :
+1. Lit CLAUDE.md → AGENTS.md (ou AGENTS.md pour Gemini/OpenCode)
+2. Lit memory.md
+3. Lit vault index.md + architecture.md
+4. Lance git status + git log --oneline -10
+5. Résume en 5 points (état, blocages, prochaine étape, zones sensibles, dette)
+
+### Étape 7.2 — Créer les 13 commands Obsidian (× 3 outils = 39 fichiers)
+
+| Commande | Vault lu | Vocation |
+|----------|---------|----------|
+| `/close-day` | sessions (dernière) + memory | Bilan journée → propose màj memory |
+| `/schedule` | sessions (3) + lessons + memory | Planning selon patterns d'énergie |
+| `/7plan` | sessions (10) + ideas + memory | 7 jours autour des sujets vivants |
+| `/map` | index + architecture + sessions (5) + lessons + decisions | Carte topologique |
+| `/ghost $q` | lessons + sessions (15) + decisions + _global/lessons | Répond en ton nom |
+| `/contradict` | decisions + lessons + sessions (10) | Croyances incompatibles |
+| `/drift` | sessions (20) + memory + ideas | Sujets évités silencieusement |
+| `/stranger` | _global/lessons + sessions (20) + decisions + lessons | Portrait externe |
+| `/compound $q` | sessions (tout) + decisions | Évolution d'une question |
+| `/backlinks` | sessions (10) + lessons + ideas | Connexions manquantes |
+| `/graduate` | sessions (10) + ideas | Idées → notes permanentes |
+| `/learned` | sessions (5) + lessons | Post "What I Learned" |
+| `/weekly-learnings` | sessions (7 dernières) | Résumé hebdomadaire |
+
+### Étape 7.3 — Créer docs/commands-list.cmd
+
+Script Windows batch — double-clic → affiche les 26 commandes dans le terminal.
+
+```cmd
+# docs/commands-list.cmd
+# Sections : SESSION, PLANIFICATION, ANALYSE DU VAULT, RÉFLEXION, IDENTITÉ, EXPORT
+```
+
+### Vérification finale
+
+```bash
+ls .claude/commands/   # → 26 fichiers .md
+ls .gemini/commands/   # → 26 fichiers .toml
+ls .opencode/commands/ # → 26 fichiers .md
+# Double-clic docs/commands-list.cmd → liste s'affiche
+
+# Déployer globalement :
+bash scripts/install-commands.sh --all
+# → relancer Claude Code après --global ou --all
+```
+
+---
+
 ## Écarts réels vs tuto original
 
 | # | Écart | Raison |
@@ -684,3 +756,4 @@ grep -rn "_setup" . --include="*.sh" --include="*.md" \
 | 6 | Phases 4 et 5 commitées ensemble | Logiquement liées dans la même session |
 | 7 | Mode plan Gemini (`defaultApprovalMode: plan`) activé par défaut | Supprimé en Phase 6 — trop intrusif pour un usage quotidien |
 | 8 | Commands multi-outils absentes du tuto original | Ajoutées en Phase 6 — Gemini (TOML) + OpenCode (MD) + `--all` |
+| 9 | 12 → 26 commands absentes du tuto original | Ajoutées en Phase 7 — /start + 13 Obsidian × 3 outils + commands-list.cmd |
