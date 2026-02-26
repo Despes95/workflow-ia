@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-25 (commands globales + /close v2)
+**Dernière mise à jour :** 2026-02-26 (commands multi-outils Gemini + OpenCode)
 **Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Commands globales `~/.claude/commands/` + `/close` prompt v2 ✅
-- **Prochaine étape** : Déboguer "Unknown skill" /close sur Windows
+- **Mission en cours** : Commands multi-outils — Gemini (TOML) + OpenCode (MD) ✅
+- **Prochaine étape** : Ajouter remote GitHub + push ; tester Gemini CLI sans mode plan
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : +2 commits (047260e + 1a791b1) — 2 ahead of origin/master
+- **État git** : commit 768dca1 — 25 fichiers (24 créés + 1 modifié)
 
 ---
 
@@ -43,6 +43,8 @@
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian (pure bash v2.6) — Stable
 - `scripts/check_memory.sh` — garde-fou intégrité memory.md (doublons, sections, lignes) — Stable
 - `.claude/commands/*.md` — 12 custom slash commands (backup + wikilinks dans close) — Stable
+- `.gemini/commands/*.toml` — 12 commands Gemini CLI (TOML, `{{args}}`, `@{}`, `!{}`) — Stable
+- `.opencode/commands/*.md` — 12 commands OpenCode (MD frontmatter, `$ARGUMENTS`, `@`, `!`) — Stable
 
 ---
 
@@ -57,7 +59,8 @@
 - 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | Stable
 - 2026-02-25 | Claude Code | Auto-close /close + remplissage vault (architecture, decisions, features, ideas) | Stable
 - 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
-- 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | En cours (bug Unknown skill)
+- 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | Stable (bug résolu : relancer Claude Code)
+- 2026-02-26 | Claude Code | Commands multi-outils Gemini (TOML) + OpenCode (MD) + install --all | Stable
 
 ---
 
@@ -72,14 +75,15 @@
 - [x] Phase 6 — Leçons globales
 - [x] Phase 7 — Momentum Transfer
 - [x] Clôture tuto — prompts-et-commandes.md + /backup + rétroliens /close
+- [x] Commands multi-outils — Gemini (TOML) + OpenCode (MD) + install --all/--gemini/--opencode
 - [ ] Ajouter remote GitHub sur workflow-ia → `git remote add origin <url>` (le push /close est déjà prêt)
-- [ ] Déboguer /close "Unknown skill" avec `~/.claude/commands/` sur Windows (Task #1)
+- [ ] Tester commandes Gemini CLI + OpenCode en session réelle
 
 ---
 
 ## 🐛 Bugs connus
 
-- `/close` "Unknown skill" persistant même avec `~/.claude/commands/` global — cause inconnue sur Windows/MINGW64 (Task #1)
+- `/close` "Unknown skill" résolu : il fallait relancer Claude Code après install --global
 
 ---
 
@@ -90,7 +94,8 @@
 - git subtree split réécrit les SHA — les anciens SHA (0ccee34, af2f545, ecb24b2) ne sont plus valides, remplacés par (c76414b, 31faaff, 7ed0855)
 - Tous les AIs (Claude, Gemini, OpenCode) ont les mêmes capacités sur le vault — prompt fin-de-session unifié (obsidian-sync + wikilinks + push) 🌐
 - Pattern grep de check_memory.sh doit correspondre au titre de section exact — un mot-clé court capte aussi les champs volatiles (ex: "Contraintes" → faux positif) 🌐
-- `~/.claude/commands/` global ne résout pas "Unknown skill" sur Windows/MINGW64 — mécanisme Claude Code à investiguer 🌐
+- `~/.claude/commands/` global : "Unknown skill" se résout en relançant Claude Code — toujours redémarrer après install 🌐
+- Commands multi-outils : adapter le format par outil (`{{args}}`/Gemini, `$ARGUMENTS`/OpenCode) mais le contenu prompt reste identique 🌐
 
 ---
 
