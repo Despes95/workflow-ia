@@ -536,6 +536,89 @@ git commit -m "feat: phase 4+5 - vault connexion + slash commands"
 
 ---
 
+## Phase 6 — Adaptation commands multi-outils ✅ (commit `768dca1`)
+
+**Objectif :** Rendre les 12 commands Claude Code disponibles dans Gemini CLI et OpenCode,
+avec adaptation syntaxique par outil.
+
+### Étape 6.1 — Supprimer le mode plan Gemini
+
+```bash
+# Vérifier settings.json avant modification
+cat ~/.gemini/settings.json
+
+# Supprimer defaultApprovalMode et experimental.plan
+# Conserver contextFileName et security.auth
+cat > ~/.gemini/settings.json << 'EOF'
+{
+  "contextFileName": "AGENTS.md",
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
+}
+EOF
+
+# Vérifier
+cat ~/.gemini/settings.json  # → plus de "defaultApprovalMode"
+```
+
+> ⚠️ **Règle :** toujours lire `~/.gemini/settings.json` avant d'écraser — il peut contenir des clés à préserver (ex: `security.auth`).
+
+### Étape 6.2 — Créer les commands Gemini CLI (TOML)
+
+```bash
+mkdir -p .gemini/commands/
+# Créer 12 fichiers .toml (un par command)
+# Format : description + prompt avec {{args}}, @{path}, !{cmd}
+ls .gemini/commands/  # → 12 fichiers .toml
+```
+
+**Mapping de syntaxe Claude → Gemini :**
+| Claude | Gemini |
+|--------|--------|
+| `$ARGUMENTS` | `{{args}}` |
+| "Lis memory.md" | `@{memory.md}` |
+| "Lance git status" | `!{git status}` |
+| `$PROJECT_NAME` | `workflow-ia` (hardcodé) |
+
+### Étape 6.3 — Créer les commands OpenCode (Markdown + frontmatter)
+
+```bash
+mkdir -p .opencode/commands/
+# Créer 12 fichiers .md avec frontmatter YAML
+# Format : --- description: ... --- puis body avec $ARGUMENTS, @path, !cmd
+ls .opencode/commands/  # → 12 fichiers .md
+```
+
+**Mapping de syntaxe Claude → OpenCode :**
+| Claude | OpenCode |
+|--------|----------|
+| `$ARGUMENTS` | `$ARGUMENTS` (identique) |
+| "Lis memory.md" | `@memory.md` |
+| "Lance git status" | `!git status` |
+| `$PROJECT_NAME` | `workflow-ia` (hardcodé) |
+
+### Étape 6.4 — Mettre à jour install-commands.sh
+
+Ajout de 3 nouveaux modes :
+```bash
+bash scripts/install-commands.sh --gemini    # → ~/.gemini/commands/
+bash scripts/install-commands.sh --opencode  # → ~/.config/opencode/commands/
+bash scripts/install-commands.sh --all       # → les 3 ensembles globaux
+
+# Vérification (mode défaut)
+bash scripts/install-commands.sh
+# → ✓ Claude : 12 fichiers .md
+# → ✓ Gemini : 12 fichiers .toml
+# → ✓ OpenCode : 12 fichiers .md
+```
+
+> ⚠️ **Rappel :** après `--global` ou `--all`, relancer Claude Code pour activer les commands globales.
+
+---
+
 ## Autonomie complète — Structure finale
 
 Après validation des 5 phases, `workflow-ia` est autonome et ne dépend d'aucune
@@ -550,20 +633,19 @@ workflow-ia/
 ├── memory.md                   ← mémoire court terme
 ├── .claude/
 │   ├── settings.local.json     ← permissions Claude Code
-│   └── commands/               ← 10 custom slash commands
-│       ├── my-world.md
-│       ├── today.md
-│       ├── close.md
-│       ├── context.md
-│       ├── emerge.md
-│       ├── challenge.md
-│       ├── connect.md
-│       ├── trace.md
-│       ├── ideas.md
-│       └── global-connect.md
+│   └── commands/               ← 12 custom slash commands
+│       ├── my-world.md, today.md, close.md, context.md
+│       ├── emerge.md, challenge.md, connect.md, trace.md
+│       ├── ideas.md, global-connect.md, backup.md, switch.md
+├── .gemini/
+│   └── commands/               ← 12 commands Gemini CLI (TOML)
+│       └── *.toml              ← format {{args}}, @{path}, !{cmd}
+├── .opencode/
+│   └── commands/               ← 12 commands OpenCode (Markdown)
+│       └── *.md                ← format $ARGUMENTS, @path, !cmd
 ├── scripts/
 │   ├── obsidian-sync.sh        ← sync memory.md → vault Obsidian
-│   └── install-commands.sh     ← déploie les commands sur un projet
+│   └── install-commands.sh     ← déploie Claude/Gemini/OpenCode (--all)
 └── docs/
     ├── tutorial-optimisation-v2.6.md   ← référence originale (lecture seule)
     └── tutorial-valider.md             ← ce fichier
@@ -600,3 +682,5 @@ grep -rn "_setup" . --include="*.sh" --include="*.md" \
 | 4 | Hook pre-commit référençait un chemin préfixé | Corrigé après déplacement du repo |
 | 5 | `install-commands.sh` dans `scripts/` au lieu de `_setup/` | workflow-ia est autonome, pas dépendant de _setup |
 | 6 | Phases 4 et 5 commitées ensemble | Logiquement liées dans la même session |
+| 7 | Mode plan Gemini (`defaultApprovalMode: plan`) activé par défaut | Supprimé en Phase 6 — trop intrusif pour un usage quotidien |
+| 8 | Commands multi-outils absentes du tuto original | Ajoutées en Phase 6 — Gemini (TOML) + OpenCode (MD) + `--all` |
