@@ -46,6 +46,8 @@
 - `.gemini/commands/*.toml` — 26 commands Gemini CLI (TOML, `{{args}}`, `@{}`, `!{}`) — Stable
 - `.opencode/commands/*.md` — 26 commands OpenCode (MD frontmatter, `$ARGUMENTS`, `@`, `!`) — Stable
 - `docs/commands-list.cmd` — Windows batch double-clic, affiche les 26 commandes — Stable
+- `new-project.cmd` — launcher Windows bootstrap nouveau projet en 1 clic — Stable
+- `scripts/new-project.sh` — script bootstrap complet (stack workflow-ia) — Stable
 
 ---
 
@@ -82,6 +84,7 @@
 - [x] /start + 13 commands Obsidian × 3 outils + docs/commands-list.cmd
 - [ ] Tester commandes Gemini CLI + OpenCode en session réelle
 - [ ] Lancer install-commands.sh --all pour déployer les 14 nouvelles commandes globalement
+- [x] new-project.cmd/.sh — bootstrapper nouveau projet en 1 clic
 
 ---
 
