@@ -10,7 +10,7 @@
 - **Mission en cours** : Bootstrapper livré — new-project.cmd/.sh opérationnel (78 commands × 3 outils)
 - **Prochaine étape** : Tester Gemini CLI + OpenCode en session réelle
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : 26 commands × 3 outils + commands-list.cmd créés
+- **État git** : Propre — tout pushé (26 commands × 3 outils + bootstrapper)
 
 ---
 
@@ -18,11 +18,11 @@
 
 > Section volatile — remplie par l'IA avant un switch, effacée après reprise.
 
-- **Pensée en cours** : Les formats TOML/MD ont été créés mais jamais testés en Gemini CLI ni OpenCode — la syntaxe `!{cmd}` / `@{path}` est supposée, pas confirmée
-- **Vibe / Style** : Pragmatique + procédural — plan précis → implémentation → vérification → commit ; aucune spéculation sans test
-- **Contraintes actives** : Ne pas modifier AGENTS.md ; remote GitHub déjà configuré (push réussi vers github.com/Despes95/workflow-ia)
-- **Le prochain petit pas** : Lancer Gemini CLI et taper `/close` — observer si le TOML est parsé et si `!{cmd}` déclenche bien une commande shell
-- **Contexte chaud** : La Todo "Ajouter remote GitHub" est déjà faite (on pousse depuis plusieurs sessions) — la cocher. Le vrai risque est que Gemini CLI ne supporte pas encore les custom commands TOML de cette façon — à vérifier dans la doc officielle avant de se fier au format
+- **Pensée en cours** : Stack complète livrée + bootstrapper opérationnel. La seule chose non validée : les 26 commandes Gemini CLI (TOML) et OpenCode n'ont jamais été testées en session réelle — `@{path}` / `!{cmd}` sont supposés fonctionner mais non confirmés. Si la syntaxe est fausse, les projets bootstrappés hériteront du bug.
+- **Vibe / Style** : Shipping → validation. On a tout construit, maintenant il faut tester le comportement réel. Approche : lancer, observer, corriger la syntaxe si besoin. Aucune spéculation sans test. Ne rien modifier sans preuve.
+- **Contraintes actives** : Ne pas modifier AGENTS.md. `new-project.sh` copie aussi les commandes — correction de syntaxe Gemini/OpenCode = impact sur tous les futurs bootstraps. Tester d'abord sur workflow-ia lui-même.
+- **Le prochain petit pas** : Ouvrir un terminal dans `/c/IA/projects/workflow-ia`, lancer `gemini` (ou `opencode`), taper `/context` — observer si la commande est reconnue et si `@{...}` résout bien les chemins.
+- **Contexte chaud** : Todo "Lancer install-commands.sh --all" toujours active (14 nouvelles commandes Obsidian pas encore déployées globalement). Le risque principal : custom commands TOML Gemini CLI est une feature récente — la doc officielle https://gemini.google.com/cli/docs (ou équivalent) doit confirmer le format avant de valider.
 
 ---
 
