@@ -19,6 +19,7 @@
 | Déplacement git repo | ✅ Stable | `40b0a6e` | ~20 min |
 | Phase 4 — Connexion vault | ✅ Stable | `ecced2e` | ~20 min |
 | Phase 5 — Custom slash commands | ✅ Stable | `ecced2e` | ~30 min |
+| Phase 8 — Bootstrapper new-project | ✅ Stable | `9b291aa` | ~20 min |
 
 ---
 
@@ -645,7 +646,9 @@ workflow-ia/
 │       └── *.md                ← format $ARGUMENTS, @path, !cmd
 ├── scripts/
 │   ├── obsidian-sync.sh        ← sync memory.md → vault Obsidian
-│   └── install-commands.sh     ← déploie Claude/Gemini/OpenCode (--all)
+│   ├── install-commands.sh     ← déploie Claude/Gemini/OpenCode (--all)
+│   └── new-project.sh          ← bootstrap nouveau projet (stack complète)
+├── new-project.cmd             ← launcher Windows double-clic bootstrap
 └── docs/
     ├── tutorial-optimisation-v2.6.md   ← référence originale (lecture seule)
     └── tutorial-valider.md             ← ce fichier
@@ -744,6 +747,63 @@ bash scripts/install-commands.sh --all
 
 ---
 
+## Phase 8 — Bootstrapper new-project.cmd/.sh ✅ (commit `9b291aa`)
+
+**Objectif :** Permettre de bootstrapper un nouveau projet en double-cliquant sur un fichier Windows.
+Déploie toute la stack workflow-ia dans un nouveau dossier, adapté au nom du projet.
+
+### Ce qui est déployé
+
+| Fichier/Dossier | Traitement |
+|-----------------|------------|
+| `AGENTS.md` | Copie + sed `workflow-ia` → `$PROJECT_NAME` |
+| `CLAUDE.md` | Généré depuis template inline |
+| `memory.md` | Généré vierge (toutes sections, date du jour) |
+| `.claude/settings.local.json` | Copie brute |
+| `.claude/commands/*.md` | Copie brute (déjà portables) |
+| `.gemini/commands/*.toml` | Copie + sed |
+| `.opencode/commands/*.md` | Copie + sed |
+| `scripts/*.sh` | Copie brute + `chmod +x` |
+| `docs/commands-list.cmd` | Copie brute |
+
+### Étape 8.1 — Utilisation
+
+```cmd
+# Double-clic sur new-project.cmd
+# → Saisir le nom du projet (ex: mon-projet)
+# → Entrée pour le chemin par défaut (C:\IA\projects\mon-projet)
+```
+
+Ou depuis bash :
+```bash
+bash scripts/new-project.sh mon-projet [chemin-optionnel]
+```
+
+### Étape 8.2 — Vérification
+
+```bash
+ls /c/IA/projects/mon-projet/.claude/commands/ | wc -l   # → 26
+ls /c/IA/projects/mon-projet/.gemini/commands/ | wc -l   # → 26
+grep "mon-projet" /c/IA/projects/mon-projet/.gemini/commands/context.toml
+# → _forge/mon-projet/index.md (plus "workflow-ia")
+head -1 /c/IA/projects/mon-projet/memory.md
+# → # mon-projet — Memory
+```
+
+### Étape 8.3 — Prochaines étapes dans le nouveau projet
+
+```bash
+cd /c/IA/projects/mon-projet
+git init && git add . && git commit -m "init: bootstrap mon-projet"
+bash scripts/install-commands.sh --all
+bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
+```
+
+> **Leçon :** `normalize_path()` avec BASH_REMATCH est le pattern propre pour convertir
+> `C:\foo\bar` → `/c/foo/bar` dans un script bash appelé depuis .cmd Windows.
+
+---
+
 ## Écarts réels vs tuto original
 
 | # | Écart | Raison |
@@ -757,3 +817,4 @@ bash scripts/install-commands.sh --all
 | 7 | Mode plan Gemini (`defaultApprovalMode: plan`) activé par défaut | Supprimé en Phase 6 — trop intrusif pour un usage quotidien |
 | 8 | Commands multi-outils absentes du tuto original | Ajoutées en Phase 6 — Gemini (TOML) + OpenCode (MD) + `--all` |
 | 9 | 12 → 26 commands absentes du tuto original | Ajoutées en Phase 7 — /start + 13 Obsidian × 3 outils + commands-list.cmd |
+| 10 | Bootstrapper absent du tuto original | Ajouté en Phase 8 — new-project.cmd/.sh, portabilité par sed, normalize_path() |

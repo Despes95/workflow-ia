@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-26 (/start + 13 commands Obsidian + commands-list.cmd)
+**Dernière mise à jour :** 2026-02-26 (new-project.cmd/.sh — bootstrapper nouveau projet)
 **Dernier outil CLI utilisé :** Claude Code — claude-sonnet-4-6
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : 26 commands déployées (3 outils) — /start + 13 Obsidian + batch existant
-- **Prochaine étape** : bash scripts/install-commands.sh --all → tester /start et /ghost
+- **Mission en cours** : Bootstrapper livré — new-project.cmd/.sh opérationnel (78 commands × 3 outils)
+- **Prochaine étape** : Tester Gemini CLI + OpenCode en session réelle
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
 - **État git** : 26 commands × 3 outils + commands-list.cmd créés
 
@@ -55,16 +55,15 @@
 
 ### Résumé global
 
-- Projet initialisé. Phase 1 terminée : AGENTS.md source unique, CLAUDE.md pointe dessus, Gemini configuré.
+- Stack complète : 26 commandes × 3 outils, vault Obsidian, bootstrapper new-project.cmd/.sh opérationnel.
 
 ### Historique
 
-- 2026-02-25 | Claude Code | Unification prompt fin-de-session — git status + callouts + full workflow | Stable
-- 2026-02-25 | Claude Code | Auto-close /close + remplissage vault (architecture, decisions, features, ideas) | Stable
 - 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
 - 2026-02-25 | Claude Code | Commands globales `~/.claude/commands/` + /close prompt v2 | Stable (bug résolu : relancer Claude Code)
 - 2026-02-26 | Claude Code | Commands multi-outils Gemini (TOML) + OpenCode (MD) + install --all | Stable
 - 2026-02-26 | Claude Code | /start + 13 commands Obsidian × 3 outils + commands-list.cmd (26 total) | Stable
+- 2026-02-26 | Claude Code | new-project.cmd/.sh — bootstrapper nouveau projet en 1 clic | Stable
 
 ---
 
@@ -104,6 +103,8 @@
 - `~/.claude/commands/` global : "Unknown skill" se résout en relançant Claude Code — toujours redémarrer après install 🌐
 - Commands multi-outils : adapter le format par outil (`{{args}}`/Gemini, `$ARGUMENTS`/OpenCode) mais le contenu prompt reste identique 🌐
 - `install-commands.sh` couvre automatiquement les nouveaux fichiers via glob `*.md`/`*.toml` — pas besoin de modifier le script pour les nouvelles commandes 🌐
+- `normalize_path()` avec BASH_REMATCH = pattern propre pour convertir `C:\foo` → `/c/foo` dans un script bash appelé depuis .cmd Windows 🌐
+- Bootstrap d'un template : tester avec un projet jetable avant commit — vérifier sed + counts en une passe, puis `rm -rf` 🌐
 
 ---
 
