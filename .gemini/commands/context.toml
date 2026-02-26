@@ -2,8 +2,8 @@ description = "Charge le contexte du projet actif"
 prompt = """
 Lis dans cet ordre :
 1. @{memory.md} (état court terme du projet)
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md}
-3. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md}
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md"}
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md"}
 
 Résume en 5 points :
 1. État actuel du projet

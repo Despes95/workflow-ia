@@ -1,8 +1,8 @@
 description = "Reshapes les 7 prochains jours autour de ce qui est vivant dans le vault"
 prompt = """
 Lis dans cet ordre :
-1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md} (10 dernières entrées)
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/ideas.md}
+1. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (10 dernières entrées)
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/ideas.md"}
 3. @{memory.md} (section Todo)
 
 Génère un plan sur 7 jours :

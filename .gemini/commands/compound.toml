@@ -1,9 +1,9 @@
 description = "Trace l'évolution d'une question à différents moments dans le vault"
 prompt = """
 Lis dans cet ordre :
-1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/} (toutes les notes)
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md} (toutes les entrées)
-3. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md}
+1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Get-Content"}
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (toutes les entrées)
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md"}
 
 Question à tracer : {{args}}
 

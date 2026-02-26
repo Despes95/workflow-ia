@@ -1,11 +1,11 @@
 description = "Répond à une question en utilisant mon style et mes croyances du vault"
 prompt = """
 Lis dans cet ordre :
-1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/} (10 dernières notes)
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md}
-3. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md} (15 dernières entrées)
-4. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md}
-5. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md}
+1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | Get-Content"}
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md"}
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (15 dernières entrées)
+4. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md"}
+5. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md"}
 
 Question à traiter : {{args}}
 

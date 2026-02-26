@@ -1,10 +1,10 @@
 description = "Patterns cross-projets — compare workflow-ia avec les leçons globales"
 prompt = """
 Lis :
-1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/} (10 dernières notes)
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md}
-3. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md}
-4. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md}
+1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | Get-Content"}
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md"}
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md"}
+4. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md"}
 
 Compare les patterns du projet actuel avec les patterns globaux.
 

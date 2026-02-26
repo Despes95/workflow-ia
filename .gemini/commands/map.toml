@@ -1,11 +1,11 @@
 description = "Vue topologique du vault : clusters, thèmes, relations"
 prompt = """
 Lis dans cet ordre :
-1. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md}
-2. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md}
-3. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md} (5 dernières entrées)
-4. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md}
-5. @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md}
+1. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md"}
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md"}
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (5 dernières entrées)
+4. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md"}
+5. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md"}
 
 Produis une vue topologique :
 - Quels thèmes dominent le vault ?

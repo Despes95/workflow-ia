@@ -4,17 +4,17 @@ Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
 ## 1. Daily Notes
 Lis :
-- @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/} (7 dernières notes)
+- !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
 
 ## 2. Vault global
 Lis :
-- @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md}
-- @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md}
+- !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md"}
+- !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md"}
 
 ## 3. Projets actifs (workflow-ia)
 Lis :
-- @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md}
-- @{C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md}
+- !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md"}
+- !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md"}
 
 ## 4. Résumé
 Réponds avec exactement 5 points :
