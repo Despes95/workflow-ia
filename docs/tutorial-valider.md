@@ -804,6 +804,24 @@ bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
 
 ---
 
+## Notes complémentaires
+
+### Custom Slash Commands — Notes importantes
+
+**OpenCode :**
+- Les custom slash commands fonctionnent **uniquement en mode interactif**
+- Commande : `opencode` (sans arguments) dans le dossier du projet
+- `opencode run "/commande"` **ne fonctionne pas** — les commands ne sont pas reconnues
+- Dossier global Windows : `%APPDATA%\opencode\commands\` (pas `~/.config/opencode/commands/`)
+
+**Gemini CLI :**
+- Les custom slash commands TOML sont supportées (depuis v0.30.0)
+- Dossier local : `<project>/.gemini/commands/`
+- Dossier global : `~/.gemini/commands/`
+- À tester en mode interactif (`gemini` sans arguments)
+
+---
+
 ## Écarts réels vs tuto original
 
 | # | Écart | Raison |
