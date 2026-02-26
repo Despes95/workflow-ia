@@ -77,7 +77,8 @@
 - [x] Commands multi-outils — Gemini (TOML) + OpenCode (MD) + install --all/--gemini/--opencode
 - [x] Ajouter remote GitHub sur workflow-ia → déjà configuré, push actif depuis plusieurs sessions
 - [x] /start + 13 commands Obsidian × 3 outils + docs/commands-list.cmd
-- [x] Tester commandes Gemini CLI + OpenCode en session réelle (OpenCode validé : /start, /stranger, /close fonctionnent)
+- [x] Tester commandes OpenCode en session réelle (/start, /stranger, /close fonctionnent) 🌐
+- [ ] Tester commandes Gemini CLI (TOML) en session réelle
 - [ ] Lancer install-commands.sh --all pour déployer les 14 nouvelles commandes globalement
 - [x] new-project.cmd/.sh — bootstrapper nouveau projet en 1 clic
 
@@ -111,3 +112,12 @@
 ## ⛔ Contraintes & Interdits
 
 - Ne jamais modifier AGENTS.md sans validation explicite
+
+---
+
+## 🧪 Plan de test (Gemini CLI)
+
+1. Lancer `gemini` en interactif depuis `C:\IA\Projects\workflow-ia`
+2. Tester une commande simple : taper `/start` ou une commande Obsidian
+3. Vérifier : arguments passés ? `@{path}` résolu ? `!{cmd}` exécuté ?
+4. Résultat : OK → syntaxe validée. KO → corriger `.gemini/commands/*.toml`
