@@ -24,6 +24,54 @@ fi
 mkdir -p "$FORGE_DIR"
 echo "📂 Forge : $FORGE_DIR"
 
+# ── HELPER : extract_section ──────────────────────────────────────────────────
+# Retourne le contenu d'une section ## <emoji> jusqu'à la prochaine ##
+# Usage : extract_section "🐛"
+extract_section() {
+  local pattern="$1"
+  local section=""
+  local in_section=0
+  while IFS= read -r line; do
+    if [[ "$line" =~ ^##[[:space:]]*${pattern} ]]; then
+      in_section=1
+    elif [[ "$in_section" -eq 1 && "$line" =~ ^## ]]; then
+      in_section=0
+    elif [[ "$in_section" -eq 1 ]]; then
+      section+="${line}"$'\n'
+    fi
+  done < "$MEMORY_FILE"
+  echo "$section"
+}
+
+# ── HELPER : rotate_sessions ──────────────────────────────────────────────────
+# Garde les MAX dernières sessions dans sessions.md
+rotate_sessions() {
+  local file="$1"
+  local max="${2:-10}"
+  local count
+  count=$(grep -c "^## Session" "$file" 2>/dev/null || echo 0)
+  [[ "$count" -le "$max" ]] && return 0
+
+  local to_skip=$(( count - max ))
+  local first_session_line
+  first_session_line=$(grep -n "^## Session" "$file" | head -1 | cut -d: -f1)
+  local header_end=$(( first_session_line - 4 ))
+  [[ "$header_end" -lt 1 ]] && header_end=1
+
+  local start_line
+  start_line=$(grep -n "^## Session" "$file" | awk -F: -v n="$(( to_skip + 1 ))" 'NR==n{print $1}')
+  [[ -z "$start_line" ]] && return 0
+
+  local print_from=$(( start_line - 2 ))
+  [[ "$print_from" -le "$header_end" ]] && print_from=$(( header_end + 1 ))
+
+  {
+    head -n "$header_end" "$file"
+    tail -n +"$print_from" "$file"
+  } > "${file}.tmp" && mv "${file}.tmp" "$file"
+  echo "  🔄 Rotation sessions.md (${count} → ${max})"
+}
+
 # ── HELPER : init_file ────────────────────────────────────────────────────────
 # Crée un fichier avec template seulement s'il n'existe pas encore
 init_file() {
@@ -120,47 +168,10 @@ init_file "${FORGE_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
 > Pistes et idées à explorer
 "
 
-# ── ÉTAPE 4 : extraction bugs ─────────────────────────────────────────────────
-BUGS_SECTION=""
-in_bugs=0
-while IFS= read -r line; do
-  if [[ "$line" =~ ^##[[:space:]]*🐛 ]]; then
-    in_bugs=1
-  elif [[ "$in_bugs" -eq 1 && "$line" =~ ^## ]]; then
-    in_bugs=0
-  elif [[ "$in_bugs" -eq 1 ]]; then
-    BUGS_SECTION+="${line}"$'\n'
-  fi
-done < "$MEMORY_FILE"
-BUGS_CLEANED=$(echo "$BUGS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' | grep -v '^---' || true)
-
-# ── ÉTAPE 5 : extraction leçons ───────────────────────────────────────────────
-LESSONS_SECTION=""
-in_lessons=0
-while IFS= read -r line; do
-  if [[ "$line" =~ ^##[[:space:]]*📝 ]]; then
-    in_lessons=1
-  elif [[ "$in_lessons" -eq 1 && "$line" =~ ^## ]]; then
-    in_lessons=0
-  elif [[ "$in_lessons" -eq 1 ]]; then
-    LESSONS_SECTION+="${line}"$'\n'
-  fi
-done < "$MEMORY_FILE"
-LESSONS_CLEANED=$(echo "$LESSONS_SECTION" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
-
-# ── ÉTAPE 6 : extraction décisions ────────────────────────────────────────────
-DECISIONS_SECTION=""
-in_decisions=0
-while IFS= read -r line; do
-  if [[ "$line" =~ ^##[[:space:]]*📚 ]]; then
-    in_decisions=1
-  elif [[ "$in_decisions" -eq 1 && "$line" =~ ^## ]]; then
-    in_decisions=0
-  elif [[ "$in_decisions" -eq 1 ]]; then
-    DECISIONS_SECTION+="${line}"$'\n'
-  fi
-done < "$MEMORY_FILE"
-DECISIONS_CLEANED=$(echo "$DECISIONS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
+# ── ÉTAPES 4-6 : extraction sections memory.md ────────────────────────────────
+BUGS_CLEANED=$(extract_section "🐛" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' | grep -v '^---' || true)
+LESSONS_CLEANED=$(extract_section "📝" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
+DECISIONS_CLEANED=$(extract_section "📚" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
 
 # ── ÉTAPE 7 : snapshot dans sessions.md (avec callouts + wikilinks) ───────────
 {
@@ -238,6 +249,33 @@ fi
 if [[ -f "${FORGE_DIR}/index.md" ]]; then
   sed -i "s/^> Dernière sync :.*$/> Dernière sync : ${TIMESTAMP}/" "${FORGE_DIR}/index.md"
   echo "  🔄 Index mis à jour : ${TIMESTAMP}"
+fi
+
+# ── ÉTAPE 12 : rotation sessions.md (max 10) ──────────────────────────────────
+rotate_sessions "${FORGE_DIR}/sessions.md" 10
+
+# ── ÉTAPE 13 : _global/lessons.md — leçons transversales (🌐) ─────────────────
+GLOBAL_DIR="${OBSIDIAN_BASE}/_global"
+if [[ -d "$GLOBAL_DIR" && -n "$LESSONS_CLEANED" ]]; then
+  GLOBAL_LESSONS=$(echo "$LESSONS_CLEANED" | grep "🌐" || true)
+  if [[ -n "$GLOBAL_LESSONS" ]]; then
+    {
+      echo ""
+      echo "---"
+      echo ""
+      echo "### Leçons globales du ${DATE} (${PROJECT_NAME})"
+      echo ""
+      echo "$GLOBAL_LESSONS"
+    } >> "${GLOBAL_DIR}/lessons.md"
+    echo "  🌐 Leçons globales → _global/lessons.md"
+  fi
+fi
+
+# ── ÉTAPE 14 : _global/index.md — date de sync + projet actif ─────────────────
+if [[ -f "${GLOBAL_DIR}/index.md" ]]; then
+  sed -i "s/\*\*Dernière mise à jour :\*\*.*/\*\*Dernière mise à jour :\*\* ${DATE}/" "${GLOBAL_DIR}/index.md"
+  sed -i "s/- Dernier projet actif :.*/- Dernier projet actif : ${PROJECT_NAME} (${DATE})/" "${GLOBAL_DIR}/index.md"
+  echo "  🌐 _global/index.md mis à jour"
 fi
 
 # ── RÉSULTAT ──────────────────────────────────────────────────────────────────
