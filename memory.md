@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (rapports A+B appliqués + drift docs 26→31 commandes)
+**Dernière mise à jour :** 2026-02-27 (Rapport D + fix CMD ASCII + improve.md épuré)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Rapports A+B appliqués + drift docs corrigé
-- **Prochaine étape** : Tester obsidian-sync.sh (rotation + _global) sur un vrai /close
+- **Mission en cours** : Rapport D documenté + fix CMD + improve.md épuré
+- **Prochaine étape** : D1 créer `DespesNotes/Polaris.md` (manuel) → D2 `/focus`
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (3 commits a6f60e3)
+- **État git** : Propre (35510de)
 
 ---
 
@@ -33,16 +33,16 @@
 - `AGENTS.md` — règles communes à tous les outils IA — Stable
 - `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
 - `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
-- `docs/prompts-et-commandes.md` — référence opérationnelle 28 commandes — Stable
-- `docs/commands-list.cmd` — Windows batch, affiche 28 commandes — Stable
+- `docs/prompts-et-commandes.md` — référence opérationnelle 31 commandes — Stable
+- `docs/commands-list.cmd` — Windows batch, affiche 31 commandes — Stable
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — Stable
 - `scripts/check_memory.sh` — garde-fou intégrité memory.md — Stable
-- `.claude/commands/*.md` — 28 custom slash commands Claude — Stable
-- `.gemini/commands/*.toml` — 28 commands Gemini CLI (TOML) — Stable
-- `.opencode/commands/*.md` — 28 commands OpenCode (MD) — Stable
-- `docs/improve.md` — rapport d'analyse + propositions d'amélioration — Stable
-- `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Nouveau
-- `scripts/_commons.sh` — couleurs ANSI partagées — Nouveau
+- `.claude/commands/*.md` — 31 custom slash commands Claude — Stable
+- `.gemini/commands/*.toml` — 31 commands Gemini CLI (TOML) — Stable
+- `.opencode/commands/*.md` — 31 commands OpenCode (MD) — Stable
+- `docs/improve.md` — backlog actif améliorations — Stable
+- `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Stable
+- `scripts/_commons.sh` — couleurs ANSI partagées — Stable
 - `README.md` — documentation principale — Nouveau
 - `.gitignore` — exclusions standards — Nouveau
 - `new-project.cmd` — launcher Windows bootstrap — Stable
@@ -54,28 +54,25 @@
 
 ### Résumé global
 
-- Stack complète : 28 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
-- DespesNotes intégré : commands PENSÉE lisent `_daily/`.
-- Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor).
+- Stack complète : 31 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
+- Catégories SESSION/PROJET/VAULT. DespesNotes `_daily/` intégré dans commandes VAULT.
+- Infrastructure : hooks versionnés, _commons.sh, obsidian-sync refactorisé, rotation 10 sessions, _global auto.
 
 ### Historique
 
-- 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 sessions, drift 26→31 | Stable
-- 2026-02-27 | Claude Code | Fix Gemini date dynamique (check-in/wins) + architecture.md vault 31 cmds | Stable
-- 2026-02-27 | Claude Code | 3 cmds (check-in/debug/wins) + reorganisation SESSION/PROJET/VAULT + 3 rapports improve.md | Stable
-- 2026-02-27 | Claude Code | 5 améliorations high-priority : check 28 cmds, set -e, callouts+wikilinks auto, /close simplifié, section Décisions | Stable
+- 2026-02-27 | Claude Code | Rapport D (Polaris/focus/caching), fix CMD ASCII, improve.md épuré | Stable
+- 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 | Stable
+- 2026-02-27 | Claude Code | Fix Gemini date dynamique + drift 26→31 + SESSION/PROJET/VAULT | Stable
+- 2026-02-27 | Claude Code | 5 améliorations high-priority + 3 cmds check-in/debug/wins | Stable
 - 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | Stable
-- 2026-02-26 | Gemini CLI  | Fix sécurité injections absolues (!{type}) + deploy global | Stable
 
 ---
 
 
 ## 🐛 Bugs connus
 
-- `/check-in` et `/wins` Gemini : path daily notes désormais dynamique via PowerShell `Get-Date` — résolu 2026-02-27
-- `/close` "Unknown skill" résolu : il fallait relancer Claude Code après install --global
+- `grep "🌐"` dans obsidian-sync.sh retourne vide sur Windows Git Bash — `_global/lessons.md` non alimenté (bug encodage UTF-8 dans pipes) — ouvert
 - OpenCode custom slash commands : ne fonctionnent pas en mode non-interactif (`opencode run`) — utiliser le mode interactif 🌐
-- Gemini CLI Absolute Path Security : résolu en utilisant `!{type \"...\"}` au lieu de `@{...}` pour les fichiers hors workspace. 🌐
 
 ---
 
@@ -99,17 +96,19 @@
 - OpenCode : `/start`, `/stranger`, `/close` testés et fonctionnent en mode interactif `opencode .` 🌐
 - Commands pensée : ajouter le chemin DespesNotes `_daily/` enrichit le contexte avec les notes personnelles 🌐
 - Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor) — lecture seule
-- commands-list.cmd : ém-dash cause erreurs CMD Windows — utiliser ASCII uniquement 🌐
-- Commande `/improve` : analyse structurée par catégories (Code, Archi, Perf, Maintenabilité, Bonnes pratiques) + tri par impact (high/medium/low) — output directement intégrable dans memory.md 🌐
-- `"Sibling tool call errored"` : causé par lecture explicite du path auto-memory MEMORY.md inexistant — ne jamais lire ce path, il est chargé automatiquement si présent 🌐
-- Hook `.git/hooks/pre-commit` et `check_memory.sh` sont deux scripts indépendants à maintenir en sync manuellement — toujours modifier les deux ensemble 🌐
+- `chcp 65001` dans CMD Windows ne protège pas contre les U+2500 box-drawing — utiliser ASCII pur dans tous les .cmd 🌐
+- Pattern "Polaris" : sans boussole stable (priorités / valeurs), les recommandations IA restent génériques — un fichier Polaris.md change ça 🌐
+- `improve.md` doit rester un backlog actif ≤ 1 page — l'historique va dans le vault, pas dans le fichier 🌐
+- Analyser articles externes (blogs Anthropic, créateurs) = source d'idées structurées pour `/improve` — systématiser en session dédiée 🌐
 - `install-commands.sh --all` : nouvelles commandes actives immédiatement dans Claude Code sans redémarrage si déployées globalement 🌐
 
 ---
 
 ## 📚 Décisions
 
-- [aucune décision enregistrée]
+- `improve.md` = backlog actif uniquement (≤ 1 page) — historique dans vault `features.md`
+- U+2500 box-drawing interdits dans tous les `.cmd` Windows — ASCII pur obligatoire
+- Hook pre-commit versionné dans `scripts/hooks/` — source unique via `check_memory.sh`
 
 ---
 
