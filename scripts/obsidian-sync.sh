@@ -132,7 +132,7 @@ while IFS= read -r line; do
     BUGS_SECTION+="${line}"$'\n'
   fi
 done < "$MEMORY_FILE"
-BUGS_CLEANED=$(echo "$BUGS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' || true)
+BUGS_CLEANED=$(echo "$BUGS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' | grep -v '^---' || true)
 
 # ── ÉTAPE 5 : extraction leçons ───────────────────────────────────────────────
 LESSONS_SECTION=""
@@ -146,7 +146,7 @@ while IFS= read -r line; do
     LESSONS_SECTION+="${line}"$'\n'
   fi
 done < "$MEMORY_FILE"
-LESSONS_CLEANED=$(echo "$LESSONS_SECTION" | grep -v '^[[:space:]]*$' || true)
+LESSONS_CLEANED=$(echo "$LESSONS_SECTION" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
 
 # ── ÉTAPE 6 : extraction décisions ────────────────────────────────────────────
 DECISIONS_SECTION=""
@@ -160,7 +160,7 @@ while IFS= read -r line; do
     DECISIONS_SECTION+="${line}"$'\n'
   fi
 done < "$MEMORY_FILE"
-DECISIONS_CLEANED=$(echo "$DECISIONS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' || true)
+DECISIONS_CLEANED=$(echo "$DECISIONS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
 
 # ── ÉTAPE 7 : snapshot dans sessions.md (avec callouts + wikilinks) ───────────
 {

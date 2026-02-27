@@ -68,27 +68,6 @@
 
 ---
 
-## ✅ Todo
-
-- [x] Phase 1 — Unification règles IA
-- [x] Phase 2 — Amélioration memory.md
-- [x] Phase 3 — Vault Obsidian
-- [x] Phase 4 — Connexion vault
-- [x] Phase 5 — Slash commands
-- [x] Autonomie complète workflow-ia
-- [x] Phase 6 — Leçons globales
-- [x] Phase 7 — Momentum Transfer
-- [x] Clôture tuto — prompts-et-commandes.md + /backup
-- [x] Commands multi-outils — 28 commands × 3 outils
-- [x] README.md + .gitignore créés
-- [x] Commands DEV réorganisées (DEV/PENSÉE)
-- [x] DespesNotes intégré aux 16 commands pensée
-- [x] Nouvelles commands /improve + /audit
-- [x] Tester commandes OpenCode (/start, /stranger, /close) 🌐
-- [x] Tester commandes Gemini CLI (TOML) en session réelle 🌐
-- [x] Valider et appliquer les 5 améliorations high-priority (docs/improve.md)
-
----
 
 ## 🐛 Bugs connus
 
@@ -134,9 +113,3 @@
 
 ---
 
-## 🧪 Plan de test (Gemini CLI)
-
-1. Lancer `gemini` en interactif depuis `C:\IA\Projects\workflow-ia`
-2. Tester une commande simple : taper `/start` ou une commande Obsidian
-3. Vérifier : arguments passés ? `@{path}` résolu ? `!{cmd}` exécuté ?
-4. Résultat : OK → syntaxe validée. KO → corriger `.gemini/commands/*.toml`

@@ -20,3 +20,6 @@ _archives/
 
 # Templates (ne pas versionner)
 _setup/
+
+# Claude Code
+.claude/settings.local.json
