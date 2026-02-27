@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (fix Gemini date dynamique + architecture.md vault synchro)
+**Dernière mise à jour :** 2026-02-27 (rapports A+B appliqués + drift docs 26→31 commandes)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Session terminée — fix Gemini date dynamique (check-in/wins) + architecture.md vault 31 cmds
-- **Prochaine étape** : Appliquer rapport A (scripts) + rapport B (vault canonique)
+- **Mission en cours** : Rapports A+B appliqués + drift docs corrigé
+- **Prochaine étape** : Tester obsidian-sync.sh (rotation + _global) sur un vrai /close
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (commit 6808b43)
+- **État git** : Propre (3 commits a6f60e3)
 
 ---
 
@@ -40,7 +40,9 @@
 - `.claude/commands/*.md` — 28 custom slash commands Claude — Stable
 - `.gemini/commands/*.toml` — 28 commands Gemini CLI (TOML) — Stable
 - `.opencode/commands/*.md` — 28 commands OpenCode (MD) — Stable
-- `docs/improve.md` — rapport d'analyse + propositions d'amélioration — Nouveau
+- `docs/improve.md` — rapport d'analyse + propositions d'amélioration — Stable
+- `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Nouveau
+- `scripts/_commons.sh` — couleurs ANSI partagées — Nouveau
 - `README.md` — documentation principale — Nouveau
 - `.gitignore` — exclusions standards — Nouveau
 - `new-project.cmd` — launcher Windows bootstrap — Stable
@@ -58,6 +60,7 @@
 
 ### Historique
 
+- 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 sessions, drift 26→31 | Stable
 - 2026-02-27 | Claude Code | Fix Gemini date dynamique (check-in/wins) + architecture.md vault 31 cmds | Stable
 - 2026-02-27 | Claude Code | 3 cmds (check-in/debug/wins) + reorganisation SESSION/PROJET/VAULT + 3 rapports improve.md | Stable
 - 2026-02-27 | Claude Code | 5 améliorations high-priority : check 28 cmds, set -e, callouts+wikilinks auto, /close simplifié, section Décisions | Stable
