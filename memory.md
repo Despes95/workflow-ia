@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (Rapport D + fix CMD ASCII + improve.md épuré)
+**Dernière mise à jour :** 2026-02-27 (Rapports E+F — backlog vault, /improve enrichi, dédup lessons/bugs)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Rapport D documenté + fix CMD + improve.md épuré
-- **Prochaine étape** : D1 créer `DespesNotes/Polaris.md` (manuel) → D2 `/focus`
+- **Mission en cours** : Rapports E+F intégrés — backlog.md vault, /improve enrichi, dédup planifiée
+- **Prochaine étape** : F1 dédup lessons/bugs → F2 core.hooksPath → E2 config.env → D1 Polaris.md (manuel)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (35510de)
+- **État git** : Propre (aafea39)
 
 ---
 
@@ -40,7 +40,7 @@
 - `.claude/commands/*.md` — 31 custom slash commands Claude — Stable
 - `.gemini/commands/*.toml` — 31 commands Gemini CLI (TOML) — Stable
 - `.opencode/commands/*.md` — 31 commands OpenCode (MD) — Stable
-- `docs/improve.md` — backlog actif améliorations — Stable
+- `vault/backlog.md` — backlog actif améliorations (vault, hors repo) — Stable
 - `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Stable
 - `scripts/_commons.sh` — couleurs ANSI partagées — Stable
 - `README.md` — documentation principale — Nouveau
@@ -60,11 +60,11 @@
 
 ### Historique
 
+- 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
 - 2026-02-27 | Claude Code | Rapport D (Polaris/focus/caching), fix CMD ASCII, improve.md épuré | Stable
 - 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 | Stable
 - 2026-02-27 | Claude Code | Fix Gemini date dynamique + drift 26→31 + SESSION/PROJET/VAULT | Stable
 - 2026-02-27 | Claude Code | 5 améliorations high-priority + 3 cmds check-in/debug/wins | Stable
-- 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | Stable
 
 ---
 
@@ -101,12 +101,17 @@
 - `improve.md` doit rester un backlog actif ≤ 1 page — l'historique va dans le vault, pas dans le fichier 🌐
 - Analyser articles externes (blogs Anthropic, créateurs) = source d'idées structurées pour `/improve` — systématiser en session dédiée 🌐
 - `install-commands.sh --all` : nouvelles commandes actives immédiatement dans Claude Code sans redémarrage si déployées globalement 🌐
+- Rapports IA génériques (MiniMax/Gemini) : filtrer par ROI et contexte — 1 bonne idée retenue sur 8 en moyenne 🌐
+- `backlog.md` dans le vault = bonne place pour la planification — le repo git = code + config uniquement 🌐
+- `/improve` sans lecture préalable de bugs.md + backlog.md = analyse hors contexte → résultats génériques 🌐
+- Gemini `!{bash -c "cat ...$(basename $(pwd))/..."}` = résolution dynamique du nom de projet 🌐
+- `git config core.hooksPath scripts/hooks` = alternative élégante à la copie dans `.git/hooks/` (F2) 🌐
 
 ---
 
 ## 📚 Décisions
 
-- `improve.md` = backlog actif uniquement (≤ 1 page) — historique dans vault `features.md`
+- `backlog.md` dans le vault = source unique du backlog (hors repo) — `features.md` = roadmap haut niveau
 - U+2500 box-drawing interdits dans tous les `.cmd` Windows — ASCII pur obligatoire
 - Hook pre-commit versionné dans `scripts/hooks/` — source unique via `check_memory.sh`
 
