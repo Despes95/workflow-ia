@@ -13,9 +13,9 @@
 
 set -euo pipefail
 
-GREEN='\033[0;32m'; CYAN='\033[0;36m'; YELLOW='\033[1;33m'; NC='\033[0m'
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=_commons.sh
+source "${SCRIPT_DIR}/_commons.sh"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 CLAUDE_SRC="$REPO_DIR/.claude/commands"
 GEMINI_SRC="$REPO_DIR/.gemini/commands"
@@ -102,10 +102,10 @@ for dir_label in "Claude:.claude/commands:md" "Gemini:.gemini/commands:toml" "Op
   EXT=$(echo "$dir_label" | cut -d: -f3)
   SRC="$REPO_DIR/$SUBDIR"
   COUNT=$(ls "$SRC/"*."$EXT" 2>/dev/null | wc -l)
-  if [ "$COUNT" -eq 28 ]; then
+  if [ "$COUNT" -eq 31 ]; then
     echo -e "  ${GREEN}✓ $LABEL : $COUNT fichiers .$EXT${NC}"
   else
-    echo -e "  ${YELLOW}! $LABEL : $COUNT/28 fichiers .$EXT dans $SRC${NC}"
+    echo -e "  ${YELLOW}! $LABEL : $COUNT/31 fichiers .$EXT dans $SRC${NC}"
     MISSING=$((MISSING+1))
   fi
 done
@@ -116,7 +116,7 @@ if [ "$MISSING" -gt 0 ]; then
 fi
 
 echo ""
-echo -e "${GREEN}✓ Toutes les sources sont complètes (28 commands × 3 outils)${NC}"
+echo -e "${GREEN}✓ Toutes les sources sont complètes (31 commands × 3 outils)${NC}"
 echo ""
 echo -e "${CYAN}Modes de déploiement disponibles :${NC}"
 echo -e "  bash $SCRIPT_DIR/install-commands.sh --global    → Claude Code (global)"

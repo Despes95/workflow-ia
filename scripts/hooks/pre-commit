@@ -1,0 +1,5 @@
+#!/bin/bash
+# pre-commit — Garde-fou memory.md (hook versionné dans scripts/hooks/)
+# Appelle check_memory.sh depuis la racine du repo
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+bash "${REPO_ROOT}/scripts/check_memory.sh"

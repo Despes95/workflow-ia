@@ -7,9 +7,9 @@
 
 set -euo pipefail
 
-GREEN='\033[0;32m'; CYAN='\033[0;36m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=_commons.sh
+source "${SCRIPT_DIR}/_commons.sh"
 TEMPLATE="$(dirname "$SCRIPT_DIR")"  # Racine de workflow-ia
 DATE="$(date '+%Y-%m-%d')"
 
@@ -140,14 +140,6 @@ cat > "$TARGET/memory.md" <<EOF
 
 ---
 
-## ✅ Todo
-
-- [ ] \`git init && git add . && git commit -m "init: bootstrap $PROJECT_NAME"\`
-- [ ] \`bash scripts/install-commands.sh --all\` — déployer les commandes globalement
-- [ ] Configurer le vault Obsidian si nécessaire (\`bash scripts/obsidian-sync.sh\`)
-
----
-
 ## 🐛 Bugs connus
 
 _Aucun connu_
@@ -168,7 +160,7 @@ EOF
 # ── 5. .claude/ — copie brute ────────────────────────────────────────────────
 echo -e "   📂 .claude/..."
 mkdir -p "$TARGET/.claude/commands"
-cp "$TEMPLATE/.claude/settings.local.json" "$TARGET/.claude/"
+[[ -f "$TEMPLATE/.claude/settings.local.json" ]] && cp "$TEMPLATE/.claude/settings.local.json" "$TARGET/.claude/" || true
 cp "$TEMPLATE/.claude/commands/"*.md "$TARGET/.claude/commands/"
 
 # ── 6. .gemini/commands/ — copie + sed ──────────────────────────────────────
@@ -193,12 +185,22 @@ mkdir -p "$TARGET/scripts"
 cp "$TEMPLATE/scripts/"*.sh "$TARGET/scripts/"
 chmod +x "$TARGET/scripts/"*.sh
 
-# ── 9. docs/ — commands-list.cmd uniquement ─────────────────────────────────
+# ── 9. hooks/ — pre-commit versionné ────────────────────────────────────────
+echo -e "   🔒 Hook pre-commit..."
+if [[ -d "$TARGET/.git" ]]; then
+  cp "$TEMPLATE/scripts/hooks/pre-commit" "$TARGET/.git/hooks/pre-commit"
+  chmod +x "$TARGET/.git/hooks/pre-commit"
+  echo -e "     ✓ Hook installé dans .git/hooks/"
+else
+  echo -e "     ℹ️  Pas de .git/ — après git init : cp scripts/hooks/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit"
+fi
+
+# ── 10. docs/ — commands-list.cmd uniquement ─────────────────────────────────
 echo -e "   📂 docs/..."
 mkdir -p "$TARGET/docs"
 cp "$TEMPLATE/docs/commands-list.cmd" "$TARGET/docs/"
 
-# ── 10. RÉSUMÉ ───────────────────────────────────────────────────────────────
+# ── 11. RÉSUMÉ ───────────────────────────────────────────────────────────────
 CLAUDE_COUNT=$(ls "$TARGET/.claude/commands/"*.md 2>/dev/null | wc -l)
 GEMINI_COUNT=$(ls "$TARGET/.gemini/commands/"*.toml 2>/dev/null | wc -l)
 OC_COUNT=$(ls "$TARGET/.opencode/commands/"*.md 2>/dev/null | wc -l)
