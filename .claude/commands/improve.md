@@ -8,8 +8,9 @@ Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
 Puis lis dans cet ordre :
 1. `memory.md` (sections Focus Actuel, Architecture, Fichiers clés, Bugs connus)
 2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/bugs.md` (bugs ouverts du vault)
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/architecture.md`
-4. Liste les fichiers du projet (cherche les fichiers source : .js, .ts, .py, .sh, etc.)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/backlog.md` (backlog actif du vault)
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/architecture.md`
+5. Liste les fichiers du projet (cherche les fichiers source : .js, .ts, .py, .sh, etc.)
 
 ⚠️ Avant de proposer quoi que ce soit : croise avec les bugs connus de `memory.md` et `bugs.md`.
 Ne propose pas comme amélioration ce qui est déjà un bug ouvert documenté.
