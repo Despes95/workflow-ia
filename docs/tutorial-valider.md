@@ -584,6 +584,17 @@ ls .gemini/commands/  # → 12 fichiers .toml
 | "Lance git status" | `!{git status}` |
 | `$PROJECT_NAME` | `workflow-ia` (hardcodé) |
 
+> ⚠️ **Anti-pattern : date fixe dans les chemins `!{...}`**
+> Si une command lit une daily note (ex: `/check-in`, `/wins`), ne jamais hardcoder la date :
+> ```toml
+> # ❌ À éviter
+> !{type ".../_daily/2026/02/26.md" 2>nul}
+>
+> # ✅ Correct — date dynamique via PowerShell
+> !{powershell -NoProfile -Command "Get-Content ([string]::Concat('.../_daily/', (Get-Date -Format 'yyyy/MM/dd'), '.md')) -ErrorAction SilentlyContinue"}
+> ```
+> Sur Windows, `PowerShell Get-Date` est la seule solution fiable pour les dates dynamiques dans les TOML Gemini.
+
 ### Étape 6.3 — Créer les commands OpenCode (Markdown + frontmatter)
 
 ```bash
