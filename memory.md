@@ -1,22 +1,22 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-26 (Gemini security fix + commands deploy)
-**Dernier outil CLI utilisé :** Gemini CLI — gemini-2.0-flash
+**Dernière mise à jour :** 2026-02-27 (analyse /improve + rapport)
+**Dernier outil CLI utilisé :** OpenCode
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Workflow Gemini CLI validé (sécurité contournée via shell commands)
-- **Prochaine étape** : Finaliser le déploiement global (`install --all`)
+- **Mission en cours** : Analyse terminée — 23 améliorations proposées
+- **Prochaine étape** : Valider les propositions d'amélioration (high priority)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Stable (b55d9bd)
+- **État git** : Modifications en attente (docs/improve.md)
 
 ---
 
 ## 🧠 Momentum (Handoff)
 
-> Session Gemini CLI terminée. Les 28 commandes sont désormais fonctionnelles grâce à l'utilisation de `!{type}` et `!{powershell}` pour accéder au vault Obsidian externe.
+> Session OpenCode terminée. Analyse `/improve` exécutée — 23 propositions structurées par impact (high/medium/low), rapport exporté dans `docs/improve.md`.
 
 —
 
@@ -42,6 +42,7 @@
 - `.claude/commands/*.md` — 28 custom slash commands Claude — Stable
 - `.gemini/commands/*.toml` — 28 commands Gemini CLI (TOML) — Stable
 - `.opencode/commands/*.md` — 28 commands OpenCode (MD) — Stable
+- `docs/improve.md` — rapport d'analyse + propositions d'amélioration — Nouveau
 - `README.md` — documentation principale — Nouveau
 - `.gitignore` — exclusions standards — Nouveau
 - `new-project.cmd` — launcher Windows bootstrap — Stable
@@ -59,6 +60,7 @@
 
 ### Historique
 
+- 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | En cours
 - 2026-02-26 | Gemini CLI  | Fix sécurité injections absolues (!{type}) + deploy global | Stable
 - 2026-02-26 | Claude Code | 28 commands + DespesNotes + improve/audit + README | Stable
 - 2026-02-26 | Claude Code | Test commands OpenCode (/start, /stranger, /close) + plan test Gemini CLI | Stable
@@ -85,7 +87,7 @@
 - [x] Nouvelles commands /improve + /audit
 - [x] Tester commandes OpenCode (/start, /stranger, /close) 🌐
 - [x] Tester commandes Gemini CLI (TOML) en session réelle 🌐
-- [ ] Lancer install-commands.sh --all pour déployer les 28 commandes globalement
+- [ ] Valider et appliquer les 6 améliorations high-priority (docs/improve.md)
 
 ---
 
@@ -117,6 +119,7 @@
 - Commands pensée : ajouter le chemin DespesNotes `_daily/` enrichit le contexte avec les notes personnelles 🌐
 - Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor) — lecture seule
 - commands-list.cmd : ém-dash cause erreurs CMD Windows — utiliser ASCII uniquement 🌐
+- Commande `/improve` : analyse structurée par catégories (Code, Archi, Perf, Maintenabilité, Bonnes pratiques) + tri par impact (high/medium/low) — output directement intégrable dans memory.md 🌐
 
 ---
 
