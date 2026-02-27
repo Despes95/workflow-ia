@@ -1,22 +1,20 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (analyse /improve + rapport)
+**Dernière mise à jour :** 2026-02-27 (application améliorations high-priority)
 **Dernier outil CLI utilisé :** OpenCode
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Analyse terminée — 23 améliorations proposées
-- **Prochaine étape** : Valider les propositions d'amélioration (high priority)
+- **Mission en cours** : 5 améliorations high-priority appliquées et commitées
+- **Prochaine étape** : Tester obsidian-sync.sh en live (callouts + wikilinks)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Modifications en attente (docs/improve.md)
+- **État git** : Propre (commit 8406297)
 
 ---
 
 ## 🧠 Momentum (Handoff)
-
-> Session OpenCode terminée. Analyse `/improve` exécutée — 23 propositions structurées par impact (high/medium/low), rapport exporté dans `docs/improve.md`.
 
 —
 
@@ -60,7 +58,8 @@
 
 ### Historique
 
-- 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | En cours
+- 2026-02-27 | Claude Code | 5 améliorations high-priority : check 28 cmds, set -e, callouts+wikilinks auto, /close simplifié, section Décisions | Stable
+- 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | Stable
 - 2026-02-26 | Gemini CLI  | Fix sécurité injections absolues (!{type}) + deploy global | Stable
 - 2026-02-26 | Claude Code | 28 commands + DespesNotes + improve/audit + README | Stable
 - 2026-02-26 | Claude Code | Test commands OpenCode (/start, /stranger, /close) + plan test Gemini CLI | Stable
@@ -87,7 +86,7 @@
 - [x] Nouvelles commands /improve + /audit
 - [x] Tester commandes OpenCode (/start, /stranger, /close) 🌐
 - [x] Tester commandes Gemini CLI (TOML) en session réelle 🌐
-- [ ] Valider et appliquer les 6 améliorations high-priority (docs/improve.md)
+- [x] Valider et appliquer les 5 améliorations high-priority (docs/improve.md)
 
 ---
 
