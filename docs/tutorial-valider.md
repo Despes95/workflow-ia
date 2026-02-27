@@ -282,7 +282,8 @@ C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\_forge\
     ├── sessions.md
     ├── decisions.md
     ├── bugs.md
-    ├── features.md
+    ├── backlog.md      ← backlog actif avec rationale (hors repo git)
+    ├── features.md     ← roadmap haut niveau (phases, complété/planifié)
     ├── lessons.md
     ├── architecture.md
     └── ideas.md
@@ -582,7 +583,11 @@ ls .gemini/commands/  # → 12 fichiers .toml
 | `$ARGUMENTS` | `{{args}}` |
 | "Lis memory.md" | `@{memory.md}` |
 | "Lance git status" | `!{git status}` |
-| `$PROJECT_NAME` | `workflow-ia` (hardcodé) |
+| `$PROJECT_NAME` | `!{bash -c "basename $(pwd)"}` — résolution dynamique via shell |
+
+> ⚠️ **Ne jamais hardcoder le PROJECT_NAME dans les TOML Gemini.** Utiliser
+> `!{bash -c "cat \".../_forge/$(basename $(pwd))/fichier.md\""}` pour que la
+> commande fonctionne quel que soit le projet actif.
 
 > ⚠️ **Anti-pattern : date fixe dans les chemins `!{...}`**
 > Si une command lit une daily note (ex: `/check-in`, `/wins`), ne jamais hardcoder la date :
@@ -847,36 +852,50 @@ bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
 | 8 | Commands multi-outils absentes du tuto original | Ajoutées en Phase 6 — Gemini (TOML) + OpenCode (MD) + `--all` |
 | 9 | 12 → 26 commands absentes du tuto original | Ajoutées en Phase 7 — /start + 13 Obsidian × 3 outils + commands-list.cmd |
 | 10 | Bootstrapper absent du tuto original | Ajouté en Phase 8 — new-project.cmd/.sh, portabilité par sed, normalize_path() |
-| 11 | Commande `/improve` absente du tuto | Analyse structurée par impact (high/medium/low), output intégrable dans memory.md |
+| 11 | Commande `/improve` absente du tuto | Analyse structurée par impact (high/medium/low), output dans vault `backlog.md` |
+| 12 | `$PROJECT_NAME` hardcodé dans Gemini TOML | `!{bash -c "basename $(pwd)"}` — résolution dynamique obligatoire pour portabilité |
+| 13 | `docs/improve.md` dans le repo git | Migré vers vault `backlog.md` — la planification n'est pas du code |
+| 14 | `/improve` sans contexte préalable | Lit `bugs.md` + `backlog.md` avant analyse — sinon résultats génériques hors contexte |
 
 ---
 
 ## Phase 9 — Commande /improve (analyse technique) ✅
 
-**Objectif :** Permettre à l'IA d'analyser le projet actif et proposer des améliorations structurées.
+**Objectif :** Permettre à l'IA d'analyser le projet actif et proposer des améliorations structurées,
+en tenant compte du contexte réel du projet (bugs ouverts, backlog existant).
 
-### Commande /improve
+### Commande /improve — Ordre de lecture obligatoire
 
-| Categorie | Contenu analysé |
+```
+1. memory.md  (Focus Actuel, Architecture, Fichiers clés, Bugs connus)
+2. vault/bugs.md       ← bugs ouverts (ne pas reproposer comme amélioration)
+3. vault/backlog.md    ← backlog actif (ne pas redoubler)
+4. vault/architecture.md
+5. fichiers source du projet
+```
+
+> ⚠️ **Sans la lecture de `bugs.md` + `backlog.md` en amont, `/improve` produit
+> une analyse générique hors contexte.** L'IA reproduit ce qui est déjà documenté
+> comme bug ou backlog, sans apporter de valeur ajoutée.
+
+### Catégories analysées
+
+| Catégorie | Contenu analysé |
 |-----------|-----------------|
-| Code | Fonctions >50lignes, code dupliqué, variables |
+| Code | Fonctions >50 lignes, code dupliqué, variables |
 | Architecture | Couplage, SRP, redondance |
 | Performance | N+1, loops inutiles |
 | Maintenabilité | Tests, docs, complexité |
 | Bonnes pratiques | Patterns, erreurs, naming |
 
-**Output :** Tableau trié par impact (High/Medium/Low) + proposition de diff memory.md
-
-### Utilisation
-
-```bash
-# Depuis n'importe quel outil IA
-/improve
-```
+**Output :** Tableau trié par impact (High/Medium/Low)
 
 ### Résultat
 
-- `docs/improve.md` créé avec le rapport
-- Propositions prêtes à intégrer dans memory.md
+- Propositions dans **vault `backlog.md`** (plus dans `docs/improve.md`)
+- `backlog.md` = source unique du backlog, hors du repo git (c'est de la planification, pas du code)
+- `features.md` = roadmap haut niveau distincte
 
-> **Leçon :** `/improve` output directement intégrable dans memory.md — réduire le travail de reprise
+> **Leçon clé :** Filtrer les rapports IA par ROI et contexte. En moyenne, 1 bonne
+> idée sur 8 est retenue d'un rapport générique. Lire `bugs.md` + `backlog.md` avant
+> de lancer `/improve` est non négociable.
