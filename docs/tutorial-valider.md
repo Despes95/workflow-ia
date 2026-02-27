@@ -836,3 +836,36 @@ bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
 | 8 | Commands multi-outils absentes du tuto original | Ajoutées en Phase 6 — Gemini (TOML) + OpenCode (MD) + `--all` |
 | 9 | 12 → 26 commands absentes du tuto original | Ajoutées en Phase 7 — /start + 13 Obsidian × 3 outils + commands-list.cmd |
 | 10 | Bootstrapper absent du tuto original | Ajouté en Phase 8 — new-project.cmd/.sh, portabilité par sed, normalize_path() |
+| 11 | Commande `/improve` absente du tuto | Analyse structurée par impact (high/medium/low), output intégrable dans memory.md |
+
+---
+
+## Phase 9 — Commande /improve (analyse technique) ✅
+
+**Objectif :** Permettre à l'IA d'analyser le projet actif et proposer des améliorations structurées.
+
+### Commande /improve
+
+| Categorie | Contenu analysé |
+|-----------|-----------------|
+| Code | Fonctions >50lignes, code dupliqué, variables |
+| Architecture | Couplage, SRP, redondance |
+| Performance | N+1, loops inutiles |
+| Maintenabilité | Tests, docs, complexité |
+| Bonnes pratiques | Patterns, erreurs, naming |
+
+**Output :** Tableau trié par impact (High/Medium/Low) + proposition de diff memory.md
+
+### Utilisation
+
+```bash
+# Depuis n'importe quel outil IA
+/improve
+```
+
+### Résultat
+
+- `docs/improve.md` créé avec le rapport
+- Propositions prêtes à intégrer dans memory.md
+
+> **Leçon :** `/improve` output directement intégrable dans memory.md — réduire le travail de reprise
