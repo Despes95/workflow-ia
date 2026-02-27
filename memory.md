@@ -72,7 +72,7 @@
 
 ## 🐛 Bugs connus
 
-- `/check-in` et `/wins` Gemini : path daily notes hardcodé sur date fixe (`26.md`) — à rendre dynamique
+- `/check-in` et `/wins` Gemini : path daily notes désormais dynamique via PowerShell `Get-Date` — résolu 2026-02-27
 - `/close` "Unknown skill" résolu : il fallait relancer Claude Code après install --global
 - OpenCode custom slash commands : ne fonctionnent pas en mode non-interactif (`opencode run`) — utiliser le mode interactif 🌐
 - Gemini CLI Absolute Path Security : résolu en utilisant `!{type \"...\"}` au lieu de `@{...}` pour les fichiers hors workspace. 🌐

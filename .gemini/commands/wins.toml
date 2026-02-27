@@ -3,7 +3,7 @@ prompt = """
 Lis dans cet ordre :
 1. !{git log --oneline --since="7 days ago"}
 2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"}
-3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/2026/02/26.md" 2>nul}
+3. !{powershell -NoProfile -Command "Get-Content ([string]::Concat('C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/', (Get-Date -Format 'yyyy/MM/dd'), '.md')) -ErrorAction SilentlyContinue"}
 
 Liste uniquement les victoires :
 - Features livrées ou bugs résolus (depuis les commits)

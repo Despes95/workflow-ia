@@ -1,7 +1,7 @@
 description = "État du jour : énergie, mode de travail, intention"
 prompt = """
 Lis les 3 dernières daily notes :
-!{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/2026/02/26.md" 2>nul}
+!{powershell -NoProfile -Command "Get-Content ([string]::Concat('C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/', (Get-Date -Format 'yyyy/MM/dd'), '.md')) -ErrorAction SilentlyContinue"}
 
 Pose exactement 3 questions :
 1. Énergie — de 1 (épuisé) à 5 (au top)
