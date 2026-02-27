@@ -1,7 +1,7 @@
 # /improve — Rapports d'amélioration (workflow-ia)
 
 > Dernière mise à jour : 2026-02-27
-> Aucune modification appliquée sauf mention contraire
+> Rapports A+B appliqués (session 2026-02-27). Rapports C+D : à appliquer.
 
 ---
 
@@ -240,3 +240,70 @@ Energie : /5
 | 2 | Mettre à jour le template daily dans Obsidian | Medium |
 | 3 | Clarifier descriptions `/today` vs `/start` dans les prompts | Low |
 | 4 | Vérifier `/check-in` Gemini — path daily notes hardcodé (date fixe) | Medium |
+
+---
+
+## Rapport D — Inspirations externes (caching + second brain)
+
+> Sources : "Lessons from Building Claude Code: Prompt Caching Is Everything" (Anthropic) +
+> "How to Build Your AI Second Brain Using Obsidian + Claude Code" (deux auteurs indépendants)
+> Analyse du delta : ce qui manque dans le workflow actuel.
+
+### D1. Manque critique : note "Polaris" (Top of Mind)
+
+| Impact | Problème | Solution |
+|--------|----------|---------|
+| **High** | Aucun document "boussole personnelle" dans le vault — les commandes de réflexion (`/check-in`, `/today`, `/my-world`, `/drift`, `/challenge`) lisent les daily notes mais n'ont pas d'ancrage stable dans les priorités / valeurs / direction de vie | Créer `DespesNotes/Polaris.md` (voir template ci-dessous) + l'injecter dans les commandes de réflexion |
+
+**Template `Polaris.md` :**
+```markdown
+# Polaris — Boussole personnelle
+
+## Life Razor
+[Une phrase. Ce qui guide toutes les décisions.]
+
+## Top of Mind (mis à jour : YYYY-MM-DD)
+- [Priorité 1 + 1 phrase de contexte]
+- [Priorité 2]
+- [Priorité 3]
+
+## Ce que j'évite activement en ce moment
+- [Distraction / pattern à éviter]
+```
+
+**Commandes à enrichir** : `/check-in`, `/today`, `/my-world`, `/drift`, `/challenge`, `/connect` → ajouter lecture de `DespesNotes/Polaris.md` en début de prompt.
+
+### D2. Commande manquante : `/focus`
+
+| Impact | Problème | Solution |
+|--------|----------|---------|
+| **High** | Aucune commande "sur quoi dois-je travailler là maintenant ?" cross-projets × Polaris × énergie. `/check-in` pose des questions, `/today` planifie par projet, mais aucune ne synthétise pour décider l'action optimale | Créer `/focus` — lire Polaris + `_global/index.md` + 3 dernières daily notes + `memory.md` projet actif → recommander 1 action principale + justification |
+
+**Logique `/focus` :**
+1. Lit `DespesNotes/Polaris.md` (boussole)
+2. Lit `_global/index.md` (état tous projets)
+3. Lit 3 dernières daily notes (énergie / mode)
+4. Lit `memory.md` du projet actif
+5. Recommande : **1 action principale** + pourquoi cohérent avec le Polaris + ce à éviter aujourd'hui
+
+### D3. Optimisation caching : audit des commandes
+
+| Impact | Problème | Fichiers | Solution |
+|--------|----------|---------|---------|
+| **Medium** | Les commandes qui injectent du contenu dynamique (dates, arguments) en début de prompt provoquent des cache miss — pattern "static content first, dynamic content last" non vérifié systématiquement | `.claude/commands/*.md`, `.gemini/commands/*.toml` | Auditer : tout contenu dynamique (`$ARGUMENTS`, dates, timestamps) doit être en **fin de prompt**, jamais avant le contenu statique |
+| **Medium** | Lors d'un re-chargement de contexte en cours de session (`/context` mid-session), relire l'intégralité de `memory.md` est un cache miss inutile si seule une section a changé | `/context` | Passer seulement le diff pertinent via un message plutôt que relire le fichier complet |
+
+### D4. Séparation notes auto-générées / notes personnelles (déjà partielle)
+
+| Impact | Problème | Solution |
+|--------|----------|---------|
+| **Low** | `obsidian-sync.sh` injecte du contenu auto-généré dans `sessions.md`, `bugs.md`, `lessons.md` (vault `_forge/`) — bien séparé de `DespesNotes`. Mais les commandes pensée (ex: `/emerge`, `/trace`) lisent les deux sans distinction | Optionnel : ajouter une note dans les prompts concernés pour distinguer "notes personnelles" vs "notes auto-générées" lors de l'analyse |
+
+### Priorisation
+
+| Rang | Action | Impact |
+|------|--------|--------|
+| 1 | Créer `DespesNotes/Polaris.md` + enrichir les commandes réflexion | High |
+| 2 | Créer commande `/focus` (× 3 outils) | High |
+| 3 | Auditer les commandes pour contenu dynamique en fin de prompt | Medium |
+| 4 | Connexion MCP vers outil de tâches / calendrier | Medium |
