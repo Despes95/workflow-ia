@@ -3,16 +3,16 @@ chcp 65001 >nul
 cls
 
 echo.
-echo  ╔══════════════════════════════════════════════════════════╗
-echo  ║   workflow-ia                          31 commandes      ║
-echo  ║   Claude Code  ·  Gemini CLI  ·  OpenCode                ║
-echo  ╚══════════════════════════════════════════════════════════╝
+echo  ============================================================
+echo   workflow-ia                         31 commandes
+echo   Claude Code  -  Gemini CLI  -  OpenCode
+echo  ============================================================
 echo.
-echo    Vault  : DespesNotes\_daily
-echo    Forge  : _forge\workflow-ia
+echo   Vault  : DespesNotes\_daily
+echo   Forge  : _forge\workflow-ia
 echo.
 
-echo  ── SESSION (10) ──────────────────────────────────────────────
+echo  -- SESSION (10) --------------------------------------------
 echo    /start          Demarre avec contexte complet + git status
 echo    /today          Priorites du matin
 echo    /context        Recharge le contexte du projet actif
@@ -25,7 +25,7 @@ echo    /7plan          Reshape les 7 prochains jours
 echo    /check-in  *    Etat du jour : energie + mode + intention
 echo.
 
-echo  ── PROJET (7) ────────────────────────────────────────────────
+echo  -- PROJET (7) ----------------------------------------------
 echo    /improve        Propose des ameliorations techniques
 echo    /audit          Analyse bugs et refactorisation
 echo    /my-world       Charge tous les projets actifs
@@ -35,11 +35,11 @@ echo    /debug     *    Analyse un bug precis
 echo    /wins      *    Victoires de la semaine
 echo.
 
-echo  ── VAULT (14) ────────────────────────────────────────────────
+echo  -- VAULT (14) ----------------------------------------------
 echo    /map             Vue topologique du vault
 echo    /weekly-learnings Resume hebdo des insights
-echo    /learned         Lecons -^> post "What I Learned"
-echo    /graduate        Daily notes -^> notes permanentes
+echo    /learned         Lecons  ^>  post "What I Learned"
+echo    /graduate        Daily notes  ^>  notes permanentes
 echo    /backlinks       Notes qui devraient se lier
 echo    /compound        Meme question a differents moments du vault
 echo    /stranger        Portrait de toi vu de l'exterieur
@@ -52,9 +52,9 @@ echo    /connect         Ponts inattendus entre domaines
 echo    /challenge       Contre-teste une croyance avec tes notes
 echo.
 
-echo  ──────────────────────────────────────────────────────────────
-echo    31 commandes  ·  Claude Code  /  Gemini CLI  /  OpenCode
+echo  ------------------------------------------------------------
+echo    31 commandes  -  Claude Code / Gemini CLI / OpenCode
 echo    * nouvelles : /check-in  /debug  /wins
-echo  ──────────────────────────────────────────────────────────────
+echo  ------------------------------------------------------------
 echo.
 pause
