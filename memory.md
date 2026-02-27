@@ -123,6 +123,12 @@
 
 ---
 
+## 📚 Décisions
+
+- [aucune décision enregistrée]
+
+---
+
 ## ⛔ Contraintes & Interdits
 
 - Ne jamais modifier AGENTS.md sans validation explicite

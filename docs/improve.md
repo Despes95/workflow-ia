@@ -69,7 +69,112 @@
 
 ---
 
+## 6. Amélioration workflow /close + obsidian-sync.sh
+
+> Contexte : `/close` fait tout automatiquement SAUF les étapes 6b et 6c qui nécessitent une édition manuelle de `sessions.md`.
+
+| Impact | Problème | Fichiers | Solution |
+|--------|----------|----------|----------|
+| **High** | **Étapes 6b/6c manuelles** : Callouts et wikilinks都需要编辑 sessions.md après sync | `/close`, `obsidian-sync.sh` | Automatiser dans obsidian-sync.sh |
+| **High** | **Pas d'extraction décisions** : memory.md n'a pas de section décisions, donc decisions.md n'est jamais alimenté | `obsidian-sync.sh` | Ajouter extraction `## 📚 Décisions` |
+| **Medium** | **Callouts non standardisés** : Format varie selon l'IA qui fait la session | `/close` | Générer automatiquement dans obsidian-sync.sh |
+| **Medium** | **Wikilinks manquants** : Navigation cross-notes incomplète | `sessions.md` | Ajouter automatiquement dans le snapshot |
+
+### Solutions détaillées
+
+#### 6.1 Extraction décisions automatique
+
+Ajouter dans `obsidian-sync.sh` :
+```bash
+# Extraction decisions (section ## 📚 Décisions)
+DECISIONS_SECTION=""
+in_decisions=0
+while IFS= read -r line; do
+  if [[ "$line" =~ ^##[[:space:]]*📚 ]]; then
+    in_decisions=1
+  elif [[ "$in_decisions" -eq 1 && "$line" =~ ^## ]]; then
+    in_decisions=0
+  elif [[ "$in_decisions" -eq 1 ]]; then
+    DECISIONS_SECTION+="${line}"$'\n'
+  fi
+done < "$MEMORY_FILE"
+```
+
+#### 6.2 Callouts automatiques dans snapshot
+
+Modifier le bloc snapshot sessions.md pour générer :
+```markdown
+> [!insight]
+> - Leçon 1
+> - Leçon 2
+
+> [!warning]
+> - Bug 1
+
+> [!decision]
+> - Décision 1
+```
+
+#### 6.3 Wikilinks automatiques
+
+```markdown
+→ [[lessons]]
+→ [[bugs]]
+→ [[decisions]]
+```
+
+#### 6.4 Simplifier /close
+
+| Avant | Après |
+|-------|-------|
+| 6a. `bash scripts/obsidian-sync.sh` | 6a. `bash scripts/obsidian-sync.sh` |
+| 6b. Éditer sessions.md (manuel) | ❌ Supprimé (auto) |
+| 6c. Ajouter wikilinks (manuel) | ❌ Supprimé (auto) |
+| 6d. git commit + push | 6b. git commit + push |
+
+#### 6.5 Ajouter section Décisions dans memory.md
+
+Template à ajouter dans memory.md :
+```markdown
+## 📚 Décisions
+
+- [decision]
+```
+
+---
+
+## Priorisation mise à jour
+
+| Rang | Action | Impact |
+|------|--------|--------|
+| 1 | Corriger le check `12` → `28` dans `install-commands.sh` | High |
+| 2 | Automatiser callouts + wikilinks dans obsidian-sync.sh | High |
+| 3 | Ajouter extraction décisions | High |
+| 4 | Simplifier /close (supprimer 6b/6c) | High |
+| 5 | Ajouter `set -euo pipefail` à `check_memory.sh` | High |
+| 6 | Ajouter tests minimal (CI) | High |
+| 7 | Factoriser `deploy_commands()` dans `install-commands.sh` | Medium |
+| 8 | Paramétrer le chemin Obsidian (`.env` ou config) | Medium |
+| 9 | Uniformiser shebangs | Low |
+
+---
+
+## Résultat attendu
+
+Après `/close` :
+1. `obsidian-sync.sh` exécuté
+2. `sessions.md` contient automatiquement :
+   - Callouts (!insight, !warning, !decision)
+   - Wikilinks (→ [[lessons]], → [[bugs]], → [[decisions]])
+3. `decisions.md` alimenté automatiquement
+4. Commit + push automatique
+
+**Workflow 100% automatique — zéro manip manuelle.**
+
+---
+
 ## Notes
 
-- Ce rapport est généré automatiquement par la command `/improve`
+- Ce rapport est généré automatiquement par la commande `/improve`
+- Dernière mise à jour : 2026-02-27 (ajout section 6 : workflow /close + obsidian-sync.sh)
 - Aucune modification appliquée — propositions à valider

@@ -120,21 +120,7 @@ init_file "${FORGE_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
 > Pistes et idées à explorer
 "
 
-# ── ÉTAPE 4 : snapshot dans sessions.md ───────────────────────────────────────
-{
-  echo ""
-  echo "---"
-  echo ""
-  echo "## Session ${SESSION_ID}"
-  echo ""
-  echo "> Sync automatique — ${TIMESTAMP}"
-  echo ""
-  cat "$MEMORY_FILE"
-  echo ""
-} >> "${FORGE_DIR}/sessions.md"
-echo "  📸 Snapshot ajouté : sessions.md"
-
-# ── ÉTAPE 5 : extraction bugs ─────────────────────────────────────────────────
+# ── ÉTAPE 4 : extraction bugs ─────────────────────────────────────────────────
 BUGS_SECTION=""
 in_bugs=0
 while IFS= read -r line; do
@@ -146,9 +132,70 @@ while IFS= read -r line; do
     BUGS_SECTION+="${line}"$'\n'
   fi
 done < "$MEMORY_FILE"
-
-# Filtrer les lignes vides et "Aucun connu"
 BUGS_CLEANED=$(echo "$BUGS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' || true)
+
+# ── ÉTAPE 5 : extraction leçons ───────────────────────────────────────────────
+LESSONS_SECTION=""
+in_lessons=0
+while IFS= read -r line; do
+  if [[ "$line" =~ ^##[[:space:]]*📝 ]]; then
+    in_lessons=1
+  elif [[ "$in_lessons" -eq 1 && "$line" =~ ^## ]]; then
+    in_lessons=0
+  elif [[ "$in_lessons" -eq 1 ]]; then
+    LESSONS_SECTION+="${line}"$'\n'
+  fi
+done < "$MEMORY_FILE"
+LESSONS_CLEANED=$(echo "$LESSONS_SECTION" | grep -v '^[[:space:]]*$' || true)
+
+# ── ÉTAPE 6 : extraction décisions ────────────────────────────────────────────
+DECISIONS_SECTION=""
+in_decisions=0
+while IFS= read -r line; do
+  if [[ "$line" =~ ^##[[:space:]]*📚 ]]; then
+    in_decisions=1
+  elif [[ "$in_decisions" -eq 1 && "$line" =~ ^## ]]; then
+    in_decisions=0
+  elif [[ "$in_decisions" -eq 1 ]]; then
+    DECISIONS_SECTION+="${line}"$'\n'
+  fi
+done < "$MEMORY_FILE"
+DECISIONS_CLEANED=$(echo "$DECISIONS_SECTION" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' || true)
+
+# ── ÉTAPE 7 : snapshot dans sessions.md (avec callouts + wikilinks) ───────────
+{
+  echo ""
+  echo "---"
+  echo ""
+  echo "## Session ${SESSION_ID}"
+  echo ""
+  echo "> Sync automatique — ${TIMESTAMP}"
+  echo ""
+  cat "$MEMORY_FILE"
+  echo ""
+  if [[ -n "$LESSONS_CLEANED" ]]; then
+    echo "> [!insight]"
+    echo "$LESSONS_CLEANED" | while IFS= read -r l; do echo "> $l"; done
+    echo ""
+  fi
+  if [[ -n "$BUGS_CLEANED" ]]; then
+    echo "> [!warning]"
+    echo "$BUGS_CLEANED" | while IFS= read -r l; do echo "> $l"; done
+    echo ""
+  fi
+  if [[ -n "$DECISIONS_CLEANED" ]]; then
+    echo "> [!decision]"
+    echo "$DECISIONS_CLEANED" | while IFS= read -r l; do echo "> $l"; done
+    echo ""
+  fi
+  [[ -n "$LESSONS_CLEANED" ]] && echo "→ [[lessons]]"
+  [[ -n "$BUGS_CLEANED" ]] && echo "→ [[bugs]]"
+  [[ -n "$DECISIONS_CLEANED" ]] && echo "→ [[decisions]]"
+  echo ""
+} >> "${FORGE_DIR}/sessions.md"
+echo "  📸 Snapshot ajouté : sessions.md"
+
+# ── ÉTAPE 8 : append bugs.md ──────────────────────────────────────────────────
 if [[ -n "$BUGS_CLEANED" ]]; then
   {
     echo ""
@@ -161,20 +208,7 @@ if [[ -n "$BUGS_CLEANED" ]]; then
   echo "  🐛 Bugs extraits → bugs.md"
 fi
 
-# ── ÉTAPE 6 : extraction leçons ───────────────────────────────────────────────
-LESSONS_SECTION=""
-in_lessons=0
-while IFS= read -r line; do
-  if [[ "$line" =~ ^##[[:space:]]*📝 ]]; then
-    in_lessons=1
-  elif [[ "$in_lessons" -eq 1 && "$line" =~ ^## ]]; then
-    in_lessons=0
-  elif [[ "$in_lessons" -eq 1 ]]; then
-    LESSONS_SECTION+="${line}"$'\n'
-  fi
-done < "$MEMORY_FILE"
-
-LESSONS_CLEANED=$(echo "$LESSONS_SECTION" | grep -v '^[[:space:]]*$' || true)
+# ── ÉTAPE 9 : append lessons.md ───────────────────────────────────────────────
 if [[ -n "$LESSONS_CLEANED" ]]; then
   {
     echo ""
@@ -187,8 +221,20 @@ if [[ -n "$LESSONS_CLEANED" ]]; then
   echo "  📝 Leçons extraites → lessons.md"
 fi
 
-# ── ÉTAPE 7 : mise à jour "Dernière sync" dans index.md ───────────────────────
-# Remplace la ligne de sync existante
+# ── ÉTAPE 10 : append decisions.md ────────────────────────────────────────────
+if [[ -n "$DECISIONS_CLEANED" ]]; then
+  {
+    echo ""
+    echo "---"
+    echo ""
+    echo "### Décisions du ${DATE}"
+    echo ""
+    echo "$DECISIONS_CLEANED"
+  } >> "${FORGE_DIR}/decisions.md"
+  echo "  📚 Décisions extraites → decisions.md"
+fi
+
+# ── ÉTAPE 11 : mise à jour "Dernière sync" dans index.md ──────────────────────
 if [[ -f "${FORGE_DIR}/index.md" ]]; then
   sed -i "s/^> Dernière sync :.*$/> Dernière sync : ${TIMESTAMP}/" "${FORGE_DIR}/index.md"
   echo "  🔄 Index mis à jour : ${TIMESTAMP}"

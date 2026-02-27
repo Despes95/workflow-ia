@@ -102,10 +102,10 @@ for dir_label in "Claude:.claude/commands:md" "Gemini:.gemini/commands:toml" "Op
   EXT=$(echo "$dir_label" | cut -d: -f3)
   SRC="$REPO_DIR/$SUBDIR"
   COUNT=$(ls "$SRC/"*."$EXT" 2>/dev/null | wc -l)
-  if [ "$COUNT" -eq 12 ]; then
+  if [ "$COUNT" -eq 28 ]; then
     echo -e "  ${GREEN}✓ $LABEL : $COUNT fichiers .$EXT${NC}"
   else
-    echo -e "  ${YELLOW}! $LABEL : $COUNT/12 fichiers .$EXT dans $SRC${NC}"
+    echo -e "  ${YELLOW}! $LABEL : $COUNT/28 fichiers .$EXT dans $SRC${NC}"
     MISSING=$((MISSING+1))
   fi
 done
@@ -116,7 +116,7 @@ if [ "$MISSING" -gt 0 ]; then
 fi
 
 echo ""
-echo -e "${GREEN}✓ Toutes les sources sont complètes (12 commands × 3 outils)${NC}"
+echo -e "${GREEN}✓ Toutes les sources sont complètes (28 commands × 3 outils)${NC}"
 echo ""
 echo -e "${CYAN}Modes de déploiement disponibles :${NC}"
 echo -e "  bash $SCRIPT_DIR/install-commands.sh --global    → Claude Code (global)"

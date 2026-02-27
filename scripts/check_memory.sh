@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # check_memory.sh — Garde-fou intégrité de memory.md
 FILE="memory.md"
 ERRORS=0
@@ -7,7 +8,7 @@ echo "🔍 Vérification de $FILE..."
 
 SECTIONS=("Focus Actuel" "Architecture" "Récap sessions" "Todo" "Bugs connus" "Leçons apprises" "Contraintes & Interdits")
 for section in "${SECTIONS[@]}"; do
-  count=$(grep -c "$section" "$FILE" 2>/dev/null); count=${count:-0}
+  count=$(grep -c "$section" "$FILE" 2>/dev/null || true); count=${count:-0}
   [ "$count" -gt 1 ] && echo "❌ DOUBLON : '$section' ($count fois)" && ERRORS=$((ERRORS+1))
 done
 
