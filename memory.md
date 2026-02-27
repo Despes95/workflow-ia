@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (31 commandes + 3 rapports improve.md)
+**Dernière mise à jour :** 2026-02-27 (fix Gemini date dynamique + architecture.md vault synchro)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Session terminée — rapports A+B+C dans docs/improve.md
+- **Mission en cours** : Session terminée — fix Gemini date dynamique (check-in/wins) + architecture.md vault 31 cmds
 - **Prochaine étape** : Appliquer rapport A (scripts) + rapport B (vault canonique)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (commit 59e2c37)
+- **État git** : Propre (commit 6808b43)
 
 ---
 
@@ -58,14 +58,11 @@
 
 ### Historique
 
+- 2026-02-27 | Claude Code | Fix Gemini date dynamique (check-in/wins) + architecture.md vault 31 cmds | Stable
 - 2026-02-27 | Claude Code | 3 cmds (check-in/debug/wins) + reorganisation SESSION/PROJET/VAULT + 3 rapports improve.md | Stable
 - 2026-02-27 | Claude Code | 5 améliorations high-priority : check 28 cmds, set -e, callouts+wikilinks auto, /close simplifié, section Décisions | Stable
 - 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | Stable
 - 2026-02-26 | Gemini CLI  | Fix sécurité injections absolues (!{type}) + deploy global | Stable
-- 2026-02-26 | Claude Code | 28 commands + DespesNotes + improve/audit + README | Stable
-- 2026-02-26 | Claude Code | Test commands OpenCode (/start, /stranger, /close) + plan test Gemini CLI | Stable
-- 2026-02-25 | Claude Code | check_memory.sh + prompts cross-outil + daily notes backlog | Stable
-- 2026-02-25 | Claude Code | Commands globales + /close prompt v2 | Stable
 
 ---
 
@@ -94,6 +91,7 @@
 - `normalize_path()` avec BASH_REMATCH = pattern propre pour convertir `C:\foo` → `/c/foo` dans un script bash appelé depuis .cmd Windows 🌐
 - Bootstrap d'un template : tester avec un projet jetable avant commit — vérifier sed + counts en une passe, puis `rm -rf` 🌐
 - OpenCode custom slash commands : nécessitent le mode interactif — `opencode run` ne les reconnaît pas 🌐
+- PowerShell `Get-Date -Format 'yyyy/MM/dd'` dans les TOML Gemini : seule solution fiable Windows pour dates dynamiques — `!{type + date fixe}` est un anti-pattern 🌐
 - OpenCode dossier global Windows : `%APPDATA%\opencode\commands\` (pas ~/.config/) 🌐
 - OpenCode : `/start`, `/stranger`, `/close` testés et fonctionnent en mode interactif `opencode .` 🌐
 - Commands pensée : ajouter le chemin DespesNotes `_daily/` enrichit le contexte avec les notes personnelles 🌐
