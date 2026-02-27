@@ -1,0 +1,18 @@
+description = "Victoires de la semaine — commits, leçons, décisions"
+prompt = """
+Lis dans cet ordre :
+1. !{git log --oneline --since="7 days ago"}
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"}
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/2026/02/26.md" 2>nul}
+
+Liste uniquement les victoires :
+- Features livrées ou bugs résolus (depuis les commits)
+- Leçons apprises qui ont changé quelque chose
+- Décisions prises (même les petites comptent)
+- Moments où tu as avancé malgré un blocage
+
+Format court, positif, 1 ligne par victoire.
+Termine par une phrase : "Cette semaine tu as [résumé en une phrase]."
+
+⚠️ Ne touche à aucun fichier.
+"""
