@@ -1,6 +1,6 @@
-# Améliorations workflow-ia
+# /improve — Analyse workflow-ia (2026-02-27)
 
-> Analyse du projet — propositions structurées par impact
+> Analyse après application des améliorations high-priority. Focus sur ce qui reste.
 
 ---
 
@@ -8,51 +8,49 @@
 
 | Impact | Fichier | Problème | Solution |
 |--------|---------|----------|----------|
-| **High** | `install-commands.sh` (lignes 28-93) | Code dupliqué pour chaque mode (--global, --gemini, --opencode, --all, --project) | Créer une fonction `deploy_commands()` paramétrable |
-| **Medium** | `obsidian-sync.sh` (lignes 138-188) | Extraction bugs et leçons en double — même logique itérative | Factoriser en `extract_section()` avec motif regex en paramètre |
-| **Low** | `check_memory.sh` | Script très court, déjà optimal | — |
-| **Low** | `new-project.cmd` / `commands-list.cmd` | Simples et lisibles | — |
+| **High** | `obsidian-sync.sh` L.123–163 | 3 boucles `while IFS= read -r line` quasi-identiques (bugs, leçons, décisions) — même pattern, juste l'emoji et le filtre changent | Factoriser en `extract_section() { local emoji="$1" filter="$2" ... }` |
+| **Medium** | `new-project.sh` L.86–166 | Template `memory.md` embedded en heredoc de 80 lignes dans le script — difficile à maintenir | Extraire dans `scripts/templates/memory.md.tpl` + `sed` |
+| **Low** | `install-commands.sh` | Structure `if/if/if` imbriquée (6 blocs) lisible mais verbeux | Faible priorité — déjà commenté |
 
 ---
 
 ## 2. Architecture à améliorer
 
-| Impact | Problème | Fichiers concernés | Solution |
-|--------|----------|-------------------|----------|
-| **High** | **Incohérence documentation** : `install-commands.sh` ligne 105 vérifie `12` fichiers, mais memory.md indique **28 commands** × 3 outils | `install-commands.sh`, `memory.md` | Corriger le check de 12 → 28, ou documenter pourquoi 12 |
-| **Medium** | **Redondance triple** : 28 commands_dupliquées en 3 formats (.md Claude, .toml Gemini, .opencode .md) | `.claude/`, `.gemini/`, `.opencode/` | Envisager un générateur unique ou un script de sync |
-| **Medium** | **Couplage path硬codé** : `obsidian-sync.sh` ligne 11 contient un chemin Windows `/c/Users/Despes/...` non paramétrable | `obsidian-sync.sh` | Extraire config dans fichier `.env` ou variables |
+| Impact | Problème | Fichiers | Solution |
+|--------|----------|---------|----------|
+| **High** | **Hook pre-commit non versionné** : `.git/hooks/pre-commit` n'est pas dans le repo — quiconque clone le projet n'a pas le hook | `.git/hooks/pre-commit` | Copier dans `scripts/hooks/pre-commit` + `install-commands.sh --hooks` pour l'installer |
+| **High** | **Double source de vérité** : `check_memory.sh` et `.git/hooks/pre-commit` ont chacun leur liste de sections obligatoires — déjà divergées (hook n'a pas été mis à jour quand on a retiré "Todo") | `check_memory.sh`, `.git/hooks/pre-commit` | Le hook devrait appeler `check_memory.sh` directement au lieu de dupliquer la logique |
+| **Medium** | **`settings.local.json` copié dans new-project.sh** (L.171) mais ce fichier est dans `.gitignore` — crash si absent | `new-project.sh` | Remplacer par un `cp` conditionnel ou générer un fichier vide |
+| **Medium** | **`sessions.md` grossit sans limite** — chaque sync ajoute l'intégralité de `memory.md` (100+ lignes) | `obsidian-sync.sh` | Limiter le snapshot aux sections Focus/Récap/Leçons au lieu de `cat "$MEMORY_FILE"` entier |
 
 ---
 
 ## 3. Performance
 
 | Impact | Problème | Fichiers | Solution |
-|--------|----------|----------|----------|
-| **Low** | `obsidian-sync.sh` : boucle `while IFS` + 2 grep pour nettoyer (lignes 150-151, 177) | `obsidian-sync.sh` | Pipeline sed/awk unique au lieu de grep cascade |
-| **Low** | Chaque déploiement (`--all`) copie 3 × 28 fichiers séquentiellement | `install-commands.sh` | Copies parallèles si volumineux (non critique ici) |
+|--------|----------|---------|----------|
+| **Medium** | **3 passes sur `memory.md`** : une boucle par section (bugs, leçons, décisions) → 3 lectures séquentielles du même fichier | `obsidian-sync.sh` | Une seule passe avec 3 variables `in_*` actives simultanément |
+| **Low** | `ls "$FORGE_DIR" \| wc -l` dans la sortie finale — inutile si on sait qu'on vient d'écrire 8 fichiers | `obsidian-sync.sh` | Mineur |
 
 ---
 
 ## 4. Maintenabilité
 
 | Impact | Problème | Fichiers | Solution |
-|--------|----------|----------|----------|
-| **High** | **Pas de tests** : aucun test automatisé des scripts | Tous | Ajouter `scripts/test_*.sh` ou CI minimale |
-| **Medium** | **Incohérence shebang** : `#!/bin/bash` vs `#!/usr/bin/env bash` | `check_memory.sh` vs autres | Uniformiser en `#!/usr/bin/env bash` |
-| **Medium** | **Hypothèses implicites** : `new-project.sh` suppose dossier `projects` existant (ligne 45) | `new-project.sh` | `mkdir -p` implicite ou message clair |
-| **Low** | Couleurs (`GREEN`, `CYAN`…) dupliquées dans 3 scripts | `install-commands.sh`, `new-project.sh`, `obsidian-sync.sh` | Extraire dans `scripts/_commons.sh` source |
+|--------|----------|---------|----------|
+| **High** | **Couleurs ANSI dupliquées** dans 3 scripts (`GREEN`, `CYAN`, `YELLOW`, `NC`) — si on change une couleur, à faire 3 fois | `install-commands.sh`, `new-project.sh`, `obsidian-sync.sh` | Extraire dans `scripts/_commons.sh` + `source "$SCRIPT_DIR/_commons.sh"` |
+| **Medium** | **Template memory.md désynchronisé** : `new-project.sh` génère un `memory.md` avec `## ✅ Todo`, mais `check_memory.sh` ne vérifie plus "Todo" | `new-project.sh` | Retirer `## ✅ Todo` du template heredoc |
+| **Low** | `obsidian-sync.sh` : version notée `v2.6` dans le commentaire L.2 mais non incrémentée après modifications | `obsidian-sync.sh` | Mineur — supprimer le numéro de version ou l'incrémenter automatiquement |
 
 ---
 
 ## 5. Bonnes pratiques
 
 | Impact | Problème | Fichiers | Solution |
-|--------|----------|----------|----------|
-| **High** | **Gestion d'erreurs incomplète** : `check_memory.sh` n'utilise pas `set -euo pipefail` (ligne 1) | `check_memory.sh` | Ajouter `set -euo pipefail` |
-| **Medium** | **Validation manquante** : `install-commands.sh` ne vérifie pas si `$HOME` est défini avant de l'utiliser | `install-commands.sh` | Ajouter `: "${HOME:?}"` au début |
-| **Low** | `obsidian-sync.sh` utilise `sed -i` (ligne 193) — comportement GNU vs BSD différent | `obsidian-sync.sh` | Préciser `sed -i.bak` + cleanup ou utiliser `awk` portable |
-| **Low** | Chemins mixing Windows/Linux (`C:\` dans .cmd, `/c/` dans .sh) | `new-project.cmd`, `new-project.sh` | OK pour projet Windows + Git Bash, documenter |
+|--------|----------|---------|----------|
+| **High** | **Hook non installé automatiquement** : `new-project.sh` ne copie pas le hook pre-commit dans `.git/hooks/` du nouveau projet — les nouveaux projets n'ont aucun garde-fou | `new-project.sh` | Ajouter une étape `cp scripts/hooks/pre-commit .git/hooks/ && chmod +x` |
+| **Medium** | `new-project.sh` L.171 : `cp "$TEMPLATE/.claude/settings.local.json"` — pas de vérification que le fichier existe avant copie | `new-project.sh` | `[[ -f ... ]] && cp ... \|\| true` |
+| **Low** | `obsidian-sync.sh` : `sed -i` sans `.bak` (L.239) — comportement différent GNU/BSD | `obsidian-sync.sh` | `sed -i.bak ... && rm -f ...bak` ou variable tmp |
 
 ---
 
@@ -60,121 +58,19 @@
 
 | Rang | Action | Impact |
 |------|--------|--------|
-| 1 | Corriger le check `12` → `28` dans `install-commands.sh` | High |
-| 2 | Ajouter `set -euo pipefail` à `check_memory.sh` | High |
-| 3 | Ajouter tests minimal (CI) | High |
-| 4 | Factoriser `deploy_commands()` dans `install-commands.sh` | Medium |
-| 5 | Paramétrer le chemin Obsidian (`.env` ou config) | Medium |
-| 6 | Uniformiser shebangs | Low |
-
----
-
-## 6. Amélioration workflow /close + obsidian-sync.sh
-
-> Contexte : `/close` fait tout automatiquement SAUF les étapes 6b et 6c qui nécessitent une édition manuelle de `sessions.md`.
-
-| Impact | Problème | Fichiers | Solution |
-|--------|----------|----------|----------|
-| **High** | **Étapes 6b/6c manuelles** : Callouts et wikilinks都需要编辑 sessions.md après sync | `/close`, `obsidian-sync.sh` | Automatiser dans obsidian-sync.sh |
-| **High** | **Pas d'extraction décisions** : memory.md n'a pas de section décisions, donc decisions.md n'est jamais alimenté | `obsidian-sync.sh` | Ajouter extraction `## 📚 Décisions` |
-| **Medium** | **Callouts non standardisés** : Format varie selon l'IA qui fait la session | `/close` | Générer automatiquement dans obsidian-sync.sh |
-| **Medium** | **Wikilinks manquants** : Navigation cross-notes incomplète | `sessions.md` | Ajouter automatiquement dans le snapshot |
-
-### Solutions détaillées
-
-#### 6.1 Extraction décisions automatique
-
-Ajouter dans `obsidian-sync.sh` :
-```bash
-# Extraction decisions (section ## 📚 Décisions)
-DECISIONS_SECTION=""
-in_decisions=0
-while IFS= read -r line; do
-  if [[ "$line" =~ ^##[[:space:]]*📚 ]]; then
-    in_decisions=1
-  elif [[ "$in_decisions" -eq 1 && "$line" =~ ^## ]]; then
-    in_decisions=0
-  elif [[ "$in_decisions" -eq 1 ]]; then
-    DECISIONS_SECTION+="${line}"$'\n'
-  fi
-done < "$MEMORY_FILE"
-```
-
-#### 6.2 Callouts automatiques dans snapshot
-
-Modifier le bloc snapshot sessions.md pour générer :
-```markdown
-> [!insight]
-> - Leçon 1
-> - Leçon 2
-
-> [!warning]
-> - Bug 1
-
-> [!decision]
-> - Décision 1
-```
-
-#### 6.3 Wikilinks automatiques
-
-```markdown
-→ [[lessons]]
-→ [[bugs]]
-→ [[decisions]]
-```
-
-#### 6.4 Simplifier /close
-
-| Avant | Après |
-|-------|-------|
-| 6a. `bash scripts/obsidian-sync.sh` | 6a. `bash scripts/obsidian-sync.sh` |
-| 6b. Éditer sessions.md (manuel) | ❌ Supprimé (auto) |
-| 6c. Ajouter wikilinks (manuel) | ❌ Supprimé (auto) |
-| 6d. git commit + push | 6b. git commit + push |
-
-#### 6.5 Ajouter section Décisions dans memory.md
-
-Template à ajouter dans memory.md :
-```markdown
-## 📚 Décisions
-
-- [decision]
-```
-
----
-
-## Priorisation mise à jour
-
-| Rang | Action | Impact |
-|------|--------|--------|
-| 1 | Corriger le check `12` → `28` dans `install-commands.sh` | High |
-| 2 | Automatiser callouts + wikilinks dans obsidian-sync.sh | High |
-| 3 | Ajouter extraction décisions | High |
-| 4 | Simplifier /close (supprimer 6b/6c) | High |
-| 5 | Ajouter `set -euo pipefail` à `check_memory.sh` | High |
-| 6 | Ajouter tests minimal (CI) | High |
-| 7 | Factoriser `deploy_commands()` dans `install-commands.sh` | Medium |
-| 8 | Paramétrer le chemin Obsidian (`.env` ou config) | Medium |
-| 9 | Uniformiser shebangs | Low |
-
----
-
-## Résultat attendu
-
-Après `/close` :
-1. `obsidian-sync.sh` exécuté
-2. `sessions.md` contient automatiquement :
-   - Callouts (!insight, !warning, !decision)
-   - Wikilinks (→ [[lessons]], → [[bugs]], → [[decisions]])
-3. `decisions.md` alimenté automatiquement
-4. Commit + push automatique
-
-**Workflow 100% automatique — zéro manip manuelle.**
+| 1 | Hook pre-commit → `scripts/hooks/` + versionné + installé par `new-project.sh` | High |
+| 2 | Le hook appelle `check_memory.sh` (supprimer la duplication de logique) | High |
+| 3 | Factoriser `extract_section()` dans `obsidian-sync.sh` (3 boucles → 1 fonction) | High |
+| 4 | Une seule passe sur `memory.md` au lieu de 3 | Medium |
+| 5 | `_commons.sh` pour les couleurs ANSI | Medium |
+| 6 | Retirer `## ✅ Todo` du template heredoc de `new-project.sh` | Medium |
+| 7 | `settings.local.json` copie conditionnelle | Medium |
+| 8 | Snapshot partiel dans `sessions.md` (pas tout `memory.md`) | Medium |
 
 ---
 
 ## Notes
 
-- Ce rapport est généré automatiquement par la commande `/improve`
-- Dernière mise à jour : 2026-02-27 (ajout section 6 : workflow /close + obsidian-sync.sh)
+- Ce rapport est généré par la commande `/improve`
+- Dernière mise à jour : 2026-02-27
 - Aucune modification appliquée — propositions à valider
