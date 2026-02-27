@@ -2,10 +2,13 @@
 
 Analyse le projet actif et propose des améliorations.
 
-Lis dans cet ordre :
+Détermine d'abord le PROJECT_NAME depuis le dossier de travail actuel (basename du chemin).
+Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
+
+Puis lis dans cet ordre :
 1. `memory.md` (sections Focus Actuel, Architecture, Fichiers clés, Bugs connus)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md` (bugs ouverts du vault)
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md`
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/bugs.md` (bugs ouverts du vault)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/architecture.md`
 4. Liste les fichiers du projet (cherche les fichiers source : .js, .ts, .py, .sh, etc.)
 
 ⚠️ Avant de proposer quoi que ce soit : croise avec les bugs connus de `memory.md` et `bugs.md`.
