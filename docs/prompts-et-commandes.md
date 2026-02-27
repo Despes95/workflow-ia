@@ -121,43 +121,59 @@ Si la session **n'est pas clôturée** (pas fait /close) :
 
 ---
 
-## Les 26 commandes slash
+## Les 31 commandes slash
 
-### DEV (10)
+### SESSION (10)
+
+Rituels qui encadrent la journée de travail.
 
 | Commande | Usage | Lecture seule |
 |---|---|---|
-| /start | Démarrage contexte complet | ✅ |
-| /context | Contexte projet | ✅ |
-| /today | Matin — plan du jour | ✅ |
-| /close | Fin de session (écrit memory.md) | ⚠️ |
+| /start | Démarrage session avec git + vault | ✅ |
+| /context | Contexte projet sans git | ✅ |
+| /today | Matin — plan du jour (sans code) | ✅ |
+| /close | Fin de session (écrit memory.md + vault) | ⚠️ |
 | /close-day | Revue journée | ✅ |
 | /backup | Sauvegarde complète | ⚠️ |
 | /switch | Handoff vers autre IA | ⚠️ |
-| /schedule | Planification énergie | ✅ |
+| /schedule | Planification selon énergie | ✅ |
 | /7plan | 7 prochains jours | ✅ |
-| /map | Vue topologique vault | ✅ |
+| /check-in | État avant de travailler (énergie + intention) | ✅ |
 
-### PENSÉE (16)
+### PROJET (7)
+
+Outils dev et architecture.
 
 | Commande | Usage | Lecture seule |
 |---|---|---|
+| /my-world | Charge tous les projets actifs | ✅ |
+| /global-connect | Patterns cross-projets | ✅ |
+| /improve | Améliorations techniques | ✅ |
+| /audit | Analyse bugs et factorisation | ✅ |
+| /debug | Analyse un bug précis | ✅ |
+| /ideas | Améliorations depuis les patterns | ✅ |
+| /wins | Victoires de la semaine | ✅ |
+
+### VAULT (14)
+
+Réflexion personnelle et notes.
+
+| Commande | Usage | Lecture seule |
+|---|---|---|
+| /map | Vue topologique vault | ✅ |
 | /weekly-learnings | Résumé hebdomadaire | ✅ |
 | /learned | Post "What I Learned" | ✅ |
 | /graduate | Daily → notes permanentes | ✅ |
 | /backlinks | Liens manquants | ✅ |
-| /compound | Question diff moments | ✅ |
+| /compound | Question à diff moments | ✅ |
 | /stranger | Portrait externe | ✅ |
-| /drift | Sujets évités | ✅ |
+| /drift | Sujets évités silencieusement | ✅ |
 | /contradict | Croyances incompatibles | ✅ |
 | /ghost | Répond comme toi | ✅ |
-| /trace | Évolution décision | ✅ |
+| /trace | Évolution décision dans le temps | ✅ |
 | /emerge | Patterns implicites | ✅ |
-| /connect | Ponts domaines | ✅ |
-| /challenge | Test croyances | ✅ |
-| /ideas | Améliorations | ✅ |
-| /global-connect | Cross-projets | ✅ |
-| /my-world | Tous projets | ✅ |
+| /connect | Ponts entre domaines | ✅ |
+| /challenge | Pression-test croyances | ✅ |
 
 ### Contenu de chaque commande
 
