@@ -3,9 +3,13 @@ prompt = """
 Analyse le projet actif et propose des améliorations.
 
 Lis dans cet ordre :
-1. @{memory.md} (sections Focus Actuel, Architecture, Fichiers clés)
-2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/architecture.md"}
-3. Liste les fichiers du projet (cherche les fichiers source : .js, .ts, .py, .sh, etc.)
+1. @{memory.md} (sections Focus Actuel, Architecture, Fichiers clés, Bugs connus)
+2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md"} (bugs ouverts du vault)
+3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md"}
+4. Liste les fichiers du projet (cherche les fichiers source : .js, .ts, .py, .sh, etc.)
+
+⚠️ Avant de proposer quoi que ce soit : croise avec les bugs connus de memory.md et bugs.md.
+Ne propose pas comme amélioration ce qui est déjà un bug ouvert documenté.
 
 Propose des améliorations structurées :
 
