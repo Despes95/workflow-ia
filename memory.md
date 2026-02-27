@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (application améliorations high-priority)
-**Dernier outil CLI utilisé :** OpenCode
+**Dernière mise à jour :** 2026-02-27 (31 commandes + 3 rapports improve.md)
+**Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : 5 améliorations high-priority appliquées et commitées
-- **Prochaine étape** : Tester obsidian-sync.sh en live (callouts + wikilinks)
+- **Mission en cours** : Session terminée — rapports A+B+C dans docs/improve.md
+- **Prochaine étape** : Appliquer rapport A (scripts) + rapport B (vault canonique)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (commit 8406297)
+- **État git** : Propre (commit 59e2c37)
 
 ---
 
@@ -58,6 +58,7 @@
 
 ### Historique
 
+- 2026-02-27 | Claude Code | 3 cmds (check-in/debug/wins) + reorganisation SESSION/PROJET/VAULT + 3 rapports improve.md | Stable
 - 2026-02-27 | Claude Code | 5 améliorations high-priority : check 28 cmds, set -e, callouts+wikilinks auto, /close simplifié, section Décisions | Stable
 - 2026-02-27 | OpenCode    | Analyse /improve + rapport 23 propositions (high/medium/low) | Stable
 - 2026-02-26 | Gemini CLI  | Fix sécurité injections absolues (!{type}) + deploy global | Stable
@@ -71,6 +72,7 @@
 
 ## 🐛 Bugs connus
 
+- `/check-in` et `/wins` Gemini : path daily notes hardcodé sur date fixe (`26.md`) — à rendre dynamique
 - `/close` "Unknown skill" résolu : il fallait relancer Claude Code après install --global
 - OpenCode custom slash commands : ne fonctionnent pas en mode non-interactif (`opencode run`) — utiliser le mode interactif 🌐
 - Gemini CLI Absolute Path Security : résolu en utilisant `!{type \"...\"}` au lieu de `@{...}` pour les fichiers hors workspace. 🌐
@@ -98,6 +100,9 @@
 - Nouvelles commands DEV : `/improve` (améliorations tech) + `/audit` (bugs/refactor) — lecture seule
 - commands-list.cmd : ém-dash cause erreurs CMD Windows — utiliser ASCII uniquement 🌐
 - Commande `/improve` : analyse structurée par catégories (Code, Archi, Perf, Maintenabilité, Bonnes pratiques) + tri par impact (high/medium/low) — output directement intégrable dans memory.md 🌐
+- `"Sibling tool call errored"` : causé par lecture explicite du path auto-memory MEMORY.md inexistant — ne jamais lire ce path, il est chargé automatiquement si présent 🌐
+- Hook `.git/hooks/pre-commit` et `check_memory.sh` sont deux scripts indépendants à maintenir en sync manuellement — toujours modifier les deux ensemble 🌐
+- `install-commands.sh --all` : nouvelles commandes actives immédiatement dans Claude Code sans redémarrage si déployées globalement 🌐
 
 ---
 
