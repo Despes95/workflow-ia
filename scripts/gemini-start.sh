@@ -3,6 +3,7 @@
 # Consolidated helper for /start command — with iCloud timeouts
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+export GIT_PAGER=cat
 source "$SCRIPT_DIR/config.env"
 PROJECT="$(basename "$(pwd)")"
 
