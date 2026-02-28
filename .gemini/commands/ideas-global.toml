@@ -1,8 +1,8 @@
 description = "Analyse QuestionsIA et route les idées vers le bon projet ou _global"
 prompt = """
 Lis :
-1. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/QuestionsIA.md"}
-2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md"}
+1. !{type "$env:GLOBAL_DIR/QuestionsIA.md"}
+2. !{type "$env:GLOBAL_DIR/lessons.md"}
 
 Pour chaque URL dans QuestionsIA.md :
 1. Fetch le contenu principal (README ou page d'accueil)

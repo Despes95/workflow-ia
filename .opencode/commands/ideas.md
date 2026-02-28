@@ -4,7 +4,7 @@ description: Améliorations depuis les patterns + inbox QuestionsIA
 
 ## Phase 0 — Inbox QuestionsIA
 
-Lis : @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/QuestionsIA.md
+Lis : @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/QuestionsIA.md
 
 Si le fichier contient des URLs :
 - Pour chaque URL : fetch le README ou la page principale

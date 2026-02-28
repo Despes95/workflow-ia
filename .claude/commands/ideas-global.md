@@ -1,7 +1,7 @@
 # /ideas-global — Analyse QuestionsIA et route vers le bon projet
 
 Lis :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/QuestionsIA.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/QuestionsIA.md`
 2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 
 Pour chaque URL dans QuestionsIA.md :

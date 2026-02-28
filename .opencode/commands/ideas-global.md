@@ -3,7 +3,7 @@ description: Analyse QuestionsIA et route les idées vers le bon projet ou _glob
 ---
 
 Lis :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/QuestionsIA.md
+1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/QuestionsIA.md
 2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md
 
 Pour chaque URL dans QuestionsIA.md :
