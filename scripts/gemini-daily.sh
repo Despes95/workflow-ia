@@ -13,7 +13,7 @@ if [ "$ARG" = "today" ]; then
         echo "# Daily note du $TODAY — non trouvée"
     fi
 elif [ "$ARG" = "all" ]; then
-    find "$DESPES_NOTES/_daily" -name "*.md" | sort | xargs cat 2>/dev/null
+    find "$DESPES_NOTES/_daily" -name "*.md" | sort | xargs -r cat 2>/dev/null
 else
-    find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -"$ARG" | xargs cat 2>/dev/null
+    find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -"$ARG" | xargs -r cat 2>/dev/null
 fi

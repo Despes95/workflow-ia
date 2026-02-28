@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (Fix K1+K2+K3 scripts scripts robustesse ✅)
+**Dernière mise à jour :** 2026-02-28 (Fix I2-I4 robustesse vault + T3 Claude + F5 stats/nav ✅)
 **Dernier outil CLI utilisé :** Gemini CLI
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — scripts robustesse K1-K3 appliqués
-- **Priorité immédiate** : I1 (tests shell critiques) + I2-I4 (robustesse vault)
+- **État** : Infrastructure stable ✅ — scripts robustesse I2-I4 + stats vault F5 OK
+- **Priorité immédiate** : I1 (tests shell critiques) + D1-D2 (Polaris & Focus command)
 - **Horizon moyen** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + J2/J3 à explorer
 
 ---
