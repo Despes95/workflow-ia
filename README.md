@@ -8,10 +8,7 @@ workflow-ia est un projet template pour valider le workflow IA du tuto v2.6. Il 
 
 ## Daily Notes
 
-Ce projet utilise **DespesNotes** pour la réflexion personnelle :
-- Chemin : `C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\DespesNotes\_daily\`
-
-Les commands Pensée lisent automatiquement ces notes pour fournir un contexte plus riche.
+Les commands Pensée lisent automatiquement tes daily notes Obsidian pour fournir un contexte plus riche. Le chemin est défini dans `scripts/config.env` via `DESPES_NOTES`.
 
 ## Commands (28)
 
@@ -58,9 +55,28 @@ Les commands Pensée lisent automatiquement ces notes pour fournir un contexte p
 git clone <repo-url>
 cd workflow-ia
 
-# Installer les commands (optionnel)
+# 1. Adapter les chemins vault à ta machine (obligatoire)
+# Édite scripts/config.env avant tout :
+#   OBSIDIAN_BASE="${HOME}/iCloudDrive/iCloud~md~obsidian"
+#   DESPES_NOTES="${OBSIDIAN_BASE}/DespesNotes"
+nano scripts/config.env
+
+# 2. Installer les commands globalement (optionnel)
 bash scripts/install-commands.sh --all
 ```
+
+## Configuration
+
+`scripts/config.env` est le **seul fichier à modifier** pour adapter le projet à ta machine.
+
+```bash
+OBSIDIAN_BASE="${HOME}/iCloudDrive/iCloud~md~obsidian"  # racine vault
+FORGE_DIR="${OBSIDIAN_BASE}/_forge"                      # projets forge
+GLOBAL_DIR="${FORGE_DIR}/_global"                        # vault global
+DESPES_NOTES="${OBSIDIAN_BASE}/DespesNotes"              # daily notes
+```
+
+Ce fichier est sourcé par `obsidian-sync.sh` et toutes les commandes Gemini/bash. Si ton vault est ailleurs (autre drive, autre structure), c'est ici que tu l'adaptes — une fois, pour tout.
 
 ## Structure
 
