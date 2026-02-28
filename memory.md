@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (I4+I1 tests shell 22/22 ✅ + /simplify → test_helpers.sh)
+**Dernière mise à jour :** 2026-03-01 (/review-improve N1-N4 backlog + /ideas QuestionsIA 7 items → S1)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — I1+I4 ✅ tests shell 22/22 + gemini-git-info.sh
-- **Priorité immédiate** : Audits repos GitHub (G3, H1, H2, H3) — P3 quand disponible
+- **État** : Infrastructure stable ✅ — 4 HIGH ouverts : N1/N2/N4 (Gemini) + N3 (Claude)
+- **Priorité Claude** : N3 test_workflow_e2e.sh + S1 statusline + audits GitHub (G3, H1, H2, H3)
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
 
 ---
@@ -66,11 +66,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
 - 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
 - 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
 - 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 33 commandes | Stable
-- 2026-02-28 | Claude Code | I4+I1 tests shell (22/22 ✅) + /simplify → test_helpers.sh | Stable
 
 ---
 
