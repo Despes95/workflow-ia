@@ -1,13 +1,13 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (A-reste template, G2/G5 éval, F4 /vault-check)
-**Dernier outil CLI utilisé :** Claude Code
+**Dernière mise à jour :** 2026-03-01 (N1, N2, N4 fixés + Workflow /close Gemini stabilisé)
+**Dernier outil CLI utilisé :** Gemini CLI
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — 4 HIGH ouverts : N1/N2/N4 (Gemini) + N3 (Claude)
+- **État** : Infrastructure stable ✅ — 1 HIGH ouvert : N3 (Claude)
 - **Priorité Claude** : N3 test_workflow_e2e.sh + S1 statusline + audits GitHub (G3, H1, H2, H3)
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
 
@@ -15,7 +15,7 @@
 
 ## 🧠 Momentum (Handoff)
 
-—
+L'infrastructure Gemini CLI sur Windows est maintenant parfaitement stable grâce aux scripts helpers. Le prochain gros morceau est le test E2E (N3) côté Claude.
 
 ---
 
@@ -39,8 +39,9 @@
 - `.claude/commands/*.md` — 33 custom slash commands Claude — Stable
 - `.gemini/commands/*.toml` — 33 commands Gemini CLI (TOML) — Stable
 - `.opencode/commands/*.md` — 33 commands OpenCode (MD) — Stable
-- `scripts/gemini-*.sh` — 5 helpers accès vault + git pour Gemini CLI Windows — Stable
+- `scripts/gemini-*.sh` — 6 helpers accès vault + git pour Gemini CLI Windows — Stable
 - `scripts/gemini-git-info.sh` — git --no-pager centralisé (évite freezes) — Stable
+- `scripts/gemini-close.sh` — script de clôture unifié (sync + commit + push) — Stable
 - `tests/test_helpers.sh` — helpers partagés ok/fail/assert_* — Stable
 - `tests/test_check_memory.sh` — tests unitaires check_memory.sh (5 cas) — Stable
 - `tests/test_sync.sh` — tests helpers obsidian-sync.sh (5 cas) — Stable
@@ -55,9 +56,6 @@
 - `scripts/templates/memory.md.tpl` — template externe pour bootstrap — Stable
 - `scripts/config.env` — chemins vault portables ($HOME-based) — Stable
 - `scripts/vault-check.sh` — vérifie wikilinks dans vault — Stable
-- `.claude/commands/vault-check.md` — commande Claude — Stable
-- `.gemini/commands/vault-check.toml` — commande Gemini — Stable
-- `.opencode/commands/vault-check.md` — commande OpenCode — Stable
 
 ---
 
@@ -71,12 +69,11 @@
 
 ### Historique
 
+- 2026-03-01 | Gemini CLI  | Fix N1, N2, N4 + Stabilisation workflow /close via gemini-close.sh | Stable
 - 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
 - 2026-03-01 | Claude Code | A-reste template + G2/G5 éval + F4 vault-check | Stable
 - 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
 - 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
-- 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
-- 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 33 commandes | Stable
 
 ---
 
@@ -109,6 +106,7 @@
 - Gemini CLI Windows : `! {bash -c 'source ...; cmd'}` casse sous PowerShell. Solution : scripts helpers `scripts/gemini-*.sh` appelés via `! {bash.exe scripts/gemini-vault.sh file.md}` — utiliser `bash.exe` (pas seulement `bash`) garantit que PowerShell n'intercepte pas les commandes internes (comme `cat`). 🌐
 - Gemini CLI Windows : les commandes `git status`, `git log` et `git diff` dans les blocs `! {}` gèlent l'interface si un pager (`less`) est activé. Toujours utiliser `git --no-pager <cmd>` pour une exécution non-interactive. 🌐
 - Gemini CLI Windows : Consolider les appels multiples dans un script unique (ex: `scripts/gemini-start.sh`) réduit les risques de freeze et améliore la performance (1 spawn shell au lieu de 4). 🌐
+- Workflow /close Gemini : Éviter d'enchaîner `git add && git commit` dans un bloc `!{}` sous Windows ; déléguer à un script `gemini-close.sh` pour une autorisation unique et stable. 🌐
 - iCloud Drive Windows : La lecture de fichiers (cat) peut geler si le fichier est un "placeholder" non synchronisé. Utiliser `timeout 3s cat` dans les scripts helpers pour garantir un retour immédiat. 🌐
 - Git Bash Windows : Éviter `${HOME}` dans `config.env` car il peut être résolu avec des backslashes mal échappés (ex: `C:UsersDespes`). Préférer le chemin canonique Git Bash `/c/Users/Despes`. 🌐
 - `approvalMode: "yolo"` dans `~/.gemini/settings.json` = supprime tous les prompts d'autorisation `! {}` — fallback : `gemini --yolo` 🌐
