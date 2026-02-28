@@ -5,9 +5,7 @@ Lis dans cet ordre :
 2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (toutes les entrées)
 3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
 
-Question à tracer : $ARGUMENTS
-
-Trouve comment ma réponse à cette question a évolué sur différentes périodes du vault :
+Trouve comment ma réponse à la question fournie a évolué sur différentes périodes du vault :
 - Période ancienne : quelle était ma position initiale ?
 - Périodes intermédiaires : comment a-t-elle changé ? Qu'est-ce qui l'a fait évoluer ?
 - Position actuelle : où en suis-je maintenant ?
@@ -15,3 +13,5 @@ Trouve comment ma réponse à cette question a évolué sur différentes périod
 Présente une ligne du temps de la pensée, avec des citations des notes.
 
 ⚠️ Ne touche à aucun fichier.
+
+Question à tracer : $ARGUMENTS

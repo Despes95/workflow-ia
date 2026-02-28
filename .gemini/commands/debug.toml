@@ -1,7 +1,5 @@
 description = "Analyse un bug précis : contexte, hypothèses, prochaine action"
 prompt = """
-Bug décrit : {{args}}
-
 Lis dans cet ordre :
 1. Le(s) fichier(s) mentionné(s) dans la description via @{fichier}
 2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md"}
@@ -24,4 +22,6 @@ Ce qui se passe vs ce qui devrait se passer
 La plus petite action pour confirmer l'hypothèse 1
 
 ⚠️ Ne touche à aucun fichier — analyse seulement.
+
+Bug à analyser : {{args}}
 """

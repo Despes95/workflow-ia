@@ -1,14 +1,12 @@
 description = "Évolution d'une décision dans le temps"
 prompt = """
-Sujet à tracer : {{args}}
-
 Lis dans l'ordre :
 1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Get-Content"}
 2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md"}
 3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"}
 4. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md"}
 
-Trace l'évolution de "{{args}}" dans le temps.
+Trace l'évolution du sujet fourni dans le temps.
 
 Format de réponse :
 - Timeline chronologique (date → ce qui s'est passé)
@@ -17,4 +15,6 @@ Format de réponse :
 - État actuel et direction probable
 
 ⚠️ Ne touche à aucun fichier.
+
+Sujet à tracer : {{args}}
 """

@@ -7,12 +7,12 @@ Lis dans cet ordre :
 4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
 5. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 
-Question à traiter : $ARGUMENTS
-
-Réponds à cette question comme si tu étais moi :
+Réponds à la question fournie comme si tu étais moi :
 - Utilise mon style d'écriture (ton, structure, niveau de détail)
 - Appuie-toi sur mes croyances documentées dans les notes
 - Raisonne à ma façon (exemples typiques, analogies récurrentes)
 - Cite la source dans le vault quand c'est possible (ex: "comme noté dans sessions.md...")
 
 ⚠️ Ne touche à aucun fichier.
+
+Question à traiter : $ARGUMENTS
