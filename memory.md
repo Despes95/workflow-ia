@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (F1/F2/F3/E2/D3/B-reste — vault infra robuste)
+**Dernière mise à jour :** 2026-02-28 (inbox QuestionsIA, /ideas routing 🔧🚀💰, GitHub MCP, audit commandes)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Vault infra complétée — F1 F2 F3 E2 D3 B-reste tous implémentés
+- **Mission en cours** : /ideas unifié — routing 🔧🚀💰❌ + Phase 1 patterns + audit 6 commandes enrichies
 - **Prochaine étape** : C-reste (template daily note) → A-reste (snapshot partiel) → D1 Polaris.md (manuel)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : 6 commits à pusher (696e355)
+- **État git** : À jour (30 .gemini/*.toml migrés env vars par session Gemini parallèle)
 
 ---
 
@@ -61,11 +61,11 @@
 
 ### Historique
 
+- 2026-02-28 | Claude Code | QuestionsIA inbox → /ideas routing 🔧🚀💰, GitHub MCP, audit 6 commandes | Stable
 - 2026-02-28 | Claude Code | F1/F2/F3/E2/D3/B-reste — vault infra : dédup, hooks, ancres, portabilité, cache, UTF-8 | Stable
 - 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
 - 2026-02-27 | Claude Code | Rapport D (Polaris/focus/caching), fix CMD ASCII, improve.md épuré | Stable
 - 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 | Stable
-- 2026-02-27 | Claude Code | Fix Gemini date dynamique + drift 26→31 + SESSION/PROJET/VAULT | Stable
 
 ---
 
@@ -110,6 +110,9 @@
 - `grep` sur emojis UTF-8 échoue dans tous les modes de pipe Git Bash (-a, -F, -P, LC_ALL) — seule solution : `[[ "$line" == *emoji* ]]` bash native 🌐
 - `awk 'NF && !seen[$0]++'` + écriture atomique `.tmp`/`mv` = dédup robuste compatible `set -euo pipefail` 🌐
 - `$ARGUMENTS`/`{{args}}` en début de prompt = cache miss — toujours en dernière ligne des custom commands 🌐
+- GitHub MCP : `@github/mcp-server` absent de npm — utiliser `@modelcontextprotocol/server-github` (déprécié mais fonctionnel) ou Docker/binaires GitHub 🌐
+- QuestionsIA.md : inbox opérationnel → appartient à `_forge/_global/`, pas `DespesNotes/` (sémantique : capture IA ≠ note perso) 🌐
+- `/ideas` routing : lire `_global/index.md` en Phase 0 = projets réels connus → routing précis sans hallucination de projet 🌐
 
 ---
 
@@ -120,6 +123,8 @@
 - Hook pre-commit versionné dans `scripts/hooks/` — source unique via `check_memory.sh`
 - `scripts/config.env` = source unique des chemins vault — 1 fichier à modifier pour portabilité multi-machine
 - Variables dynamiques (`$ARGUMENTS`, `{{args}}`) toujours en dernière ligne des custom commands
+- GitHub MCP configuré dans `~/.claude.json` via PAT — pas de Copilot requis, fonctionne globalement
+- `/ideas` = commande unique inbox : 🔧 projet existant | 🚀 dev futur | 💰 SaaS/business | ❌ hors scope + Phase 1 patterns
 
 ---
 

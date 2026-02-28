@@ -1,8 +1,8 @@
 description = "Compile les insights de la semaine depuis les daily notes"
 prompt = """
 Lis :
-1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
-2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (7 dernières entrées)
+1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
+2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"} (7 dernières entrées)
 
 Compile un résumé hebdomadaire prêt à l'export :
 

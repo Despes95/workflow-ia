@@ -3,8 +3,8 @@ prompt = """
 Lis dans cet ordre :
 1. @{AGENTS.md}
 2. @{memory.md}
-3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md"}
-4. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md"}
+3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/index.md"}
+4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/architecture.md"}
 
 !{git status}
 !{git log --oneline -10}

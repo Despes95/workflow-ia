@@ -1,7 +1,7 @@
 description = "Revoit la journée, capture les apprentissages, flag les non-résolus"
 prompt = """
 Lis dans cet ordre :
-1. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (dernière entrée)
+1. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
 2. @{memory.md}
 
 Réponds aux 3 questions :

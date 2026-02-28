@@ -1,9 +1,9 @@
 description = "Rituel du matin — charge le contexte global et prépare la journée"
 prompt = """
 Lis dans cet ordre :
-1. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md"}
+1. !{type "$env:GLOBAL_DIR/index.md"}
 2. @{memory.md} (état court terme du projet actif — workflow-ia)
-3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (les 3 dernières entrées)
+3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"} (les 3 dernières entrées)
 
 Réponds avec :
 - Ce sur quoi je travaille aujourd'hui (basé sur le Focus Actuel)

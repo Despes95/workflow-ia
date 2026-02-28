@@ -1,9 +1,9 @@
 description = "Transforme les apprentissages récents en post 'What I Learned'"
 prompt = """
 Lis dans cet ordre :
-1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
-2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md"} (5 dernières entrées)
-3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md"}
+1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
+2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
+3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/lessons.md"}
 
 Produis un post structuré "What I Learned" :
 

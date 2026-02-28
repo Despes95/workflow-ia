@@ -1,11 +1,11 @@
 description = "Ponts entre domaines — connexions non-évidentes entre patterns"
 prompt = """
 Lis :
-1. !{powershell -NoProfile -Command "Get-ChildItem 'C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/*' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | Get-Content"}
-2. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md"}
-3. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md"}
-4. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md"}
-5. !{type "C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md"}
+1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | Get-Content"}
+2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/bugs.md"}
+3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/lessons.md"}
+4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/decisions.md"}
+5. !{type "$env:GLOBAL_DIR/lessons.md"}
 
 Trouve 3 connexions non-évidentes entre les patterns de ces fichiers.
 
