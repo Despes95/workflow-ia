@@ -10,7 +10,6 @@
 - **État** : Infrastructure stable ✅ — mode optimisation/amélioration du backlog
 - **Priorité immédiate** : I1 (tests shell critiques) + D3-vérif (audit $ARGUMENTS réels dans 64 fichiers)
 - **Horizon moyen** : J2 (claude-code-templates 100+ agents) + J3 (MemMachine MCP) à explorer
-- **Zone sensible** : `memory.md` et `AGENTS.md` — NE JAMAIS utiliser le motif `! {` (sans espace) dans ces fichiers.
 
 ---
 
@@ -67,7 +66,7 @@
 - 2026-02-28 | Claude Code | Gemini helpers ×4, /improve-inbox + /review-improve ×3, yolo settings | Stable
 - 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 32 commandes | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
-- 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + AGENTS.md cascade | Stable
+- 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
 
 ---
 
@@ -118,7 +117,7 @@
 - Variables dynamiques (`$ARGUMENTS`, `{{args}}`) toujours en dernière ligne des custom commands
 - GitHub MCP configuré dans `~/.claude.json` via PAT — pas de Copilot requis, fonctionne globalement
 - `approvalMode: "yolo"` dans `~/.gemini/settings.json` — confiance totale, workflow perso uniquement
-- `/simplify` (post-edit micro) + `/audit` (session macro) + `/improve` (brainstorm) = cascade documentée dans `AGENTS.md`
+- Cascade analyse : `/simplify` → `/audit` → `/improve` — voir section dédiée dans `AGENTS.md`
 
 ---
 
