@@ -29,3 +29,7 @@ improve-inbox.md
 
 # OpenCode TUI config (local)
 tui.json
+
+# OpenCode dependencies
+.opencode/node_modules/
+.opencode/bun.lock

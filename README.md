@@ -1,6 +1,6 @@
 # workflow-ia
 
-> Système de workflow IA personnel — 26 commandes cross-outils
+> Système de workflow IA personnel — 31 commandes cross-outils
 
 ## Overview
 
@@ -10,7 +10,7 @@ workflow-ia est un projet template pour valider le workflow IA du tuto v2.6. Il 
 
 Les commands Pensée lisent automatiquement tes daily notes Obsidian pour fournir un contexte plus riche. Le chemin est défini dans `scripts/config.env` via `DESPES_NOTES`.
 
-## Commands (28)
+## Commands (31)
 
 ### DEV (12)
 | Command | Description |
@@ -80,6 +80,24 @@ Ce fichier est sourcé par `obsidian-sync.sh` et toutes les commandes Gemini/bas
 
 ## Structure
 
+```
+workflow-ia/
+├── .claude/commands/     # Commands Claude Code (.md)
+├── .gemini/commands/     # Commands Gemini CLI (.toml)
+├── .opencode/commands/  # Commands OpenCode (.md)
+├── docs/
+│   ├── commands-list.cmd # Liste des commands (Windows)
+│   └── prompts-et-commandes.md
+├── scripts/
+│   ├── obsidian-sync.sh  # Sync memory.md → vault
+│   ├── install-commands.sh
+│   ├── config.env        # Configuration centralisee
+│   └── check_memory.sh  # Garde-fou integrite
+├── tests/                # Tests unitaires shell
+├── memory.md             # Memory du projet
+├── AGENTS.md            # Regles communes IA
+├── CLAUDE.md            # Directives Claude
+└── README.md
 ```
 workflow-ia/
 ├── .claude/commands/     # Commands Claude Code (.md)
