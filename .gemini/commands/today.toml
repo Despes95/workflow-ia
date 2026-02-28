@@ -1,9 +1,9 @@
 description = "Rituel du matin — charge le contexte global et prépare la journée"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/index.md"'}
+1. !{bash scripts/gemini-global.sh index.md}
 2. @{memory.md} (état court terme du projet actif — workflow-ia)
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'} (les 3 dernières entrées)
+3. !{bash scripts/gemini-vault.sh sessions.md} (les 3 dernières entrées)
 
 Réponds avec :
 - Ce sur quoi je travaille aujourd'hui (basé sur le Focus Actuel)

@@ -1,11 +1,9 @@
 description = "Ponts entre domaines — connexions non-évidentes entre patterns"
 prompt = """
 Lis :
-1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -10 | xargs cat 2>/dev/null'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/bugs.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
-4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/decisions.md"'}
-5. !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/lessons.md"'}
+1. !{bash scripts/gemini-daily.sh 10}
+2. !{bash scripts/gemini-vault.sh bugs.md lessons.md decisions.md}
+3. !{bash scripts/gemini-global.sh lessons.md}
 
 Trouve 3 connexions non-évidentes entre les patterns de ces fichiers.
 

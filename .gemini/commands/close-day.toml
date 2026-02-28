@@ -1,7 +1,7 @@
 description = "Revoit la journée, capture les apprentissages, flag les non-résolus"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
+1. !{bash scripts/gemini-vault.sh sessions.md}
 2. @{memory.md}
 
 Réponds aux 3 questions :

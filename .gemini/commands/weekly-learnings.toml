@@ -1,8 +1,8 @@
 description = "Compile les insights de la semaine depuis les daily notes"
 prompt = """
 Lis :
-1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -7 | xargs cat 2>/dev/null'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'} (7 dernières entrées)
+1. !{bash scripts/gemini-daily.sh 7}
+2. !{bash scripts/gemini-vault.sh sessions.md} (7 dernières entrées)
 
 Compile un résumé hebdomadaire prêt à l'export :
 

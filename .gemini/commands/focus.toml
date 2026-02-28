@@ -1,9 +1,9 @@
 description = "Sur quoi travailler là, maintenant ?"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; cat "$DESPES_NOTES/Polaris.md"'} (boussole)
-2. !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/index.md"'} (état tous projets)
-3. !{bash -c 'source scripts/config.env; ls -t "$DESPES_NOTES/_daily/" | head -3 | while read f; do echo "=== $f ==="; cat "$DESPES_NOTES/_daily/$f"; done'} (énergie / mode)
+1. !{bash scripts/gemini-notes.sh Polaris.md} (boussole)
+2. !{bash scripts/gemini-global.sh index.md} (état tous projets)
+3. !{bash scripts/gemini-daily.sh 3} (énergie / mode)
 4. @{memory.md} (projet actif)
 
 Recommande exactement :

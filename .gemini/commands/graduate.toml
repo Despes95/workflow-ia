@@ -1,9 +1,8 @@
 description = "Extrait les idées des daily notes et propose des titres de notes permanentes"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -15 | xargs cat 2>/dev/null'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/ideas.md"'}
+1. !{bash scripts/gemini-daily.sh 15}
+2. !{bash scripts/gemini-vault.sh sessions.md ideas.md}
 
 Identifie les idées qui méritent de devenir des notes permanentes :
 - Idées répétées dans plusieurs sessions (signal de persistance)

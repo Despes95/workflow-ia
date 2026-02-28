@@ -1,11 +1,7 @@
 description = "Vue topologique du vault : clusters, thèmes, relations"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/index.md"'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
-4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
-5. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/decisions.md"'}
+1. !{bash scripts/gemini-vault.sh index.md architecture.md sessions.md lessons.md decisions.md}
 
 Produis une vue topologique :
 - Quels thèmes dominent le vault ?

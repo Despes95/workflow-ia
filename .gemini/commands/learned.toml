@@ -1,9 +1,8 @@
 description = "Transforme les apprentissages récents en post 'What I Learned'"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -7 | xargs cat 2>/dev/null'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
+1. !{bash scripts/gemini-daily.sh 7}
+2. !{bash scripts/gemini-vault.sh sessions.md lessons.md}
 
 Produis un post structuré "What I Learned" :
 

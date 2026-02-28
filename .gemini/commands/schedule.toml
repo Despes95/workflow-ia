@@ -1,9 +1,8 @@
 description = "Planifie la journée selon les priorités et patterns d'énergie du vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
-3. @{memory.md} (section Focus Actuel)
+1. !{bash scripts/gemini-vault.sh sessions.md lessons.md}
+2. @{memory.md} (section Focus Actuel)
 
 Génère un planning de la journée :
 - Identifie les priorités réelles (pas les intentions)

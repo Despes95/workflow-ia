@@ -1,9 +1,8 @@
 description = "Reshapes les 7 prochains jours autour de ce qui est vivant dans le vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/ideas.md"'}
-3. @{memory.md} (section Todo)
+1. !{bash scripts/gemini-vault.sh sessions.md ideas.md}
+2. @{memory.md} (section Todo)
 
 Génère un plan sur 7 jours :
 - Identifie les sujets les plus actifs / vivants dans les notes récentes

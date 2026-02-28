@@ -3,8 +3,7 @@ prompt = """
 Lis dans cet ordre :
 1. @{AGENTS.md}
 2. @{memory.md}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/index.md"'}
-4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
+3. !{bash scripts/gemini-vault.sh index.md architecture.md}
 
 !{git status}
 !{git log --oneline -10}

@@ -1,9 +1,8 @@
 description = "Trace l'évolution d'une question à différents moments dans le vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort | xargs cat 2>/dev/null'}
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/decisions.md"'}
+1. !{bash scripts/gemini-daily.sh all}
+2. !{bash scripts/gemini-vault.sh sessions.md decisions.md}
 
 Trouve comment ma réponse à la question fournie a évolué sur différentes périodes du vault :
 - Période ancienne : quelle était ma position initiale ?

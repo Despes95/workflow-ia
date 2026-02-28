@@ -1,10 +1,9 @@
 description = "Patterns cross-projets — compare workflow-ia avec les leçons globales"
 prompt = """
 Lis :
-1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -10 | xargs cat 2>/dev/null'}
-2. !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/lessons.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
-4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/bugs.md"'}
+1. !{bash scripts/gemini-daily.sh 10}
+2. !{bash scripts/gemini-global.sh lessons.md}
+3. !{bash scripts/gemini-vault.sh lessons.md bugs.md}
 
 Compare les patterns du projet actuel avec les patterns globaux.
 

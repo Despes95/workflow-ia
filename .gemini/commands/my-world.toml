@@ -4,17 +4,15 @@ Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
 ## 1. Daily Notes
 Lis :
-- !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -7 | xargs cat 2>/dev/null'}
+- !{bash scripts/gemini-daily.sh 7}
 
 ## 2. Vault global
 Lis :
-- !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/lessons.md"'}
-- !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/index.md"'}
+- !{bash scripts/gemini-global.sh lessons.md index.md}
 
 ## 3. Projets actifs (workflow-ia)
 Lis :
-- !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/index.md"'}
-- !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
+- !{bash scripts/gemini-vault.sh index.md architecture.md}
 
 ## 4. Résumé
 Réponds avec exactement 5 points :

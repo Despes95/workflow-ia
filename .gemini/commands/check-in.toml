@@ -1,7 +1,7 @@
 description = "État du jour : énergie, mode de travail, intention"
 prompt = """
 Lis les 3 dernières daily notes :
-!{bash -c 'source scripts/config.env; cat "$DESPES_NOTES/_daily/$(date +%Y/%m/%d).md" 2>/dev/null'}
+!{bash scripts/gemini-daily.sh today}
 
 Pose exactement 3 questions :
 1. Énergie — de 1 (épuisé) à 5 (au top)

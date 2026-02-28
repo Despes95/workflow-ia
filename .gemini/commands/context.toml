@@ -2,8 +2,7 @@ description = "Charge le contexte du projet actif"
 prompt = """
 Lis dans cet ordre :
 1. @{memory.md} (état court terme du projet)
-2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/index.md"'}
-3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
+2. !{bash scripts/gemini-vault.sh index.md architecture.md}
 
 Résume en 5 points :
 1. État actuel du projet
