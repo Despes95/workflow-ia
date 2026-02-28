@@ -184,15 +184,17 @@ echo -e "   📂 scripts/..."
 mkdir -p "$TARGET/scripts"
 cp "$TEMPLATE/scripts/"*.sh "$TARGET/scripts/"
 chmod +x "$TARGET/scripts/"*.sh
+mkdir -p "$TARGET/scripts/hooks"
+cp "$TEMPLATE/scripts/hooks/pre-commit" "$TARGET/scripts/hooks/"
+chmod +x "$TARGET/scripts/hooks/pre-commit"
 
-# ── 9. hooks/ — pre-commit versionné ────────────────────────────────────────
+# ── 9. hooks/ — core.hooksPath → scripts/hooks (F2) ─────────────────────────
 echo -e "   🔒 Hook pre-commit..."
 if [[ -d "$TARGET/.git" ]]; then
-  cp "$TEMPLATE/scripts/hooks/pre-commit" "$TARGET/.git/hooks/pre-commit"
-  chmod +x "$TARGET/.git/hooks/pre-commit"
-  echo -e "     ✓ Hook installé dans .git/hooks/"
+  git -C "$TARGET" config core.hooksPath scripts/hooks
+  echo -e "     ✓ core.hooksPath → scripts/hooks"
 else
-  echo -e "     ℹ️  Pas de .git/ — après git init : cp scripts/hooks/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit"
+  echo -e "     ℹ️  Pas de .git/ — après git init : git config core.hooksPath scripts/hooks"
 fi
 
 # ── 10. docs/ — commands-list.cmd uniquement ─────────────────────────────────
@@ -212,7 +214,9 @@ echo -e "${GREEN}📁 ${TOTAL} commandes déployées (${CLAUDE_COUNT} Claude × 
 echo ""
 echo -e "${CYAN}🔜 Prochaines étapes :${NC}"
 echo -e "   cd $TARGET"
-echo -e "   git init && git add . && git commit -m \"init: bootstrap $PROJECT_NAME\""
+echo -e "   git init"
+echo -e "   git config core.hooksPath scripts/hooks"
+echo -e "   git add . && git commit -m \"init: bootstrap $PROJECT_NAME\""
 echo -e "   bash scripts/install-commands.sh --all"
 echo ""
 echo -e "${YELLOW}💡 Vault Obsidian : bash scripts/obsidian-sync.sh${NC}"
