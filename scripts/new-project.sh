@@ -10,6 +10,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=_commons.sh
 source "${SCRIPT_DIR}/_commons.sh"
+# shellcheck source=config.env
+source "${SCRIPT_DIR}/config.env"
 TEMPLATE="$(dirname "$SCRIPT_DIR")"  # Racine de workflow-ia
 DATE="$(date '+%Y-%m-%d')"
 

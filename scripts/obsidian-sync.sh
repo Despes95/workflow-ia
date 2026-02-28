@@ -6,10 +6,12 @@
 set -euo pipefail
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=config.env
+source "${SCRIPT_DIR}/config.env"
 PROJECT_NAME="$(basename "$PWD")"
 MEMORY_FILE="memory.md"
-OBSIDIAN_BASE="/c/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge"
-FORGE_DIR="${OBSIDIAN_BASE}/${PROJECT_NAME}"
+PROJECT_DIR="${FORGE_DIR}/${PROJECT_NAME}"
 DATE="$(date '+%Y-%m-%d')"
 TIMESTAMP="$(date '+%Y-%m-%d %H:%M')"
 SESSION_ID="$(date '+%Y%m%d-%H%M%S')"
@@ -21,8 +23,8 @@ if [[ ! -f "$MEMORY_FILE" ]]; then
 fi
 
 # ── DOSSIER FORGE ─────────────────────────────────────────────────────────────
-mkdir -p "$FORGE_DIR"
-echo "📂 Forge : $FORGE_DIR"
+mkdir -p "$PROJECT_DIR"
+echo "📂 Forge : $PROJECT_DIR"
 
 # ── HELPER : extract_section ──────────────────────────────────────────────────
 # Retourne le contenu d'une section ## <emoji> jusqu'à la prochaine ##
@@ -84,7 +86,7 @@ init_file() {
 }
 
 # ── INIT : templates des 8 fichiers ───────────────────────────────────────────
-init_file "${FORGE_DIR}/index.md" "# ${PROJECT_NAME} — Index
+init_file "${PROJECT_DIR}/index.md" "# ${PROJECT_NAME} — Index
 
 > Dernière sync : ${TIMESTAMP}
 
@@ -101,12 +103,12 @@ init_file "${FORGE_DIR}/index.md" "# ${PROJECT_NAME} — Index
 | [[ideas]] | Idées et pistes à explorer |
 "
 
-init_file "${FORGE_DIR}/sessions.md" "# ${PROJECT_NAME} — Sessions
+init_file "${PROJECT_DIR}/sessions.md" "# ${PROJECT_NAME} — Sessions
 
 > Snapshots automatiques de memory.md
 "
 
-init_file "${FORGE_DIR}/decisions.md" "# ${PROJECT_NAME} — Décisions
+init_file "${PROJECT_DIR}/decisions.md" "# ${PROJECT_NAME} — Décisions
 
 > Décisions d'architecture et de conception importantes
 
@@ -119,7 +121,7 @@ init_file "${FORGE_DIR}/decisions.md" "# ${PROJECT_NAME} — Décisions
 **Conséquences :** …
 "
 
-init_file "${FORGE_DIR}/bugs.md" "# ${PROJECT_NAME} — Bugs
+init_file "${PROJECT_DIR}/bugs.md" "# ${PROJECT_NAME} — Bugs
 
 > Bugs connus, en cours et résolus
 
@@ -132,7 +134,7 @@ _Aucun_
 _Aucun_
 "
 
-init_file "${FORGE_DIR}/features.md" "# ${PROJECT_NAME} — Features
+init_file "${PROJECT_DIR}/features.md" "# ${PROJECT_NAME} — Features
 
 > Fonctionnalités en cours et planifiées
 
@@ -145,12 +147,12 @@ _Aucune_
 _Vide_
 "
 
-init_file "${FORGE_DIR}/lessons.md" "# ${PROJECT_NAME} — Leçons apprises
+init_file "${PROJECT_DIR}/lessons.md" "# ${PROJECT_NAME} — Leçons apprises
 
 > Extraites automatiquement depuis memory.md
 "
 
-init_file "${FORGE_DIR}/architecture.md" "# ${PROJECT_NAME} — Architecture
+init_file "${PROJECT_DIR}/architecture.md" "# ${PROJECT_NAME} — Architecture
 
 > Vue d'ensemble technique du projet
 
@@ -163,7 +165,7 @@ _À compléter_
 _À compléter_
 "
 
-init_file "${FORGE_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
+init_file "${PROJECT_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
 
 > Pistes et idées à explorer
 "
@@ -203,7 +205,7 @@ DECISIONS_CLEANED=$(extract_section "📚" | grep -v '^[[:space:]]*$' | grep -v 
   [[ -n "$BUGS_CLEANED" ]] && echo "→ [[bugs]]"
   [[ -n "$DECISIONS_CLEANED" ]] && echo "→ [[decisions]]"
   echo ""
-} >> "${FORGE_DIR}/sessions.md"
+} >> "${PROJECT_DIR}/sessions.md"
 echo "  📸 Snapshot ajouté : sessions.md"
 
 # ── ÉTAPE 8 : append bugs.md ──────────────────────────────────────────────────
@@ -215,11 +217,11 @@ if [[ -n "$BUGS_CLEANED" ]]; then
     echo "### Extrait du ${DATE}"
     echo ""
     echo "$BUGS_CLEANED"
-  } >> "${FORGE_DIR}/bugs.md"
+  } >> "${PROJECT_DIR}/bugs.md"
   echo "  🐛 Bugs extraits → bugs.md"
   # F1 — Dédup bugs.md
-  awk 'NF && !seen[$0]++' "${FORGE_DIR}/bugs.md" > "${FORGE_DIR}/bugs.md.tmp" \
-    && mv "${FORGE_DIR}/bugs.md.tmp" "${FORGE_DIR}/bugs.md"
+  awk 'NF && !seen[$0]++' "${PROJECT_DIR}/bugs.md" > "${PROJECT_DIR}/bugs.md.tmp" \
+    && mv "${PROJECT_DIR}/bugs.md.tmp" "${PROJECT_DIR}/bugs.md"
 fi
 
 # ── ÉTAPE 9 : append lessons.md ───────────────────────────────────────────────
@@ -231,11 +233,11 @@ if [[ -n "$LESSONS_CLEANED" ]]; then
     echo "### Leçons du ${DATE}"
     echo ""
     echo "$LESSONS_CLEANED"
-  } >> "${FORGE_DIR}/lessons.md"
+  } >> "${PROJECT_DIR}/lessons.md"
   echo "  📝 Leçons extraites → lessons.md"
   # F1 — Dédup lessons.md
-  awk 'NF && !seen[$0]++' "${FORGE_DIR}/lessons.md" > "${FORGE_DIR}/lessons.md.tmp" \
-    && mv "${FORGE_DIR}/lessons.md.tmp" "${FORGE_DIR}/lessons.md"
+  awk 'NF && !seen[$0]++' "${PROJECT_DIR}/lessons.md" > "${PROJECT_DIR}/lessons.md.tmp" \
+    && mv "${PROJECT_DIR}/lessons.md.tmp" "${PROJECT_DIR}/lessons.md"
 fi
 
 # ── ÉTAPE 10 : append decisions.md ────────────────────────────────────────────
@@ -247,24 +249,23 @@ if [[ -n "$DECISIONS_CLEANED" ]]; then
     echo "### Décisions du ${DATE}"
     echo ""
     echo "$DECISIONS_CLEANED"
-  } >> "${FORGE_DIR}/decisions.md"
+  } >> "${PROJECT_DIR}/decisions.md"
   echo "  📚 Décisions extraites → decisions.md"
   # F1 — Dédup decisions.md
-  awk 'NF && !seen[$0]++' "${FORGE_DIR}/decisions.md" > "${FORGE_DIR}/decisions.md.tmp" \
-    && mv "${FORGE_DIR}/decisions.md.tmp" "${FORGE_DIR}/decisions.md"
+  awk 'NF && !seen[$0]++' "${PROJECT_DIR}/decisions.md" > "${PROJECT_DIR}/decisions.md.tmp" \
+    && mv "${PROJECT_DIR}/decisions.md.tmp" "${PROJECT_DIR}/decisions.md"
 fi
 
 # ── ÉTAPE 11 : mise à jour "Dernière sync" dans index.md ──────────────────────
-if [[ -f "${FORGE_DIR}/index.md" ]]; then
-  sed -i "s/^> Dernière sync :.*$/> Dernière sync : ${TIMESTAMP}/" "${FORGE_DIR}/index.md"
+if [[ -f "${PROJECT_DIR}/index.md" ]]; then
+  sed -i "s/^> Dernière sync :.*$/> Dernière sync : ${TIMESTAMP}/" "${PROJECT_DIR}/index.md"
   echo "  🔄 Index mis à jour : ${TIMESTAMP}"
 fi
 
 # ── ÉTAPE 12 : rotation sessions.md (max 10) ──────────────────────────────────
-rotate_sessions "${FORGE_DIR}/sessions.md" 10
+rotate_sessions "${PROJECT_DIR}/sessions.md" 10
 
 # ── ÉTAPE 13 : _global/lessons.md — leçons transversales (🌐) ─────────────────
-GLOBAL_DIR="${OBSIDIAN_BASE}/_global"
 if [[ -d "$GLOBAL_DIR" && -n "$LESSONS_CLEANED" ]]; then
   GLOBAL_LESSONS=$(echo "$LESSONS_CLEANED" | grep "🌐" || true)
   if [[ -n "$GLOBAL_LESSONS" ]]; then
@@ -290,5 +291,5 @@ fi
 # ── RÉSULTAT ──────────────────────────────────────────────────────────────────
 echo ""
 echo "✅ Sync terminée — ${TIMESTAMP}"
-echo "   Vault : ${FORGE_DIR}"
-echo "   Fichiers : $(ls "$FORGE_DIR" | wc -l) présents"
+echo "   Vault : ${PROJECT_DIR}"
+echo "   Fichiers : $(ls "$PROJECT_DIR" | wc -l) présents"
