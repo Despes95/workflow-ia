@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (D1 Polaris.md créé, D2 /focus × 3 outils déployé)
+**Dernière mise à jour :** 2026-02-28 (Gemini helpers × 4, improve-inbox + review-improve, yolo)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : D1 ✅ Polaris.md, D2 ✅ /focus × 3 outils (Claude/Gemini/OpenCode) déployés
+- **Mission en cours** : Gemini !{bash-c} → 4 helpers ✅, /improve-inbox + /review-improve ✅, yolo settings ✅
 - **Prochaine étape** : C-reste (template daily note) → A-reste (snapshot partiel sessions.md)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : À jour — /focus ajouté (32 commandes)
+- **État git** : Ahead origin/master by 3 — push en cours
 
 ---
 
@@ -37,9 +37,11 @@
 - `docs/commands-list.cmd` — Windows batch, affiche 31 commandes — Stable
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — Stable
 - `scripts/check_memory.sh` — garde-fou intégrité memory.md — Stable
-- `.claude/commands/*.md` — 31 custom slash commands Claude — Stable
-- `.gemini/commands/*.toml` — 31 commands Gemini CLI (TOML) — Stable
-- `.opencode/commands/*.md` — 31 commands OpenCode (MD) — Stable
+- `.claude/commands/*.md` — 32 custom slash commands Claude — Stable
+- `.gemini/commands/*.toml` — 32 commands Gemini CLI (TOML) — Stable
+- `.opencode/commands/*.md` — 32 commands OpenCode (MD) — Stable
+- `scripts/gemini-*.sh` — 4 helpers d'accès vault pour Gemini CLI Windows — Stable
+- `improve-inbox.md` — inbox rapports /improve multi-IA (gitignored) — Stable
 - `vault/backlog.md` — backlog actif améliorations (vault, hors repo) — Stable
 - `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Stable
 - `scripts/_commons.sh` — couleurs ANSI partagées — Stable
@@ -61,11 +63,11 @@
 
 ### Historique
 
+- 2026-02-28 | Claude Code | Gemini helpers ×4, /improve-inbox + /review-improve ×3, yolo settings | Stable
 - 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 32 commandes | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
 - 2026-02-28 | Claude Code | QuestionsIA inbox → /ideas routing 🔧🚀💰, GitHub MCP, audit 6 commandes | Stable
 - 2026-02-28 | Claude Code | F1/F2/F3/E2/D3/B-reste — vault infra : dédup, hooks, ancres, portabilité, cache, UTF-8 | Stable
-- 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
 
 ---
 
@@ -116,6 +118,8 @@
 - GitHub MCP : `@github/mcp-server` absent de npm — utiliser `@modelcontextprotocol/server-github` (déprécié mais fonctionnel) ou Docker/binaires GitHub 🌐
 - QuestionsIA.md : inbox opérationnel → appartient à `_forge/_global/`, pas `DespesNotes/` (sémantique : capture IA ≠ note perso) 🌐
 - `/ideas` routing : lire `_global/index.md` en Phase 0 = projets réels connus → routing précis sans hallucination de projet 🌐
+- Pattern "inbox → traitement → effacement" : scalable pour toute accumulation multi-IA (QuestionsIA→/ideas, improve-inbox→/review-improve) 🌐
+- `approvalMode: "yolo"` dans `~/.gemini/settings.json` = supprime tous les prompts d'autorisation `!{}` — fallback : `gemini --yolo` 🌐
 
 ---
 
@@ -128,6 +132,9 @@
 - Variables dynamiques (`$ARGUMENTS`, `{{args}}`) toujours en dernière ligne des custom commands
 - GitHub MCP configuré dans `~/.claude.json` via PAT — pas de Copilot requis, fonctionne globalement
 - `/ideas` = commande unique inbox : 🔧 projet existant | 🚀 dev futur | 💰 SaaS/business | ❌ hors scope + Phase 1 patterns
+- `improve-inbox.md` local gitignored = source unique rapports /improve — hors vault, hors repo
+- `/review-improve` séparé de `/ideas` : rapports structurés /improve ≠ idées brutes inbox
+- `approvalMode: "yolo"` dans `~/.gemini/settings.json` — confiance totale, workflow perso uniquement
 
 ---
 
