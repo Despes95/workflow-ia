@@ -6,7 +6,7 @@ Exécute dans l'ordre :
    !{bash.exe scripts/obsidian-sync.sh}
 
 2. Commit memory.md :
-   !{git --no-pager add memory.md ; git commit -m "chore: backup session"}
+   !{git --no-pager add memory.md ; git commit -m 'chore: backup session'}
 
 3. Push le repo :
    !{git --no-pager push}
