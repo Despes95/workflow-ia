@@ -217,6 +217,9 @@ if [[ -n "$BUGS_CLEANED" ]]; then
     echo "$BUGS_CLEANED"
   } >> "${FORGE_DIR}/bugs.md"
   echo "  🐛 Bugs extraits → bugs.md"
+  # F1 — Dédup bugs.md
+  awk 'NF && !seen[$0]++' "${FORGE_DIR}/bugs.md" > "${FORGE_DIR}/bugs.md.tmp" \
+    && mv "${FORGE_DIR}/bugs.md.tmp" "${FORGE_DIR}/bugs.md"
 fi
 
 # ── ÉTAPE 9 : append lessons.md ───────────────────────────────────────────────
@@ -230,6 +233,9 @@ if [[ -n "$LESSONS_CLEANED" ]]; then
     echo "$LESSONS_CLEANED"
   } >> "${FORGE_DIR}/lessons.md"
   echo "  📝 Leçons extraites → lessons.md"
+  # F1 — Dédup lessons.md
+  awk 'NF && !seen[$0]++' "${FORGE_DIR}/lessons.md" > "${FORGE_DIR}/lessons.md.tmp" \
+    && mv "${FORGE_DIR}/lessons.md.tmp" "${FORGE_DIR}/lessons.md"
 fi
 
 # ── ÉTAPE 10 : append decisions.md ────────────────────────────────────────────
@@ -243,6 +249,9 @@ if [[ -n "$DECISIONS_CLEANED" ]]; then
     echo "$DECISIONS_CLEANED"
   } >> "${FORGE_DIR}/decisions.md"
   echo "  📚 Décisions extraites → decisions.md"
+  # F1 — Dédup decisions.md
+  awk 'NF && !seen[$0]++' "${FORGE_DIR}/decisions.md" > "${FORGE_DIR}/decisions.md.tmp" \
+    && mv "${FORGE_DIR}/decisions.md.tmp" "${FORGE_DIR}/decisions.md"
 fi
 
 # ── ÉTAPE 11 : mise à jour "Dernière sync" dans index.md ──────────────────────
