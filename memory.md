@@ -1,6 +1,6 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (/review-improve Phase 4 + /ideas routing 6 items)
+**Dernière mise à jour :** 2026-02-28 (/audit K1-K3 + D3-vérif ✅ + /ideas format enrichi)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
@@ -8,7 +8,7 @@
 ## 🎯 Focus Actuel
 
 - **État** : Infrastructure stable ✅ — mode optimisation/amélioration du backlog
-- **Priorité immédiate** : I1 (tests shell critiques) + D3-vérif (audit $ARGUMENTS réels dans 64 fichiers)
+- **Priorité immédiate** : K1+K2+K3 (fixes scripts ~15min) + I1 (tests shell critiques)
 - **Horizon moyen** : J2 (claude-code-templates 100+ agents) + J3 (MemMachine MCP) à explorer
 
 ---
@@ -32,13 +32,13 @@
 - `AGENTS.md` — règles communes à tous les outils IA — Stable
 - `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
 - `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
-- `docs/prompts-et-commandes.md` — référence opérationnelle 31 commandes — Stable
-- `docs/commands-list.cmd` — Windows batch, affiche 31 commandes — Stable
+- `docs/prompts-et-commandes.md` — référence opérationnelle 33 commandes — Stable
+- `docs/commands-list.cmd` — Windows batch, affiche 33 commandes — Stable
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — Stable
 - `scripts/check_memory.sh` — garde-fou intégrité memory.md — Stable
-- `.claude/commands/*.md` — 32 custom slash commands Claude — Stable
-- `.gemini/commands/*.toml` — 32 commands Gemini CLI (TOML) — Stable
-- `.opencode/commands/*.md` — 32 commands OpenCode (MD) — Stable
+- `.claude/commands/*.md` — 33 custom slash commands Claude — Stable
+- `.gemini/commands/*.toml` — 33 commands Gemini CLI (TOML) — Stable
+- `.opencode/commands/*.md` — 33 commands OpenCode (MD) — Stable
 - `scripts/gemini-*.sh` — 4 helpers d'accès vault pour Gemini CLI Windows — Stable
 - `improve-inbox.md` — inbox rapports /improve multi-IA (gitignored) — Stable
 - `vault/backlog.md` — backlog actif améliorations (vault, hors repo) — Stable
@@ -56,17 +56,17 @@
 
 ### Résumé global
 
-- Stack complète : 32 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
+- Stack complète : 33 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
 - Catégories SESSION/PROJET/VAULT. DespesNotes `_daily/` intégré dans commandes VAULT.
 - Infrastructure : hooks versionnés, _commons.sh, obsidian-sync refactorisé, rotation 10 sessions, _global auto.
 
 ### Historique
 
-- 2026-02-28 | Gemini CLI | Fix freeze `/start` (nettoyage récursion ! {) | Stable
 - 2026-02-28 | Claude Code | Gemini helpers ×4, /improve-inbox + /review-improve ×3, yolo settings | Stable
-- 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 32 commandes | Stable
+- 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 33 commandes | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
 - 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
+- 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
 
 ---
 
@@ -105,6 +105,8 @@
 - `/ideas` routing : vision "réécriture complète" d'un projet = 🚀 futur projet, pas 🔧 amélioration — trop grand pour un backlog item normal 🌐
 - Outils MCP : toujours évaluer sous double angle (complément / remplacement) avant de router — le MCP natif change la catégorie de pertinence 🌐
 - Python Windows `print()` avec emojis → `UnicodeEncodeError` cp1252 — toujours `PYTHONIOENCODING=utf-8` ou supprimer les emojis des print() 🌐
+- `/simplify` lit `git diff HEAD~1..HEAD` uniquement — vision micro post-edit, pas état global — utiliser `/audit` pour une vue macro du projet 🌐
+- `awk 'NF && !seen[$0]++'` supprime les lignes vides intentionnelles (bug K3 obsidian-sync.sh) — anti-pattern pour sections avec espacement délibéré 🌐
 
 ---
 
