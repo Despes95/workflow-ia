@@ -1,21 +1,24 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (/audit K1-K3 + D3-vérif ✅ + /ideas format enrichi)
+**Dernière mise à jour :** 2026-02-28 (/ideas QuestionsIA → T0-T3 + N1 + YouTube CLI + question terminal)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — mode optimisation/amélioration du backlog
+- **État** : Infrastructure stable ✅ — backlog enrichi (T0-T3 setup, N1 nexus_hive, YouTube CLI)
 - **Priorité immédiate** : K1+K2+K3 (fixes scripts ~15min) + I1 (tests shell critiques)
-- **Horizon moyen** : J2 (claude-code-templates 100+ agents) + J3 (MemMachine MCP) à explorer
+- **Horizon moyen** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + J2/J3 à explorer
 
 ---
 
 ## 🧠 Momentum (Handoff)
 
-—
+- **Pensée en cours** : Le setup terminal (T0) est la fondation des fixes UTF-8 — avant d'attaquer K1-K3, valider que le profil Git Bash avec LANG=en_US.UTF-8 est en place.
+- **Vibe / Style** : Direct et pragmatique — on vérifie avant d'agir, pas de code sans confirmation, on route les idées avant de les implémenter.
+- **Prochain petit pas** : Faire `/close` pour committer cette session, puis décider si on attaque K1 ou T0 en premier.
+- **Contexte chaud** : QuestionsIA.md vidée ✅ — 5 items traités (T0-T3 → workflow-ia backlog, N1 → nexus_hive, YouTube CLI → _global/ideas). VibeUsage était halluciné par ChatGPT, Tokscale est réel. Conseil terminal : rester sur Windows Terminal + LANG forcé + Starship (pas de Warp — redondant avec Claude Code).
 
 ---
 
@@ -62,11 +65,11 @@
 
 ### Historique
 
-- 2026-02-28 | Claude Code | Gemini helpers ×4, /improve-inbox + /review-improve ×3, yolo settings | Stable
-- 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 33 commandes | Stable
-- 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
-- 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
+- 2026-02-28 | Claude Code | /ideas QuestionsIA (T0-T3 setup terminal+Tokscale+Context7, N1, YouTube CLI) + conseil terminal | Stable
 - 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
+- 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
+- 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
+- 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 33 commandes | Stable
 
 ---
 
