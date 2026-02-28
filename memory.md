@@ -15,10 +15,7 @@
 
 ## 🧠 Momentum (Handoff)
 
-- **Pensée en cours** : Le setup terminal (T0) est la fondation des fixes UTF-8 — avant d'attaquer K1-K3, valider que le profil Git Bash avec LANG=en_US.UTF-8 est en place.
-- **Vibe / Style** : Direct et pragmatique — on vérifie avant d'agir, pas de code sans confirmation, on route les idées avant de les implémenter.
-- **Prochain petit pas** : Faire `/close` pour committer cette session, puis décider si on attaque K1 ou T0 en premier.
-- **Contexte chaud** : QuestionsIA.md vidée ✅ — 5 items traités (T0-T3 → workflow-ia backlog, N1 → nexus_hive, YouTube CLI → _global/ideas). VibeUsage était halluciné par ChatGPT, Tokscale est réel. Conseil terminal : rester sur Windows Terminal + LANG forcé + Starship (pas de Warp — redondant avec Claude Code).
+—
 
 ---
 
