@@ -267,7 +267,12 @@ rotate_sessions "${PROJECT_DIR}/sessions.md" 10
 
 # ── ÉTAPE 13 : _global/lessons.md — leçons transversales (🌐) ─────────────────
 if [[ -d "$GLOBAL_DIR" && -n "$LESSONS_CLEANED" ]]; then
-  GLOBAL_LESSONS=$(echo "$LESSONS_CLEANED" | grep "🌐" || true)
+  # B-reste — grep "🌐" échoue en pipe Windows Git Bash (encodage UTF-8)
+  # Remplacement par bash native (même pattern que extract_section)
+  GLOBAL_LESSONS=""
+  while IFS= read -r line; do
+    [[ "$line" == *"🌐"* ]] && GLOBAL_LESSONS+="${line}"$'\n'
+  done <<< "$LESSONS_CLEANED"
   if [[ -n "$GLOBAL_LESSONS" ]]; then
     {
       echo ""

@@ -71,7 +71,7 @@
 
 ## 🐛 Bugs connus
 
-- `grep "🌐"` dans obsidian-sync.sh retourne vide sur Windows Git Bash — `_global/lessons.md` non alimenté (bug encodage UTF-8 dans pipes) — ouvert
+- `grep "🌐"` dans obsidian-sync.sh retourne vide sur Windows Git Bash — résolu via `while read` bash native (B-reste)
 - OpenCode custom slash commands : ne fonctionnent pas en mode non-interactif (`opencode run`) — utiliser le mode interactif 🌐
 
 ---
