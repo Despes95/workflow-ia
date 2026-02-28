@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (fix 28 .toml Gemini — $env: → bash config.env)
+**Dernière mise à jour :** 2026-02-28 (fix Gemini $env:, README config.env, /close ✅ backlog)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : /ideas unifié — routing 🔧🚀💰❌ + Phase 1 patterns + audit 6 commandes enrichies
+- **Mission en cours** : Stack stabilisée — Gemini $env: fixé, backlog nettoyé (F1/E2/F2/F3/D3/B-reste ✅)
 - **Prochaine étape** : C-reste (template daily note) → A-reste (snapshot partiel) → D1 Polaris.md (manuel)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : À jour (30 .gemini/*.toml migrés env vars par session Gemini parallèle)
+- **État git** : À jour (28 .toml $env: bug fixé, README config.env documenté)
 
 ---
 
@@ -61,7 +61,7 @@
 
 ### Historique
 
-- 2026-02-28 | Claude Code | Fix 28 .toml Gemini — $env: PowerShell → bash source config.env | Stable
+- 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
 - 2026-02-28 | Claude Code | QuestionsIA inbox → /ideas routing 🔧🚀💰, GitHub MCP, audit 6 commandes | Stable
 - 2026-02-28 | Claude Code | F1/F2/F3/E2/D3/B-reste — vault infra : dédup, hooks, ancres, portabilité, cache, UTF-8 | Stable
 - 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
@@ -81,6 +81,7 @@
 
 - Gemini CLI : les chemins absolus hors workspace sont interdits avec `@{}`. Utiliser `!{type \"...\"}` (Windows) ou `!{cat ...}` (Linux/Mac) pour contourner la sécurité via le shell. 🌐
 - Migration Gemini → `$env:FORGE_DIR/$env:PROJECT_NAME` casse tout : ces vars PowerShell ne sont jamais définies. Pattern correct : `!{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/file.md"'}` 🌐
+- Windows Git Bash : `python3` = stub Windows Store (exit 49) → utiliser `python` (3.11 disponible via PATH) 🌐
 - PowerShell dans .toml Gemini : attention aux échappements de quotes et aux pipes (`\|`). 🌐
 - Custom commands visibles seulement si `claude` lancé depuis le dossier contenant `.claude/commands/` — utiliser `install-commands.sh` pour un accès global 🌐
 - ~/.gemini/settings.json avait une section security.auth à préserver — toujours lire avant d'écraser
