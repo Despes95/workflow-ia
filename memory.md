@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (/ideas QuestionsIA → T0-T3 + N1 + YouTube CLI + question terminal)
-**Dernier outil CLI utilisé :** Claude Code
+**Dernière mise à jour :** 2026-02-28 (Fix K1+K2+K3 scripts scripts robustesse ✅)
+**Dernier outil CLI utilisé :** Gemini CLI
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — backlog enrichi (T0-T3 setup, N1 nexus_hive, YouTube CLI)
-- **Priorité immédiate** : K1+K2+K3 (fixes scripts ~15min) + I1 (tests shell critiques)
+- **État** : Infrastructure stable ✅ — scripts robustesse K1-K3 appliqués
+- **Priorité immédiate** : I1 (tests shell critiques) + I2-I4 (robustesse vault)
 - **Horizon moyen** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + J2/J3 à explorer
 
 ---

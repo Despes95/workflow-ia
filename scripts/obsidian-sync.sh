@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# obsidian-sync.sh — v2.6 (pure bash, sans dépendance IA)
+# obsidian-sync.sh — v2.6.1 (pure bash, sans dépendance IA)
 # Synchronise memory.md vers le vault Obsidian
 # Usage : bash scripts/obsidian-sync.sh (depuis workflow-ia/)
 
@@ -22,13 +22,19 @@ if [[ ! -f "$MEMORY_FILE" ]]; then
   exit 1
 fi
 
+# I2 — Validation pre-flight iCloud (config.env)
+echo "🔍 Vérification iCloud..."
+if ! timeout 3s ls "$FORGE_DIR" >/dev/null 2>&1; then
+  echo "⚠️  Erreur : iCloud Drive semble hors ligne ou non synchronisé (timeout)."
+  echo "    Vérifiez l'accès à $FORGE_DIR"
+  exit 1
+fi
+
 # ── DOSSIER FORGE ─────────────────────────────────────────────────────────────
 mkdir -p "$PROJECT_DIR"
 echo "📂 Forge : $PROJECT_DIR"
 
 # ── HELPER : extract_section ──────────────────────────────────────────────────
-# Retourne le contenu d'une section ## <emoji> jusqu'à la prochaine ##
-# Usage : extract_section "🐛"
 extract_section() {
   local pattern="$1"
   local section=""
@@ -45,8 +51,29 @@ extract_section() {
   echo "$section"
 }
 
+# ── HELPER : append_section (I3) ──────────────────────────────────────────────
+# Ajoute du contenu à un fichier, déduplique et maintient les lignes vides
+append_section() {
+  local file="$1"
+  local title="$2"
+  local content="$3"
+  local label="$4"
+
+  {
+    echo ""
+    echo "---"
+    echo ""
+    echo "### ${title} du ${DATE}"
+    echo ""
+    echo "$content"
+  } >> "$file"
+  
+  # Déduplication (K3 — préserve lignes vides)
+  awk '!seen[$0]++ || !NF' "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
+  echo "  ${label} extraits → $(basename "$file")"
+}
+
 # ── HELPER : rotate_sessions ──────────────────────────────────────────────────
-# Garde les MAX dernières sessions dans sessions.md
 rotate_sessions() {
   local file="$1"
   local max="${2:-10}"
@@ -74,13 +101,18 @@ rotate_sessions() {
   echo "  🔄 Rotation sessions.md (${count} → ${max})"
 }
 
-# ── HELPER : init_file ────────────────────────────────────────────────────────
-# Crée un fichier avec template seulement s'il n'existe pas encore
+# ── HELPER : init_file (F5 — footer commun) ───────────────────────────────────
 init_file() {
   local filepath="$1"
   local content="$2"
   if [[ ! -f "$filepath" ]]; then
-    echo "$content" > "$filepath"
+    # F5 — Ajout footer de navigation
+    {
+      echo "$content"
+      echo ""
+      echo "---"
+      echo "[[index|🏠 Index]] | [[sessions|🕒 Sessions]] | [[backlog|📋 Backlog]]"
+    } > "$filepath"
     echo "  ✅ Créé : $(basename "$filepath")"
   fi
 }
@@ -90,7 +122,12 @@ init_file "${PROJECT_DIR}/index.md" "# ${PROJECT_NAME} — Index
 
 > Dernière sync : ${TIMESTAMP}
 
-## Fichiers du vault
+## 📊 Statistiques
+- **Sessions** : 0
+- **Leçons** : 0
+- **Bugs résolus** : 0
+
+## 📂 Fichiers du vault
 
 | Fichier | Rôle |
 |---|---|
@@ -111,40 +148,16 @@ init_file "${PROJECT_DIR}/sessions.md" "# ${PROJECT_NAME} — Sessions
 init_file "${PROJECT_DIR}/decisions.md" "# ${PROJECT_NAME} — Décisions
 
 > Décisions d'architecture et de conception importantes
-
-## Template
-
-### [DATE] — Titre décision
-
-**Contexte :** …
-**Décision :** …
-**Conséquences :** …
 "
 
 init_file "${PROJECT_DIR}/bugs.md" "# ${PROJECT_NAME} — Bugs
 
 > Bugs connus, en cours et résolus
-
-## En cours
-
-_Aucun_
-
-## Résolus
-
-_Aucun_
 "
 
 init_file "${PROJECT_DIR}/features.md" "# ${PROJECT_NAME} — Features
 
 > Fonctionnalités en cours et planifiées
-
-## En cours
-
-_Aucune_
-
-## Backlog
-
-_Vide_
 "
 
 init_file "${PROJECT_DIR}/lessons.md" "# ${PROJECT_NAME} — Leçons apprises
@@ -155,14 +168,6 @@ init_file "${PROJECT_DIR}/lessons.md" "# ${PROJECT_NAME} — Leçons apprises
 init_file "${PROJECT_DIR}/architecture.md" "# ${PROJECT_NAME} — Architecture
 
 > Vue d'ensemble technique du projet
-
-## Stack
-
-_À compléter_
-
-## Composants clés
-
-_À compléter_
 "
 
 init_file "${PROJECT_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
@@ -175,7 +180,7 @@ BUGS_CLEANED=$(extract_section "🐛" | grep -v '^[[:space:]]*$' | grep -v -i 'a
 LESSONS_CLEANED=$(extract_section "📝" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
 DECISIONS_CLEANED=$(extract_section "📚" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
 
-# ── ÉTAPE 7 : snapshot PARTIEL dans sessions.md (Focus + Momentum + Architecture) ──
+# ── ÉTAPE 7 : snapshot PARTIEL dans sessions.md ───────────────────────────────
 FOCUS_SNAP=$(extract_section "🎯")
 MOMENTUM_SNAP=$(extract_section "🧠")
 ARCH_SNAP=$(extract_section "🏗️")
@@ -213,85 +218,40 @@ ARCH_SNAP=$(extract_section "🏗️")
 } >> "${PROJECT_DIR}/sessions.md"
 echo "  📸 Snapshot ajouté : sessions.md"
 
-# ── ÉTAPE 8 : append bugs.md ──────────────────────────────────────────────────
-if [[ -n "$BUGS_CLEANED" ]]; then
-  {
-    echo ""
-    echo "---"
-    echo ""
-    echo "### Extrait du ${DATE}"
-    echo ""
-    echo "$BUGS_CLEANED"
-  } >> "${PROJECT_DIR}/bugs.md"
-  echo "  🐛 Bugs extraits → bugs.md"
-  # F1 — Dédup bugs.md
-  awk 'NF && !seen[$0]++' "${PROJECT_DIR}/bugs.md" > "${PROJECT_DIR}/bugs.md.tmp" \
-    && mv "${PROJECT_DIR}/bugs.md.tmp" "${PROJECT_DIR}/bugs.md"
-fi
+# ── ÉTAPES 8-10 : refactor append_section (I3) ────────────────────────────────
+[[ -n "$BUGS_CLEANED" ]]      && append_section "${PROJECT_DIR}/bugs.md" "Extrait" "$BUGS_CLEANED" "🐛 Bugs"
+[[ -n "$LESSONS_CLEANED" ]]   && append_section "${PROJECT_DIR}/lessons.md" "Leçons" "$LESSONS_CLEANED" "📝 Leçons"
+[[ -n "$DECISIONS_CLEANED" ]] && append_section "${PROJECT_DIR}/decisions.md" "Décisions" "$DECISIONS_CLEANED" "📚 Décisions"
 
-# ── ÉTAPE 9 : append lessons.md ───────────────────────────────────────────────
-if [[ -n "$LESSONS_CLEANED" ]]; then
-  {
-    echo ""
-    echo "---"
-    echo ""
-    echo "### Leçons du ${DATE}"
-    echo ""
-    echo "$LESSONS_CLEANED"
-  } >> "${PROJECT_DIR}/lessons.md"
-  echo "  📝 Leçons extraites → lessons.md"
-  # F1 — Dédup lessons.md
-  awk 'NF && !seen[$0]++' "${PROJECT_DIR}/lessons.md" > "${PROJECT_DIR}/lessons.md.tmp" \
-    && mv "${PROJECT_DIR}/lessons.md.tmp" "${PROJECT_DIR}/lessons.md"
-fi
-
-# ── ÉTAPE 10 : append decisions.md ────────────────────────────────────────────
-if [[ -n "$DECISIONS_CLEANED" ]]; then
-  {
-    echo ""
-    echo "---"
-    echo ""
-    echo "### Décisions du ${DATE}"
-    echo ""
-    echo "$DECISIONS_CLEANED"
-  } >> "${PROJECT_DIR}/decisions.md"
-  echo "  📚 Décisions extraites → decisions.md"
-  # F1 — Dédup decisions.md
-  awk 'NF && !seen[$0]++' "${PROJECT_DIR}/decisions.md" > "${PROJECT_DIR}/decisions.md.tmp" \
-    && mv "${PROJECT_DIR}/decisions.md.tmp" "${PROJECT_DIR}/decisions.md"
-fi
-
-# ── ÉTAPE 11 : mise à jour "Dernière sync" dans index.md ──────────────────────
+# ── ÉTAPE 11 : mise à jour "Dernière sync" et Stats (F5) dans index.md ────────
 if [[ -f "${PROJECT_DIR}/index.md" ]]; then
+  # Stats dynamiques
+  S_COUNT=$(grep -c "^## Session" "${PROJECT_DIR}/sessions.md" || echo 0)
+  L_COUNT=$(grep -c "^### Leçons du" "${PROJECT_DIR}/lessons.md" || echo 0)
+  B_COUNT=$(grep -c "^### Extrait du" "${PROJECT_DIR}/bugs.md" || echo 0)
+
   sed -i "s/^> Dernière sync :.*$/> Dernière sync : ${TIMESTAMP}/" "${PROJECT_DIR}/index.md"
-  echo "  🔄 Index mis à jour : ${TIMESTAMP}"
+  sed -i "s/- \*\*Sessions\*\* :.*/- \*\*Sessions\*\* : ${S_COUNT}/" "${PROJECT_DIR}/index.md"
+  sed -i "s/- \*\*Leçons\*\* :.*/- \*\*Leçons\*\* : ${L_COUNT}/" "${PROJECT_DIR}/index.md"
+  sed -i "s/- \*\*Bugs résolus\*\* :.*/- \*\*Bugs résolus\*\* : ${B_COUNT}/" "${PROJECT_DIR}/index.md"
+  echo "  📊 Stats index.md mises à jour"
 fi
 
 # ── ÉTAPE 12 : rotation sessions.md (max 10) ──────────────────────────────────
 rotate_sessions "${PROJECT_DIR}/sessions.md" 10
 
-# ── ÉTAPE 13 : _global/lessons.md — leçons transversales (🌐) ─────────────────
+# ── ÉTAPE 13 : _global/lessons.md ─────────────────────────────────────────────
 if [[ -d "$GLOBAL_DIR" && -n "$LESSONS_CLEANED" ]]; then
-  # B-reste — grep "🌐" échoue en pipe Windows Git Bash (encodage UTF-8)
-  # Remplacement par bash native (même pattern que extract_section)
   GLOBAL_LESSONS=""
   while IFS= read -r line; do
     [[ "$line" == *"🌐"* ]] && GLOBAL_LESSONS+="${line}"$'\n'
   done <<< "$LESSONS_CLEANED"
   if [[ -n "$GLOBAL_LESSONS" ]]; then
-    {
-      echo ""
-      echo "---"
-      echo ""
-      echo "### Leçons globales du ${DATE} (${PROJECT_NAME})"
-      echo ""
-      echo "$GLOBAL_LESSONS"
-    } >> "${GLOBAL_DIR}/lessons.md"
-    echo "  🌐 Leçons globales → _global/lessons.md"
+    append_section "${GLOBAL_DIR}/lessons.md" "Leçons globales (${PROJECT_NAME})" "$GLOBAL_LESSONS" "🌐 Leçons globales"
   fi
 fi
 
-# ── ÉTAPE 14 : _global/index.md — date de sync + projet actif ─────────────────
+# ── ÉTAPE 14 : _global/index.md ───────────────────────────────────────────────
 if [[ -f "${GLOBAL_DIR}/index.md" ]]; then
   sed -i "s/\*\*Dernière mise à jour :\*\*.*/\*\*Dernière mise à jour :\*\* ${DATE}/" "${GLOBAL_DIR}/index.md"
   sed -i "s/- Dernier projet actif :.*/- Dernier projet actif : ${PROJECT_NAME} (${DATE})/" "${GLOBAL_DIR}/index.md"
