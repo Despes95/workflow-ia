@@ -1,8 +1,8 @@
 description = "Compile les insights de la semaine depuis les daily notes"
 prompt = """
 Lis :
-1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"} (7 dernières entrées)
+1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -7 | xargs cat 2>/dev/null'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'} (7 dernières entrées)
 
 Compile un résumé hebdomadaire prêt à l'export :
 

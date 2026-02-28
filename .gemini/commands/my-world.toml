@@ -4,17 +4,17 @@ Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
 ## 1. Daily Notes
 Lis :
-- !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 7 | Get-Content"}
+- !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -7 | xargs cat 2>/dev/null'}
 
 ## 2. Vault global
 Lis :
-- !{type "$env:GLOBAL_DIR/lessons.md"}
-- !{type "$env:GLOBAL_DIR/index.md"}
+- !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/lessons.md"'}
+- !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/index.md"'}
 
 ## 3. Projets actifs (workflow-ia)
 Lis :
-- !{type "$env:FORGE_DIR/$env:PROJECT_NAME/index.md"}
-- !{type "$env:FORGE_DIR/$env:PROJECT_NAME/architecture.md"}
+- !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/index.md"'}
+- !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
 
 ## 4. Résumé
 Réponds avec exactement 5 points :

@@ -1,10 +1,10 @@
 description = "Identifie les sujets et projets silencieusement évités"
 prompt = """
 Lis dans cet ordre :
-1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 15 | Get-Content"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"} (20 dernières entrées)
+1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -15 | xargs cat 2>/dev/null'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'} (20 dernières entrées)
 3. @{memory.md} (section Todo)
-4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/ideas.md"}
+4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/ideas.md"'}
 
 Identifie le drift — les sujets ou projets qui :
 - Sont présents dans les todos ou ideas mais absents des sessions récentes

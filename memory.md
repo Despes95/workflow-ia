@@ -1,6 +1,6 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (inbox QuestionsIA, /ideas routing 🔧🚀💰, GitHub MCP, audit commandes)
+**Dernière mise à jour :** 2026-02-28 (fix 28 .toml Gemini — $env: → bash config.env)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
@@ -61,11 +61,11 @@
 
 ### Historique
 
+- 2026-02-28 | Claude Code | Fix 28 .toml Gemini — $env: PowerShell → bash source config.env | Stable
 - 2026-02-28 | Claude Code | QuestionsIA inbox → /ideas routing 🔧🚀💰, GitHub MCP, audit 6 commandes | Stable
 - 2026-02-28 | Claude Code | F1/F2/F3/E2/D3/B-reste — vault infra : dédup, hooks, ancres, portabilité, cache, UTF-8 | Stable
 - 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
 - 2026-02-27 | Claude Code | Rapport D (Polaris/focus/caching), fix CMD ASCII, improve.md épuré | Stable
-- 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 | Stable
 
 ---
 
@@ -80,6 +80,7 @@
 ## 📝 Leçons apprises
 
 - Gemini CLI : les chemins absolus hors workspace sont interdits avec `@{}`. Utiliser `!{type \"...\"}` (Windows) ou `!{cat ...}` (Linux/Mac) pour contourner la sécurité via le shell. 🌐
+- Migration Gemini → `$env:FORGE_DIR/$env:PROJECT_NAME` casse tout : ces vars PowerShell ne sont jamais définies. Pattern correct : `!{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/file.md"'}` 🌐
 - PowerShell dans .toml Gemini : attention aux échappements de quotes et aux pipes (`\|`). 🌐
 - Custom commands visibles seulement si `claude` lancé depuis le dossier contenant `.claude/commands/` — utiliser `install-commands.sh` pour un accès global 🌐
 - ~/.gemini/settings.json avait une section security.auth à préserver — toujours lire avant d'écraser

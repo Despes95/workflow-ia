@@ -1,10 +1,10 @@
 description = "Trouve les croyances incompatibles que je tiens simultanément dans mes notes"
 prompt = """
 Lis dans cet ordre :
-1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 15 | Get-Content"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/decisions.md"}
-3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/lessons.md"}
-4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
+1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -15 | xargs cat 2>/dev/null'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/decisions.md"'}
+3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
+4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
 
 Trouve 2-3 couples de croyances incompatibles que je tiens simultanément dans mes notes.
 

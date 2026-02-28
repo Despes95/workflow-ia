@@ -1,10 +1,10 @@
 description = "Évolution d'une décision dans le temps"
 prompt = """
 Lis dans l'ordre :
-1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Get-Content"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/decisions.md"}
-3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
-4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/architecture.md"}
+1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort | xargs cat 2>/dev/null'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/decisions.md"'}
+3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
+4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
 
 Trace l'évolution du sujet fourni dans le temps.
 

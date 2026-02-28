@@ -1,11 +1,11 @@
 description = "Vue topologique du vault : clusters, thèmes, relations"
 prompt = """
 Lis dans cet ordre :
-1. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/index.md"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/architecture.md"}
-3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
-4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/lessons.md"}
-5. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/decisions.md"}
+1. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/index.md"'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/architecture.md"'}
+3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
+4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
+5. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/decisions.md"'}
 
 Produis une vue topologique :
 - Quels thèmes dominent le vault ?

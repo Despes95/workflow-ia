@@ -1,10 +1,10 @@
 description = "Surface les patterns implicites — idées que mes notes impliquent sans les formuler"
 prompt = """
 Lis :
-1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | Get-Content"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
-3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/lessons.md"}
-4. !{type "$env:GLOBAL_DIR/lessons.md"}
+1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -10 | xargs cat 2>/dev/null'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
+3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
+4. !{bash -c 'source scripts/config.env; cat "$GLOBAL_DIR/lessons.md"'}
 
 Cherche des idées que mes notes IMPLIQUENT mais que je n'ai jamais formulées explicitement.
 Pas ce que j'ai écrit — ce que mes patterns suggèrent que je pense ou que je veux faire.

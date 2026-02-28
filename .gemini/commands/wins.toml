@@ -2,8 +2,8 @@ description = "Victoires de la semaine — commits, leçons, décisions"
 prompt = """
 Lis dans cet ordre :
 1. !{git log --oneline --since="7 days ago"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
-3. !{powershell -NoProfile -Command "Get-Content ([string]::Concat($env:DESPES_NOTES, '/_daily/', (Get-Date -Format 'yyyy/MM/dd'), '.md')) -ErrorAction SilentlyContinue"}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
+3. !{bash -c 'source scripts/config.env; cat "$DESPES_NOTES/_daily/$(date +%Y/%m/%d).md" 2>/dev/null'}
 
 Liste uniquement les victoires :
 - Features livrées ou bugs résolus (depuis les commits)

@@ -1,10 +1,10 @@
 description = "Trouve les notes qui devraient se lier mais ne le font pas encore"
 prompt = """
 Lis dans cet ordre :
-1. !{powershell -NoProfile -Command "Get-ChildItem ($env:DESPES_NOTES + '/_daily/*') -File | Sort-Object LastWriteTime -Descending | Select-Object -First 10 | Get-Content"}
-2. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/sessions.md"}
-3. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/lessons.md"}
-4. !{type "$env:FORGE_DIR/$env:PROJECT_NAME/ideas.md"}
+1. !{bash -c 'source scripts/config.env; find "$DESPES_NOTES/_daily" -name "*.md" | sort -r | head -10 | xargs cat 2>/dev/null'}
+2. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/sessions.md"'}
+3. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/lessons.md"'}
+4. !{bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/ideas.md"'}
 
 Identifie des paires de notes ou d'idées qui devraient se référencer mutuellement mais ne le font pas encore.
 
