@@ -862,6 +862,12 @@ bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
 | 18 | Chemins vault hardcodés `/c/Users/Despes/...` dans les scripts | E2 — `scripts/config.env` sourcé partout, chemins via `$HOME` |
 | 19 | `$ARGUMENTS`/`{{args}}` en début de prompt → cache miss à chaque appel | D3 — 4 commandes corrigées (debug, trace, compound, ghost) × 2 outils |
 | 20 | `grep "🌐"` silencieusement vide dans les pipes Git Bash Windows | B-reste — remplacé par `[[ "$line" == *"🌐"* ]]` bash native, `_global/lessons.md` désormais alimenté |
+| 21 | `install-commands.sh` count hardcodé 31 ≠ 33 commandes actuelles | K1 — count dynamique `REF_COUNT=$(ls ... | wc -l)` |
+| 22 | `gemini-daily.sh` : `xargs cat` sans protection entrée vide | K2 — `xargs -r cat` (ne s'exécute pas si vide) |
+| 23 | `obsidian-sync.sh` : `awk 'NF && !seen[$0]++'` supprime lignes vides | K3 — `awk '!seen[$0]++ || !NF'` préserve lignes vides |
+| 24 | `obsidian-sync.sh` ne vérifie pas si iCloud est accessible | I2 — validation pre-flight `timeout 3s ls "$FORGE_DIR"` |
+| 25 | `obsidian-sync.sh` : code dupliqué étapes 8-10 (append+dédup) | I3 — helper `append_section()` factorisé (~30 lignes gagnées) |
+| 26 | Vault files : pas de stats ni navigation | F5 — stats dynamiques + footer `[[index|🏠]]` dans chaque fichier |
 
 ---
 
@@ -910,7 +916,7 @@ en tenant compte du contexte réel du projet (bugs ouverts, backlog existant).
 
 ## Phase 10 — Vault infra robuste ✅ (session 2026-02-28)
 
-**Objectif :** Rendre la stack production-grade — 6 améliorations du backlog vault implémentées en une session.
+**Objectif :** Rendre la stack production-grade — 10 améliorations du backlog vault implémentées.
 
 | Item | Fichier modifié | Amélioration |
 |------|----------------|--------------|
@@ -920,10 +926,17 @@ en tenant compte du contexte réel du projet (bugs ouverts, backlog existant).
 | E2 | `scripts/config.env` (nouveau) | Chemins vault portables via `$HOME` |
 | D3 | 8 custom commands | `$ARGUMENTS`/`{{args}}` en dernière ligne pour cache hit |
 | B-reste | `obsidian-sync.sh` | `grep "🌐"` → `while read` bash native (fix UTF-8 Git Bash) |
+| K1 | `install-commands.sh` | Count dynamique (33 au lieu de 31 hardcodé) |
+| K2 | `gemini-daily.sh` | `xargs -r` — ne s'exécute pas si entrée vide |
+| K3 | `obsidian-sync.sh` | `awk '!seen[$0]++ || !NF'` préserve lignes vides |
+| I2 | `obsidian-sync.sh` | Validation pre-flight iCloud (`timeout 3s ls`) |
+| I3 | `obsidian-sync.sh` | Helper `append_section()` factorisé |
+| F5 | `obsidian-sync.sh` | Stats dynamiques + footer navigation dans vault |
 
 ### Patterns réutilisables retenus
 
-- **Dédup vault** : `awk 'NF && !seen[$0]++'` + écriture atomique `.tmp`/`mv` — compatible `set -euo pipefail`
+- **Dédup vault** : `awk '!seen[$0]++ || !NF'` + écriture atomique `.tmp`/`mv` — compatible `set -euo pipefail`, préserve lignes vides
 - **Portabilité scripts** : `source "${SCRIPT_DIR}/config.env"` centralise tous les chemins absolus
 - **Emoji en pipe Git Bash** : `grep` échoue sur tous les modes (--a, -F, -P, LC_ALL) — utiliser `[[ "$line" == *emoji* ]]`
 - **Cache des prompts** : tout contenu statique en tête, `$ARGUMENTS`/`{{args}}` en toute dernière ligne
+- **xargs sécurité** : toujours `xargs -r` pour éviter l'exécution si entrée vide
