@@ -1,0 +1,27 @@
+---
+description: Consolide et présente les rapports /improve accumulés (lecture seule)
+---
+
+Lis `@improve-inbox.md` (racine du projet).
+
+Si le fichier est vide ou ne contient aucun rapport : dis-le et arrête.
+
+Sinon :
+
+## Phase 1 — Analyse et déduplication
+- Liste toutes les suggestions, tous rapports confondus
+- Note combien d'outils ont signalé chaque point (Claude / Gemini / OpenCode)
+- Suggestion présente dans 2+ rapports = signal fort
+
+## Phase 2 — Classification ROI
+- HIGH : impact fort + effort raisonnable
+- MEDIUM : utile mais non urgent
+- LOW : marginal
+
+## Phase 3 — Rapport consolidé
+
+Format :
+> **[suggestion]** — signalé par [outils]
+> → Impact : HIGH/MEDIUM/LOW | Effort : H/M/L
+
+⚠️ Ne touche à aucun fichier. Pour ajouter au backlog et vider l'inbox, lance `/review-improve` dans Claude.

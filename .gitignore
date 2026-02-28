@@ -23,3 +23,6 @@ _setup/
 
 # Claude Code
 .claude/settings.local.json
+
+# Improve inbox (volatile, local — traité via /review-improve)
+improve-inbox.md
