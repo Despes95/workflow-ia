@@ -856,6 +856,12 @@ bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
 | 12 | `$PROJECT_NAME` hardcodé dans Gemini TOML | `!{bash -c "basename $(pwd)"}` — résolution dynamique obligatoire pour portabilité |
 | 13 | `docs/improve.md` dans le repo git | Migré vers vault `backlog.md` — la planification n'est pas du code |
 | 14 | `/improve` sans contexte préalable | Lit `bugs.md` + `backlog.md` avant analyse — sinon résultats génériques hors contexte |
+| 15 | `obsidian-sync.sh` réappend toute la section à chaque sync → doublons | F1 — `awk 'NF && !seen[$0]++'` + écriture atomique `.tmp`/`mv` après chaque append |
+| 16 | Hook pre-commit copié dans `.git/hooks/` → désynchronisation possible | F2 — `git config core.hooksPath scripts/hooks` lit directement depuis le dossier versionné |
+| 17 | `check_memory.sh` ne valide pas les emojis d'ancrage de `obsidian-sync.sh` | F3 — boucle `while read` sur les 8 emojis (🎯🏗️📁📜🐛📝📚⛔) dans les `##` headers |
+| 18 | Chemins vault hardcodés `/c/Users/Despes/...` dans les scripts | E2 — `scripts/config.env` sourcé partout, chemins via `$HOME` |
+| 19 | `$ARGUMENTS`/`{{args}}` en début de prompt → cache miss à chaque appel | D3 — 4 commandes corrigées (debug, trace, compound, ghost) × 2 outils |
+| 20 | `grep "🌐"` silencieusement vide dans les pipes Git Bash Windows | B-reste — remplacé par `[[ "$line" == *"🌐"* ]]` bash native, `_global/lessons.md` désormais alimenté |
 
 ---
 
@@ -899,3 +905,25 @@ en tenant compte du contexte réel du projet (bugs ouverts, backlog existant).
 > **Leçon clé :** Filtrer les rapports IA par ROI et contexte. En moyenne, 1 bonne
 > idée sur 8 est retenue d'un rapport générique. Lire `bugs.md` + `backlog.md` avant
 > de lancer `/improve` est non négociable.
+
+---
+
+## Phase 10 — Vault infra robuste ✅ (session 2026-02-28)
+
+**Objectif :** Rendre la stack production-grade — 6 améliorations du backlog vault implémentées en une session.
+
+| Item | Fichier modifié | Amélioration |
+|------|----------------|--------------|
+| F1 | `obsidian-sync.sh` | Dédup `awk` post-append sur bugs/lessons/decisions |
+| F2 | `new-project.sh` + `.git/config` | `core.hooksPath scripts/hooks` — hook versionné sans copie |
+| F3 | `check_memory.sh` | Validation des 8 emojis d'ancrage avant commit |
+| E2 | `scripts/config.env` (nouveau) | Chemins vault portables via `$HOME` |
+| D3 | 8 custom commands | `$ARGUMENTS`/`{{args}}` en dernière ligne pour cache hit |
+| B-reste | `obsidian-sync.sh` | `grep "🌐"` → `while read` bash native (fix UTF-8 Git Bash) |
+
+### Patterns réutilisables retenus
+
+- **Dédup vault** : `awk 'NF && !seen[$0]++'` + écriture atomique `.tmp`/`mv` — compatible `set -euo pipefail`
+- **Portabilité scripts** : `source "${SCRIPT_DIR}/config.env"` centralise tous les chemins absolus
+- **Emoji en pipe Git Bash** : `grep` échoue sur tous les modes (--a, -F, -P, LC_ALL) — utiliser `[[ "$line" == *emoji* ]]`
+- **Cache des prompts** : tout contenu statique en tête, `$ARGUMENTS`/`{{args}}` en toute dernière ligne

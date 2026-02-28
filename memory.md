@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-27 (Rapports E+F — backlog vault, /improve enrichi, dédup lessons/bugs)
+**Dernière mise à jour :** 2026-02-28 (F1/F2/F3/E2/D3/B-reste — vault infra robuste)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Rapports E+F intégrés — backlog.md vault, /improve enrichi, dédup planifiée
-- **Prochaine étape** : F1 dédup lessons/bugs → F2 core.hooksPath → E2 config.env → D1 Polaris.md (manuel)
+- **Mission en cours** : Vault infra complétée — F1 F2 F3 E2 D3 B-reste tous implémentés
+- **Prochaine étape** : C-reste (template daily note) → A-reste (snapshot partiel) → D1 Polaris.md (manuel)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : Propre (aafea39)
+- **État git** : 6 commits à pusher (696e355)
 
 ---
 
@@ -47,6 +47,7 @@
 - `.gitignore` — exclusions standards — Nouveau
 - `new-project.cmd` — launcher Windows bootstrap — Stable
 - `scripts/new-project.sh` — script bootstrap complet — Stable
+- `scripts/config.env` — chemins vault portables ($HOME-based) — Stable
 
 ---
 
@@ -60,11 +61,11 @@
 
 ### Historique
 
+- 2026-02-28 | Claude Code | F1/F2/F3/E2/D3/B-reste — vault infra : dédup, hooks, ancres, portabilité, cache, UTF-8 | Stable
 - 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
 - 2026-02-27 | Claude Code | Rapport D (Polaris/focus/caching), fix CMD ASCII, improve.md épuré | Stable
 - 2026-02-27 | Claude Code | Rapports A+B : hooks, _commons.sh, obsidian-sync refactorisé, _global, rotation 10 | Stable
 - 2026-02-27 | Claude Code | Fix Gemini date dynamique + drift 26→31 + SESSION/PROJET/VAULT | Stable
-- 2026-02-27 | Claude Code | 5 améliorations high-priority + 3 cmds check-in/debug/wins | Stable
 
 ---
 
@@ -106,6 +107,9 @@
 - `/improve` sans lecture préalable de bugs.md + backlog.md = analyse hors contexte → résultats génériques 🌐
 - Gemini `!{bash -c "cat ...$(basename $(pwd))/..."}` = résolution dynamique du nom de projet 🌐
 - `git config core.hooksPath scripts/hooks` = alternative élégante à la copie dans `.git/hooks/` (F2) 🌐
+- `grep` sur emojis UTF-8 échoue dans tous les modes de pipe Git Bash (-a, -F, -P, LC_ALL) — seule solution : `[[ "$line" == *emoji* ]]` bash native 🌐
+- `awk 'NF && !seen[$0]++'` + écriture atomique `.tmp`/`mv` = dédup robuste compatible `set -euo pipefail` 🌐
+- `$ARGUMENTS`/`{{args}}` en début de prompt = cache miss — toujours en dernière ligne des custom commands 🌐
 
 ---
 
@@ -114,6 +118,8 @@
 - `backlog.md` dans le vault = source unique du backlog (hors repo) — `features.md` = roadmap haut niveau
 - U+2500 box-drawing interdits dans tous les `.cmd` Windows — ASCII pur obligatoire
 - Hook pre-commit versionné dans `scripts/hooks/` — source unique via `check_memory.sh`
+- `scripts/config.env` = source unique des chemins vault — 1 fichier à modifier pour portabilité multi-machine
+- Variables dynamiques (`$ARGUMENTS`, `{{args}}`) toujours en dernière ligne des custom commands
 
 ---
 
