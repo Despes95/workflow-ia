@@ -8,11 +8,15 @@ Puis :
 2. Identifie décisions (→ decisions.md)
 3. Identifie bugs (→ bugs.md)
 4. Identifie leçons (→ lessons.md, 🌐 si transversal)
-5. Montre le diff complet de memory.md que tu proposes
+5. Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/backlog.md`
+   - Croise avec les commits de la session
+   - Marque ✅ les items clairement terminés (préfixe la ligne du titre : `### ✅ F1. ...`)
+   - Ne touche pas aux items partiels ou incertains
+6. Montre le diff complet de memory.md que tu proposes
    - Si memory.md doit changer : écris les changements, puis enchaîne
    - Si memory.md est déjà à jour : enchaîne directement
 
-6. Après analyse :
+7. Après analyse :
    a. Lance `bash scripts/obsidian-sync.sh` (génère callouts + wikilinks automatiquement)
    b. `git add memory.md && git commit -m "chore: fin de session" && git push`
       - Revois ce qui a été accompli et identifie les changements à reporter dans `docs/tutorial-valider.md`

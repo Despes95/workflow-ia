@@ -37,4 +37,8 @@ Lis dans cet ordre :
 
 Présente les résultats par catégorie avec severity (critical/warning/info).
 
+En fin de rapport, croise le code actuel avec `backlog.md` :
+- Signale les items qui semblent déjà implémentés : `⚠️ [item] — semble terminé, à marquer ✅`
+- Ne propose pas de refactorisation pour ce qui est déjà listé comme bug ouvert dans `bugs.md`
+
 ⚠️ Ne touche à aucun fichier — propose seulement.
