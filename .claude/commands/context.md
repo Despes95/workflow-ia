@@ -1,5 +1,8 @@
 # /context — Charge le contexte du projet actif
 
+Détermine d'abord le PROJECT_NAME depuis le dossier de travail actuel (basename du chemin).
+Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
+
 Lis dans cet ordre :
 1. `memory.md` (état court terme du projet)
 2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/index.md`

@@ -1,13 +1,19 @@
-# /ideas — Inbox QuestionsIA + patterns du projet courant
+# /ideas — Inbox QuestionsIA avec routing intelligent + patterns du projet courant
 
 ## Phase 0 — Inbox QuestionsIA
 
-Lis : `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/QuestionsIA.md`
+Lis d'abord : `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md`
+Puis : `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/QuestionsIA.md`
 
-Si le fichier contient des URLs ou des idées :
+Projets actifs connus (depuis index.md) :
+- `workflow-ia` — stack IA + Obsidian + bash, workflow dev quotidien
+- `nexus_hive` — orchestrateur multi-agents
+- `openfun` — projet openfun
+
+Si QuestionsIA.md contient des URLs ou des idées :
 - Pour chaque item : fetch le README ou la page principale si c'est une URL
-- Analyse et classe avec routing intelligent :
-  - 🔧 Amélioration d'un projet existant → précise lequel
+- Routing intelligent — classe avec :
+  - 🔧 Amélioration d'un projet existant → précise lequel parmi les projets actifs
   - 🚀 Idée de nouveau projet dev/tech → `_global/ideas.md`
   - 💰 Idée SaaS / business / source de revenu → `_global/saas-ideas.md`
   - ❌ Hors scope → une ligne d'explication, pas d'ajout
@@ -23,12 +29,12 @@ Après le rapport :
 - Items 💰 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/saas-ideas.md`
 - Supprime tous les items traités de `QuestionsIA.md`
 
-Projets connus dans le vault :
-- `workflow-ia` : stack IA + Obsidian + bash, workflow dev quotidien
-
-Si le fichier est vide : passe directement à Phase 1.
+Si QuestionsIA.md est vide : passe directement à Phase 1.
 
 ## Phase 1 — Patterns du projet courant
+
+Détermine d'abord le PROJECT_NAME depuis le dossier de travail actuel (basename du chemin).
+Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
 
 Lis :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (15 dernières notes)

@@ -2,10 +2,15 @@
 
 Analyse le projet actif pour identifier les bugs potentiels et les opportunités de refactorisation.
 
+Détermine d'abord le PROJECT_NAME depuis le dossier de travail actuel (basename du chemin).
+Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
+
 Lis dans cet ordre :
 1. `memory.md` (sections Bugs connus, Todo)
 2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
-3. Liste les fichiers du projet
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/backlog.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/architecture.md`
+5. Liste les fichiers du projet
 
 ## Bugs potentiels à détecter
 
