@@ -121,9 +121,9 @@ Si la session **n'est pas clôturée** (pas fait /close) :
 
 ---
 
-## Les 31 commandes slash
+## Les 32 commandes slash
 
-### SESSION (10)
+### SESSION (11)
 
 Rituels qui encadrent la journée de travail.
 
@@ -131,6 +131,7 @@ Rituels qui encadrent la journée de travail.
 |---|---|---|
 | /start | Démarrage session avec git + vault | ✅ |
 | /context | Contexte projet sans git | ✅ |
+| /focus | Sur quoi travailler là, maintenant ? (Polaris + énergie) | ✅ |
 | /today | Matin — plan du jour (sans code) | ✅ |
 | /close | Fin de session (écrit memory.md + vault) | ⚠️ |
 | /close-day | Revue journée | ✅ |

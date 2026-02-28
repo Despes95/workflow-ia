@@ -1,16 +1,16 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (fix Gemini $env:, README config.env, /close ✅ backlog)
+**Dernière mise à jour :** 2026-02-28 (D1 Polaris.md créé, D2 /focus × 3 outils déployé)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Stack stabilisée — Gemini $env: fixé, backlog nettoyé (F1/E2/F2/F3/D3/B-reste ✅)
-- **Prochaine étape** : C-reste (template daily note) → A-reste (snapshot partiel) → D1 Polaris.md (manuel)
+- **Mission en cours** : D1 ✅ Polaris.md, D2 ✅ /focus × 3 outils (Claude/Gemini/OpenCode) déployés
+- **Prochaine étape** : C-reste (template daily note) → A-reste (snapshot partiel sessions.md)
 - **Zone sensible** : AGENTS.md — ne pas modifier sans validation
-- **État git** : À jour (28 .toml $env: bug fixé, README config.env documenté)
+- **État git** : À jour — /focus ajouté (32 commandes)
 
 ---
 
@@ -55,17 +55,17 @@
 
 ### Résumé global
 
-- Stack complète : 31 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
+- Stack complète : 32 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
 - Catégories SESSION/PROJET/VAULT. DespesNotes `_daily/` intégré dans commandes VAULT.
 - Infrastructure : hooks versionnés, _commons.sh, obsidian-sync refactorisé, rotation 10 sessions, _global auto.
 
 ### Historique
 
+- 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 32 commandes | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
 - 2026-02-28 | Claude Code | QuestionsIA inbox → /ideas routing 🔧🚀💰, GitHub MCP, audit 6 commandes | Stable
 - 2026-02-28 | Claude Code | F1/F2/F3/E2/D3/B-reste — vault infra : dédup, hooks, ancres, portabilité, cache, UTF-8 | Stable
 - 2026-02-27 | Claude Code | Rapports E+F — backlog.md vault, /improve enrichi (bugs+backlog), dédup planned | Stable
-- 2026-02-27 | Claude Code | Rapport D (Polaris/focus/caching), fix CMD ASCII, improve.md épuré | Stable
 
 ---
 
