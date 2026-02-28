@@ -3,7 +3,9 @@ prompt = """
 Analyse la session en cours.
 
 Données git :
-!{git --no-pager status ; git --no-pager log --oneline -10 ; git --no-pager diff HEAD}
+!{bash.exe scripts/gemini-git-info.sh status}
+!{bash.exe scripts/gemini-git-info.sh log}
+!{bash.exe scripts/gemini-git-info.sh diff}
 
 Contenu memory.md actuel :
 @{memory.md}
@@ -19,8 +21,8 @@ Puis :
    - Si memory.md doit changer : écris les changements, puis enchaîne
    - Si memory.md est déjà à jour : enchaîne directement
 
-6. Après analyse :
-   a. Lance : !{bash.exe scripts/obsidian-sync.sh}
+6. Après analyse et modification de memory.md :
+   a. Finalise tout en lançant : !{bash.exe scripts/gemini-close.sh}
    b. Dans l'entrée sessions.md créée, remplis les callouts :
       - `> [!decision]` ← décisions identifiées
       - `> [!insight]` ← leçons identifiées
@@ -29,6 +31,5 @@ Puis :
       - Si décisions → `→ [[decisions]]`
       - Si bugs → `→ [[bugs]]`
       - Si leçons → `→ [[lessons]]`
-   d. !{git --no-pager add memory.md ; git commit -m 'chore: fin de session' ; git push}
-   e. Revois ce qui a été accompli et identifie les changements à reporter dans docs/tutorial-valider.md
+   d. Revois ce qui a été accompli et identifie les changements à reporter dans docs/tutorial-valider.md
 """
