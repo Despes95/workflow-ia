@@ -1,6 +1,6 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (Fix freeze /start — récursion !{ identifiée et nettoyée)
+**Dernière mise à jour :** 2026-02-28 (Fix freeze /start — récursion ! { identifiée et nettoyée)
 **Dernier outil CLI utilisé :** Gemini CLI
 
 ---
