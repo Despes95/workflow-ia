@@ -940,3 +940,35 @@ en tenant compte du contexte réel du projet (bugs ouverts, backlog existant).
 - **Emoji en pipe Git Bash** : `grep` échoue sur tous les modes (--a, -F, -P, LC_ALL) — utiliser `[[ "$line" == *emoji* ]]`
 - **Cache des prompts** : tout contenu statique en tête, `$ARGUMENTS`/`{{args}}` en toute dernière ligne
 - **xargs sécurité** : toujours `xargs -r` pour éviter l'exécution si entrée vide
+
+---
+
+## Phase 11 — Tests shell + gemini-git-info.sh ✅ (session 2026-02-28)
+
+**Objectif :** Couvrir les scripts critiques par des tests automatisés + centraliser les appels git pour Gemini CLI.
+
+| Item | Fichier créé/modifié | Amélioration |
+|------|---------------------|--------------|
+| I4 | `scripts/gemini-git-info.sh` (nouveau) | Centralise git status/log/diff avec `--no-pager` forcé |
+| I1 | `tests/test_check_memory.sh` (nouveau) | 5 cas de test unitaires pour `check_memory.sh` |
+| I1 | `tests/test_sync.sh` (nouveau) | 5 cas de test : extract_section, append_section (K3), dedup, rotate_sessions |
+| I1 | `tests/test_helpers.sh` (nouveau) | Helpers partagés ok/fail/assert_exit/assert_contains/summary |
+
+### Patterns réutilisables retenus
+
+- **Tests bash** : `source tests/test_helpers.sh` centralise les helpers — tout nouveau script de test doit le sourcer
+- **Fonctions dépendantes iCloud** : copier inline dans les tests (pas sourcer) pour éviter le sourcing de `config.env`
+- **grep dans les tests** : toujours `-qF` (fixed-string) sauf si ancres regex nécessaires (`^pattern$`)
+- **grep -m1** au lieu de `grep | head -1` — un subprocess de moins, pattern recommandé
+- **Fixture unique dans `$content`** : lire une fois, réutiliser — évite N subprocesses pour N assertions
+
+### Structure tests/
+
+```
+tests/
+├── test_helpers.sh         # helpers partagés (sourcer depuis chaque test)
+├── test_check_memory.sh    # tests check_memory.sh
+└── test_sync.sh            # tests obsidian-sync.sh helpers
+```
+
+Usage : `bash tests/test_check_memory.sh && bash tests/test_sync.sh`
