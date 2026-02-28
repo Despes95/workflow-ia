@@ -41,4 +41,15 @@ En fin de rapport, croise le code actuel avec `backlog.md` :
 - Signale les items qui semblent déjà implémentés : `⚠️ [item] — semble terminé, à marquer ✅`
 - Ne propose pas de refactorisation pour ce qui est déjà listé comme bug ouvert dans `bugs.md`
 
-⚠️ Ne touche à aucun fichier — propose seulement.
+Après avoir présenté le rapport dans la session, **appende-le** dans `improve-inbox.md`
+(racine du projet) avec ce format exact :
+
+```
+## Rapport /audit — Claude — [DATE_AUJOURD'HUI]
+
+[reproduis ici le rapport complet]
+
+---
+```
+
+⚠️ Seule modification autorisée : appender dans `improve-inbox.md`. Ne touche à aucun autre fichier.

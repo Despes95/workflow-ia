@@ -31,4 +31,15 @@ Lis dans cet ordre :
 
 Présente les résultats par catégorie avec severity (critical/warning/info).
 
-⚠️ Ne touche à aucun fichier — propose seulement.
+Après avoir présenté le rapport dans la session, **appende-le** dans `improve-inbox.md`
+(racine du projet) avec ce format exact :
+
+```
+## Rapport /audit — OpenCode — [DATE_AUJOURD'HUI]
+
+[reproduis ici le rapport complet]
+
+---
+```
+
+⚠️ Seule modification autorisée : appender dans `improve-inbox.md`. Ne touche à aucun autre fichier.
