@@ -18,10 +18,13 @@ Si QuestionsIA.md contient des URLs ou des idées :
   - 💰 Idée SaaS / business / source de revenu → `_global/saas-ideas.md`
   - ❌ Hors scope → une ligne d'explication, pas d'ajout
 
-Rapport par item :
-> **[URL ou idée]** — [description 1-2 lignes]
+Rapport par item — format enrichi :
+> **[URL ou idée]**
+> **Ce que c'est** : [2-3 lignes — fonctionnalités clés, stack, cas d'usage principal]
+> **Pourquoi ce projet** : [lien concret avec le projet cible — quel problème précis ça résout ici]
+> **Nuance** : [si double-routing, trade-off majeur, ou condition d'activation — omets si rien à signaler]
 > → 🔧 [projet] | 🚀 futur projet | 💰 SaaS/business | ❌ hors scope
-> → `[item backlog concis]`
+> → **À faire** : [action concrète — pas juste un titre, un premier pas réel]
 
 Après le rapport :
 - Items 🔧 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/[projet]/backlog.md`
