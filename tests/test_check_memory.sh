@@ -7,26 +7,10 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT="$SCRIPT_DIR/scripts/check_memory.sh"
 TMP=$(mktemp -d)
-PASS=0; FAIL=0
-
 trap 'rm -rf "$TMP"' EXIT
 
-ok()   { echo "  ✅ $1"; PASS=$((PASS+1)); }
-fail() { echo "  ❌ $1"; FAIL=$((FAIL+1)); }
-
-assert_exit() {
-  local desc="$1" expected="$2" actual="$3"
-  [ "$actual" = "$expected" ] \
-    && ok "$desc (exit $actual)" \
-    || fail "$desc — attendu exit $expected, obtenu $actual"
-}
-
-assert_contains() {
-  local desc="$1" pattern="$2" output="$3"
-  echo "$output" | grep -q "$pattern" \
-    && ok "$desc" \
-    || fail "$desc — pattern '$pattern' absent"
-}
+# shellcheck source=test_helpers.sh
+source "$(dirname "${BASH_SOURCE[0]}")/test_helpers.sh"
 
 # ── Fixture : memory.md valide minimal (8 emojis + sections texte) ─────────────
 VALID=$(cat <<'EOF'
@@ -99,7 +83,4 @@ out=$(cd "$TMP" && bash "$SCRIPT" 2>&1); code=$?
 assert_exit "exit 0 malgré warning" 0 "$code"
 assert_contains "warning lignes" "lignes" "$out"
 
-# ── Résultat ───────────────────────────────────────────────────────────────────
-echo ""
-echo "=== Résultat : $PASS ✅  $FAIL ❌ ==="
-[ "$FAIL" -eq 0 ] && exit 0 || exit 1
+summary

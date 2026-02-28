@@ -10,33 +10,10 @@ set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TMP=$(mktemp -d)
-PASS=0; FAIL=0
-
 trap 'rm -rf "$TMP"' EXIT
 
-ok()   { echo "  ✅ $1"; PASS=$((PASS+1)); }
-fail() { echo "  ❌ $1"; FAIL=$((FAIL+1)); }
-
-assert_exit() {
-  local desc="$1" expected="$2" actual="$3"
-  [ "$actual" = "$expected" ] \
-    && ok "$desc (exit $actual)" \
-    || fail "$desc — attendu exit $expected, obtenu $actual"
-}
-
-assert_contains() {
-  local desc="$1" pattern="$2" output="$3"
-  echo "$output" | grep -qF "$pattern" \
-    && ok "$desc" \
-    || fail "$desc — pattern '$pattern' absent"
-}
-
-assert_not_contains() {
-  local desc="$1" pattern="$2" output="$3"
-  echo "$output" | grep -qF "$pattern" \
-    && fail "$desc — '$pattern' trouvé (ne devrait pas)" \
-    || ok "$desc"
-}
+# shellcheck source=test_helpers.sh
+source "$(dirname "${BASH_SOURCE[0]}")/test_helpers.sh"
 
 # ── Fonctions copiées depuis obsidian-sync.sh ──────────────────────────────────
 
@@ -86,7 +63,7 @@ rotate_sessions() {
 
   local to_skip=$(( count - max ))
   local first_session_line
-  first_session_line=$(grep -n "^## Session" "$file" | head -1 | cut -d: -f1)
+  first_session_line=$(grep -m1 -n "^## Session" "$file" | cut -d: -f1)
   local header_end=$(( first_session_line - 4 ))
   [[ "$header_end" -lt 1 ]] && header_end=1
 
@@ -136,13 +113,12 @@ echo ""
 echo "T3 — append_section() préserve les lignes vides (K3)"
 FILE="$TMP/test_append.md"
 echo "# Header" > "$FILE"
-# Content avec une ligne vide entre A et B
 append_section "$FILE" "Test" $'ligne A\n\nligne B' "test" > /dev/null
 content=$(cat "$FILE")
 assert_contains "ligne A présente" "ligne A" "$content"
 assert_contains "ligne B présente" "ligne B" "$content"
-line_a=$(grep -n "ligne A" "$FILE" | head -1 | cut -d: -f1)
-line_b=$(grep -n "ligne B" "$FILE" | head -1 | cut -d: -f1)
+line_a=$(grep -m1 -n "ligne A" "$FILE" | cut -d: -f1)
+line_b=$(grep -m1 -n "ligne B" "$FILE" | cut -d: -f1)
 gap=$(( line_b - line_a ))
 [ "$gap" -gt 1 ] \
   && ok "ligne vide préservée entre A et B (gap=$gap)" \
@@ -178,19 +154,18 @@ FILE="$TMP/sessions.md"
   done
 } > "$FILE"
 rotate_sessions "$FILE" 10
-count=$(grep -c "^## Session" "$FILE" || true)
+content=$(cat "$FILE")
+count=$(grep -c "^## Session" <<< "$content" || true)
 [ "$count" -eq 10 ] \
   && ok "10 sessions après rotation (était 12)" \
   || fail "rotation incorrecte ($count sessions, attendu 10)"
-grep -q "^## Session 1$" "$FILE" \
+# Note : grep -q avec ancres (^$) car assert_not_contains utilise -qF (pas de regex)
+grep -q "^## Session 1$" <<< "$content" \
   && fail "Session 1 supprimée — encore présente" \
   || ok  "Session 1 supprimée"
-grep -q "^## Session 2$" "$FILE" \
+grep -q "^## Session 2$" <<< "$content" \
   && fail "Session 2 supprimée — encore présente" \
   || ok  "Session 2 supprimée"
-assert_contains "Session 12 présente" "## Session 12" "$(cat "$FILE")"
+assert_contains "Session 12 présente" "## Session 12" "$content"
 
-# ── Résultat ───────────────────────────────────────────────────────────────────
-echo ""
-echo "=== Résultat : $PASS ✅  $FAIL ❌ ==="
-[ "$FAIL" -eq 0 ] && exit 0 || exit 1
+summary
