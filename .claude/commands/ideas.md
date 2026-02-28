@@ -1,21 +1,34 @@
-# /ideas — Améliorations depuis les patterns + inbox QuestionsIA
+# /ideas — Inbox QuestionsIA + patterns du projet courant
 
 ## Phase 0 — Inbox QuestionsIA
 
 Lis : `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/QuestionsIA.md`
 
-Si le fichier contient des URLs :
-- Pour chaque URL : fetch le README ou la page principale
-- Rapport par URL :
-  > **[URL]** — [ce que c'est en 1-2 lignes]
-  > → Pertinence : [projet courant / futur projet / hors scope]
-  > → Backlog : `[item concis]` si pertinent
-- Ajoute les items retenus dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/backlog.md`
-- Supprime les URLs traitées de `QuestionsIA.md`
+Si le fichier contient des URLs ou des idées :
+- Pour chaque item : fetch le README ou la page principale si c'est une URL
+- Analyse et classe avec routing intelligent :
+  - 🔧 Amélioration d'un projet existant → précise lequel
+  - 🚀 Idée de nouveau projet dev/tech → `_global/ideas.md`
+  - 💰 Idée SaaS / business / source de revenu → `_global/saas-ideas.md`
+  - ❌ Hors scope → une ligne d'explication, pas d'ajout
+
+Rapport par item :
+> **[URL ou idée]** — [description 1-2 lignes]
+> → 🔧 [projet] | 🚀 futur projet | 💰 SaaS/business | ❌ hors scope
+> → `[item backlog concis]`
+
+Après le rapport :
+- Items 🔧 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/[projet]/backlog.md`
+- Items 🚀 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/ideas.md`
+- Items 💰 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/saas-ideas.md`
+- Supprime tous les items traités de `QuestionsIA.md`
+
+Projets connus dans le vault :
+- `workflow-ia` : stack IA + Obsidian + bash, workflow dev quotidien
 
 Si le fichier est vide : passe directement à Phase 1.
 
-## Phase 1 — Patterns
+## Phase 1 — Patterns du projet courant
 
 Lis :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (15 dernières notes)
@@ -30,4 +43,4 @@ Propose 3 angles d'amélioration, format :
 > "D'après les sessions de [période], tu contournes [problème] via [méthode].
 > Une solution structurelle serait [proposition concrète]."
 
-⚠️ Seules 2 modifications autorisées : ajouter au backlog du projet courant et supprimer les URLs traitées de `QuestionsIA.md`.
+⚠️ Seules 2 modifications autorisées : ajouter aux fichiers cibles et supprimer les items traités de `QuestionsIA.md`.
