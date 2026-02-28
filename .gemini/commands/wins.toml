@@ -1,9 +1,9 @@
 description = "Victoires de la semaine — commits, leçons, décisions"
 prompt = """
 Lis dans cet ordre :
-1. !{git log --oneline --since="7 days ago"}
-2. !{bash scripts/gemini-vault.sh sessions.md}
-3. !{bash scripts/gemini-daily.sh today}
+1. !{git --no-pager log --oneline --since="7 days ago"}
+2. !{bash.exe scripts/gemini-vault.sh sessions.md}
+3. !{bash.exe scripts/gemini-daily.sh today}
 
 Liste uniquement les victoires :
 - Features livrées ou bugs résolus (depuis les commits)

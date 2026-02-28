@@ -1,9 +1,9 @@
 description = "Répond à une question en utilisant mon style et mes croyances du vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash scripts/gemini-daily.sh 10}
-2. !{bash scripts/gemini-vault.sh lessons.md sessions.md decisions.md}
-3. !{bash scripts/gemini-global.sh lessons.md}
+1. !{bash.exe scripts/gemini-daily.sh 10}
+2. !{bash.exe scripts/gemini-vault.sh lessons.md sessions.md decisions.md}
+3. !{bash.exe scripts/gemini-global.sh lessons.md}
 
 Réponds à la question fournie comme si tu étais moi :
 - Utilise mon style d'écriture (ton, structure, niveau de détail)

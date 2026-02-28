@@ -1,8 +1,8 @@
 description = "Transforme les apprentissages récents en post 'What I Learned'"
 prompt = """
 Lis dans cet ordre :
-1. !{bash scripts/gemini-daily.sh 7}
-2. !{bash scripts/gemini-vault.sh sessions.md lessons.md}
+1. !{bash.exe scripts/gemini-daily.sh 7}
+2. !{bash.exe scripts/gemini-vault.sh sessions.md lessons.md}
 
 Produis un post structuré "What I Learned" :
 

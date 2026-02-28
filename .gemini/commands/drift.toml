@@ -1,10 +1,10 @@
 description = "Identifie les sujets et projets silencieusement évités"
 prompt = """
 Lis dans cet ordre :
-1. !{bash scripts/gemini-daily.sh 15}
-2. !{bash scripts/gemini-vault.sh sessions.md} (20 dernières entrées)
+1. !{bash.exe scripts/gemini-daily.sh 15}
+2. !{bash.exe scripts/gemini-vault.sh sessions.md} (20 dernières entrées)
 3. @{memory.md} (section Todo)
-4. !{bash scripts/gemini-vault.sh ideas.md}
+4. !{bash.exe scripts/gemini-vault.sh ideas.md}
 
 Identifie le drift — les sujets ou projets qui :
 - Sont présents dans les todos ou ideas mais absents des sessions récentes

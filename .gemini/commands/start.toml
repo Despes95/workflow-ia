@@ -1,12 +1,11 @@
-description = "Démarre une session avec contexte complet + git status"
+description = "Démarre une session avec contexte complet + git --no-pager status"
 prompt = """
 Lis dans cet ordre :
-1. @{AGENTS.md}
-2. @{memory.md}
-3. !{bash scripts/gemini-vault.sh index.md architecture.md}
+1. @{memory.md}
+2. !{bash.exe scripts/gemini-vault.sh index.md architecture.md}
 
-!{git status}
-!{git log --oneline -10}
+!{git --no-pager status}
+!{git --no-pager log --oneline -10}
 
 Résume en 5 points :
 1. État actuel du projet

@@ -112,7 +112,8 @@
 - Gemini `!{bash -c "cat ...$(basename $(pwd))/..."}` = résolution dynamique du nom de projet 🌐
 - `git config core.hooksPath scripts/hooks` = alternative élégante à la copie dans `.git/hooks/` (F2) 🌐
 - `grep` sur emojis UTF-8 échoue dans tous les modes de pipe Git Bash (-a, -F, -P, LC_ALL) — seule solution : `[[ "$line" == *emoji* ]]` bash native 🌐
-- Gemini CLI Windows : `!{bash -c 'source ...; cmd'}` casse sous PowerShell. Solution : scripts helpers `scripts/gemini-*.sh` appelés via `!{bash scripts/gemini-vault.sh file.md}` — commande simple, PowerShell ne l'interprète pas 🌐
+- Gemini CLI Windows : `!{bash -c 'source ...; cmd'}` casse sous PowerShell. Solution : scripts helpers `scripts/gemini-*.sh` appelés via `!{bash.exe scripts/gemini-vault.sh file.md}` — utiliser `bash.exe` (pas seulement `bash`) garantit que PowerShell n'intercepte pas les commandes internes (comme `cat`). 🌐
+- Gemini CLI : les commandes `git status`, `git log` et `git diff` dans les blocs `!{}` gèlent l'interface si un pager (`less`) est activé. Toujours utiliser `git --no-pager <cmd>` pour une exécution non-interactive. 🌐
 - `awk 'NF && !seen[$0]++'` + écriture atomique `.tmp`/`mv` = dédup robuste compatible `set -euo pipefail` 🌐
 - `$ARGUMENTS`/`{{args}}` en début de prompt = cache miss — toujours en dernière ligne des custom commands 🌐
 - GitHub MCP : `@github/mcp-server` absent de npm — utiliser `@modelcontextprotocol/server-github` (déprécié mais fonctionnel) ou Docker/binaires GitHub 🌐

@@ -1,9 +1,9 @@
 description = "Pression-test mes croyances — contre-exemples depuis mes propres notes"
 prompt = """
 Lis :
-1. !{bash scripts/gemini-daily.sh 10}
-2. !{bash scripts/gemini-global.sh lessons.md}
-3. !{bash scripts/gemini-vault.sh lessons.md decisions.md}
+1. !{bash.exe scripts/gemini-daily.sh 10}
+2. !{bash.exe scripts/gemini-global.sh lessons.md}
+3. !{bash.exe scripts/gemini-vault.sh lessons.md decisions.md}
 
 Prends une croyance ou un pattern que je semble avoir
 (ex : "je préfère toujours X", "je déteste Y", "je contourne toujours Z").

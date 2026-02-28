@@ -3,13 +3,13 @@ prompt = """
 Exécute dans l'ordre :
 
 1. Lance la sync Obsidian :
-   !{bash scripts/obsidian-sync.sh}
+   !{bash.exe scripts/obsidian-sync.sh}
 
 2. Commit memory.md :
-   !{git add memory.md ; git commit -m "chore: backup session"}
+   !{git --no-pager add memory.md ; git commit -m "chore: backup session"}
 
 3. Push le repo :
-   !{git push}
+   !{git --no-pager push}
 
 4. Confirme : "✅ Sauvegarde terminée — vault + git à jour"
 

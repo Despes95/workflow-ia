@@ -2,7 +2,7 @@ description = "Inbox QuestionsIA avec routing intelligent + patterns du projet c
 prompt = """
 ## Phase 0 — Inbox QuestionsIA
 
-Lis : !{bash scripts/gemini-global.sh QuestionsIA.md}
+Lis : !{bash.exe scripts/gemini-global.sh QuestionsIA.md}
 
 Si le fichier contient des URLs ou des idées :
 - Pour chaque item : fetch le README ou la page principale si c'est une URL
@@ -31,8 +31,8 @@ Si le fichier est vide : passe directement à Phase 1.
 ## Phase 1 — Patterns du projet courant
 
 Lis :
-1. !{bash scripts/gemini-daily.sh 15}
-2. !{bash scripts/gemini-vault.sh sessions.md lessons.md ideas.md}
+1. !{bash.exe scripts/gemini-daily.sh 15}
+2. !{bash.exe scripts/gemini-vault.sh sessions.md lessons.md ideas.md}
 5. @{memory.md}
 
 Analyse les patterns récurrents et les problèmes contournés plutôt que résolus.

@@ -14,7 +14,7 @@ Exécute dans cet ordre :
 2. Mets à jour le reste de memory.md (Focus Actuel, Todo, Bugs si besoin)
 
 3. Fais un commit :
-   !{git add memory.md ; git commit -m "chore: handoff — momentum capturé"}
+   !{git --no-pager add memory.md ; git commit -m "chore: handoff — momentum capturé"}
 
 4. Donne-moi le prompt bootstrap exact à coller dans l'IA suivante :
    ```

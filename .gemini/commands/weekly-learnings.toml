@@ -1,8 +1,8 @@
 description = "Compile les insights de la semaine depuis les daily notes"
 prompt = """
 Lis :
-1. !{bash scripts/gemini-daily.sh 7}
-2. !{bash scripts/gemini-vault.sh sessions.md} (7 dernières entrées)
+1. !{bash.exe scripts/gemini-daily.sh 7}
+2. !{bash.exe scripts/gemini-vault.sh sessions.md} (7 dernières entrées)
 
 Compile un résumé hebdomadaire prêt à l'export :
 
