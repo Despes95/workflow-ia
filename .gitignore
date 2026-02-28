@@ -26,3 +26,6 @@ _setup/
 
 # Improve inbox (volatile, local — traité via /review-improve)
 improve-inbox.md
+
+# OpenCode TUI config (local)
+tui.json

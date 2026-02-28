@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (Fix I2-I4 robustesse vault + T3 Claude + F5 stats/nav ✅)
-**Dernier outil CLI utilisé :** Gemini CLI
+**Dernière mise à jour :** 2026-02-28 (I4+I1 tests shell 22/22 ✅ + /simplify → test_helpers.sh)
+**Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — scripts robustesse I2-I4 + stats vault F5 OK
-- **Priorité immédiate** : I1 (tests shell critiques) + D1-D2 (Polaris & Focus command)
-- **Horizon moyen** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + J2/J3 à explorer
+- **État** : Infrastructure stable ✅ — I1+I4 ✅ tests shell 22/22 + gemini-git-info.sh
+- **Priorité immédiate** : Audits repos GitHub (G3, H1, H2, H3) — P3 quand disponible
+- **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
 
 ---
 
@@ -39,7 +39,11 @@
 - `.claude/commands/*.md` — 33 custom slash commands Claude — Stable
 - `.gemini/commands/*.toml` — 33 commands Gemini CLI (TOML) — Stable
 - `.opencode/commands/*.md` — 33 commands OpenCode (MD) — Stable
-- `scripts/gemini-*.sh` — 4 helpers d'accès vault pour Gemini CLI Windows — Stable
+- `scripts/gemini-*.sh` — 5 helpers accès vault + git pour Gemini CLI Windows — Stable
+- `scripts/gemini-git-info.sh` — git --no-pager centralisé (évite freezes) — Stable
+- `tests/test_helpers.sh` — helpers partagés ok/fail/assert_* — Stable
+- `tests/test_check_memory.sh` — tests unitaires check_memory.sh (5 cas) — Stable
+- `tests/test_sync.sh` — tests helpers obsidian-sync.sh (5 cas) — Stable
 - `improve-inbox.md` — inbox rapports /improve multi-IA (gitignored) — Stable
 - `vault/backlog.md` — backlog actif améliorations (vault, hors repo) — Stable
 - `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Stable
@@ -62,11 +66,11 @@
 
 ### Historique
 
-- 2026-02-28 | Claude Code | /ideas QuestionsIA (T0-T3 setup terminal+Tokscale+Context7, N1, YouTube CLI) + conseil terminal | Stable
 - 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
 - 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
 - 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 33 commandes | Stable
+- 2026-02-28 | Claude Code | I4+I1 tests shell (22/22 ✅) + /simplify → test_helpers.sh | Stable
 
 ---
 
@@ -107,6 +111,10 @@
 - Python Windows `print()` avec emojis → `UnicodeEncodeError` cp1252 — toujours `PYTHONIOENCODING=utf-8` ou supprimer les emojis des print() 🌐
 - `/simplify` lit `git diff HEAD~1..HEAD` uniquement — vision micro post-edit, pas état global — utiliser `/audit` pour une vue macro du projet 🌐
 - `awk 'NF && !seen[$0]++'` supprime les lignes vides intentionnelles (bug K3 obsidian-sync.sh) — anti-pattern pour sections avec espacement délibéré 🌐
+- `grep -qF` (fixed-string) vs `grep -q` (regex) : normaliser sur `-qF` dans les tests bash — évite les faux matchs sur caractères spéciaux 🌐
+- `grep -qF "## Session 1"` matche aussi "## Session 10" — toujours `grep -q "^pattern$"` pour vérifier une ligne exacte 🌐
+- `grep -m1` au lieu de `grep | head -1` = un subprocess de moins, arrêt dès le 1er match 🌐
+- Bash tests : lire un fichier une fois dans `$content`, réutiliser — évite N subprocesses pour N assertions sur le même fichier 🌐
 
 ---
 
@@ -120,6 +128,8 @@
 - GitHub MCP configuré dans `~/.claude.json` via PAT — pas de Copilot requis, fonctionne globalement
 - `approvalMode: "yolo"` dans `~/.gemini/settings.json` — confiance totale, workflow perso uniquement
 - Cascade analyse : `/simplify` → `/audit` → `/improve` — voir section dédiée dans `AGENTS.md`
+- `tests/test_helpers.sh` = source unique helpers de test (ok/fail/assert_*) — sourcer dans tout nouveau script de test
+- Fonctions obsidian-sync.sh copiées inline dans test_sync.sh (pas sourcées) — évite sourcing config.env/iCloud, compromis intentionnel
 
 ---
 
