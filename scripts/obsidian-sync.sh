@@ -175,7 +175,11 @@ BUGS_CLEANED=$(extract_section "🐛" | grep -v '^[[:space:]]*$' | grep -v -i 'a
 LESSONS_CLEANED=$(extract_section "📝" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
 DECISIONS_CLEANED=$(extract_section "📚" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
 
-# ── ÉTAPE 7 : snapshot dans sessions.md (avec callouts + wikilinks) ───────────
+# ── ÉTAPE 7 : snapshot PARTIEL dans sessions.md (Focus + Momentum + Architecture) ──
+FOCUS_SNAP=$(extract_section "🎯")
+MOMENTUM_SNAP=$(extract_section "🧠")
+ARCH_SNAP=$(extract_section "🏗️")
+
 {
   echo ""
   echo "---"
@@ -184,8 +188,9 @@ DECISIONS_CLEANED=$(extract_section "📚" | grep -v '^[[:space:]]*$' | grep -v 
   echo ""
   echo "> Sync automatique — ${TIMESTAMP}"
   echo ""
-  cat "$MEMORY_FILE"
-  echo ""
+  [[ -n "$FOCUS_SNAP" ]]    && { echo "### 🎯 Focus Actuel"; echo "$FOCUS_SNAP"; echo ""; }
+  [[ -n "$MOMENTUM_SNAP" ]] && { echo "### 🧠 Momentum";     echo "$MOMENTUM_SNAP"; echo ""; }
+  [[ -n "$ARCH_SNAP" ]]     && { echo "### 🏗️ Architecture"; echo "$ARCH_SNAP"; echo ""; }
   if [[ -n "$LESSONS_CLEANED" ]]; then
     echo "> [!insight]"
     echo "$LESSONS_CLEANED" | while IFS= read -r l; do echo "> $l"; done
