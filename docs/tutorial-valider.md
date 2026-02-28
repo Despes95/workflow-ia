@@ -20,6 +20,10 @@
 | Phase 4 — Connexion vault | ✅ Stable | `ecced2e` | ~20 min |
 | Phase 5 — Custom slash commands | ✅ Stable | `ecced2e` | ~30 min |
 | Phase 8 — Bootstrapper new-project | ✅ Stable | `9b291aa` | ~20 min |
+| Phase 9 — /improve | ✅ Stable | session 2026-02-28 | ~30 min |
+| Phase 10 — Vault infra | ✅ Stable | session 2026-02-28 | ~45 min |
+| Phase 11 — Tests shell + git-info | ✅ Stable | `d31468a` | ~30 min |
+| Phase 12 — A-reste + F4 + G2/G5 | ✅ Stable | `190a50a` | ~20 min |
 
 ---
 
@@ -868,6 +872,9 @@ bash scripts/obsidian-sync.sh  # → crée /_forge/mon-projet/ dans le vault
 | 24 | `obsidian-sync.sh` ne vérifie pas si iCloud est accessible | I2 — validation pre-flight `timeout 3s ls "$FORGE_DIR"` |
 | 25 | `obsidian-sync.sh` : code dupliqué étapes 8-10 (append+dédup) | I3 — helper `append_section()` factorisé (~30 lignes gagnées) |
 | 26 | Vault files : pas de stats ni navigation | F5 — stats dynamiques + footer `[[index|🏠]]` dans chaque fichier |
+| 27 | A-reste : heredoc inline dans new-project.sh | scripts/templates/memory.md.tpl + sed — template externalisé |
+| 28 | Pas de validation wikilinks dans vault | F4 — /vault-check (34 commands × 3 outils) |
+| 29 | Pas d'évaluation rtk/cli-continues | G2/G5 — évaluation documentée, pertinents pour tokens/handoff |
 
 ---
 
@@ -972,3 +979,64 @@ tests/
 ```
 
 Usage : `bash tests/test_check_memory.sh && bash tests/test_sync.sh`
+
+---
+
+## Phase 12 — A-reste + F4 /vault-check + G2/G5 évaluation ✅ (session 2026-03-01)
+
+**Objectif :** Finaliser le template externalisé, ajouter une commande de vérification vault, évaluer deux outils pertinents.
+
+| Item | Fichier créé/modifié | Amélioration |
+|------|---------------------|--------------|
+| A-reste | `scripts/templates/memory.md.tpl` (nouveau) | Template externe pour bootstrap au lieu de heredoc dans new-project.sh |
+| A-reste | `scripts/new-project.sh` (modifié) | Utilise `sed` sur le template au lieu de heredoc inline |
+| F4 | `scripts/vault-check.sh` (nouveau) | Vérifie wikilinks `[[...]]` dans vault — exit 0 si OK, 1 si orphelins |
+| F4 | `.claude/commands/vault-check.md` (nouveau) | Commande Claude |
+| F4 | `.gemini/commands/vault-check.toml` (nouveau) | Commande Gemini |
+| F4 | `.opencode/commands/vault-check.md` (nouveau) | Commande OpenCode |
+| G2 | Évaluation rtk | Outil Rust Token Killer — 1566⭐, réduction 60-90% tokens CLI |
+| G5 | Évaluation cli-continues | Outil transfer sessions IA — 639⭐, crossClaude/Gemini/OpenCode |
+
+### Patterns réutilisables retenus
+
+- **Template externalisé** : `sed -e "s|PROJECT_NAME|$PROJECT_NAME|g" -e "s|DATE_PLACEHOLDER|$DATE|g" templates/memory.md.tpl` — plus propre que heredoc, versionnable
+- **Wikilinks validation** : `grep -oP '\[\[[^\]]+\]\]'` pour extractor, puis vérifier existence cible avec `-f` ou `-d`
+
+### Évaluations G2/G5
+
+**rtk (Rust Token Killer) :**
+- Repo : `rtk-ai/rtk`
+- Stars : 1566
+- Fonction : CLI proxy compressant les sorties de commandes avant reaches LLM
+- Économie : 60-90% tokens
+- Compatibilité : Claude Code, Cursor, Gemini CLI, Aider, Codex, Windsurf, Cline
+- À faire : installer via `cargo install rtk` ou leur installeur
+
+**cli-continues :**
+- Repo : `yigitkonur/cli-continues`
+- Stars : 639
+- Fonction : Transfère sessions IA entre outils (Claude, Copilot, Gemini, Codex, OpenCode, Droid, Cursor)
+- Capture : conversation, shell commands, file edits, reasoning blocks
+- À tester : `npx continues`
+
+### Structure scripts/templates/
+
+```
+scripts/
+├── templates/
+│   └── memory.md.tpl    # Template externe pour bootstrap
+```
+
+### Structure commands (34 maintenant)
+
+```
+.claude/commands/      # 34 fichiers .md
+.gemini/commands/       # 34 fichiers .toml
+.opencode/commands/     # 34 fichiers .md
+```
+
+Usage `/vault-check` :
+```bash
+/vault-check                          # Vérifie _forge/workflow-ia/
+/vault-check C:\path\to\vault        # Vérifie un autre vault
+```
