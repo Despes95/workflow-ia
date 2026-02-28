@@ -1,16 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-02-28 (Fix freeze /start — récursion ! { identifiée et nettoyée)
-**Dernier outil CLI utilisé :** Gemini CLI
+**Dernière mise à jour :** 2026-02-28 (/review-improve Phase 4 + /ideas routing 6 items)
+**Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **Mission en cours** : Résolution du freeze `/start` sous Windows 11 ✅
-- **Cause identifiée** : Récursion fatale — `@{memory.md}` contenait des motifs `! {` (exemples de commandes) que Gemini CLI tentait d'exécuter récursivement.
-- **Action corrective** : Désactivation des motifs `! {` dans les fichiers de contexte (remplacement par `! {` avec espace).
-- **Prochaine étape** : Validation de la commande `/start` nettoyée.
+- **État** : Infrastructure stable ✅ — mode optimisation/amélioration du backlog
+- **Priorité immédiate** : I1 (tests shell critiques) + D3-vérif (audit $ARGUMENTS réels dans 64 fichiers)
+- **Horizon moyen** : J2 (claude-code-templates 100+ agents) + J3 (MemMachine MCP) à explorer
 - **Zone sensible** : `memory.md` et `AGENTS.md` — NE JAMAIS utiliser le motif `! {` (sans espace) dans ces fichiers.
 
 ---
@@ -68,7 +67,7 @@
 - 2026-02-28 | Claude Code | Gemini helpers ×4, /improve-inbox + /review-improve ×3, yolo settings | Stable
 - 2026-02-28 | Claude Code | D1 Polaris.md + D2 /focus × 3 outils, 32 commandes | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable
-- 2026-02-28 | Claude Code | QuestionsIA inbox → /ideas routing 🔧🚀💰, GitHub MCP, audit 6 commandes | Stable
+- 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + AGENTS.md cascade | Stable
 
 ---
 
@@ -104,6 +103,9 @@
 - iCloud Drive Windows : La lecture de fichiers (cat) peut geler si le fichier est un "placeholder" non synchronisé. Utiliser `timeout 3s cat` dans les scripts helpers pour garantir un retour immédiat. 🌐
 - Git Bash Windows : Éviter `${HOME}` dans `config.env` car il peut être résolu avec des backslashes mal échappés (ex: `C:UsersDespes`). Préférer le chemin canonique Git Bash `/c/Users/Despes`. 🌐
 - `approvalMode: "yolo"` dans `~/.gemini/settings.json` = supprime tous les prompts d'autorisation `! {}` — fallback : `gemini --yolo` 🌐
+- `/ideas` routing : vision "réécriture complète" d'un projet = 🚀 futur projet, pas 🔧 amélioration — trop grand pour un backlog item normal 🌐
+- Outils MCP : toujours évaluer sous double angle (complément / remplacement) avant de router — le MCP natif change la catégorie de pertinence 🌐
+- Python Windows `print()` avec emojis → `UnicodeEncodeError` cp1252 — toujours `PYTHONIOENCODING=utf-8` ou supprimer les emojis des print() 🌐
 
 ---
 
@@ -116,6 +118,7 @@
 - Variables dynamiques (`$ARGUMENTS`, `{{args}}`) toujours en dernière ligne des custom commands
 - GitHub MCP configuré dans `~/.claude.json` via PAT — pas de Copilot requis, fonctionne globalement
 - `approvalMode: "yolo"` dans `~/.gemini/settings.json` — confiance totale, workflow perso uniquement
+- `/simplify` (post-edit micro) + `/audit` (session macro) + `/improve` (brainstorm) = cascade documentée dans `AGENTS.md`
 
 ---
 

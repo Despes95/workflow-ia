@@ -27,6 +27,16 @@
 - **Mode rapide** : `/context` → action → `/close`
 - **Mode urgence** : `/context` → action → commit manuel
 
+## Commandes d'analyse — quand utiliser quoi
+
+| Commande | Quand | Portée |
+|----------|-------|--------|
+| `/simplify` | Juste après avoir modifié du code | Micro — code récemment changé |
+| `/audit` | Session dédiée refactor/qualité | Macro — tout le projet |
+| `/improve` | Brainstorm améliorations futures | Prospectif — idées nouvelles |
+
+Usage en cascade recommandé : `/simplify` → `/audit` → `/improve`.
+
 ## Vault Obsidian
 
 Le vault `_forge/workflow-ia/` contient la mémoire long terme du projet.
