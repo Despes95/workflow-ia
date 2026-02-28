@@ -12,6 +12,18 @@ for section in "${SECTIONS[@]}"; do
   [ "$count" -gt 1 ] && echo "❌ DOUBLON : '$section' ($count fois)" && ERRORS=$((ERRORS+1))
 done
 
+# F3 — Vérification des 8 emojis d'ancrage (utilisés par obsidian-sync.sh)
+ANCHORS=("🎯" "🏗️" "📁" "📜" "🐛" "📝" "📚" "⛔")
+for emoji in "${ANCHORS[@]}"; do
+  found=0
+  while IFS= read -r line; do
+    if [[ "$line" =~ ^## ]] && [[ "$line" == *"$emoji"* ]]; then
+      found=1; break
+    fi
+  done < "$FILE"
+  [ "$found" -eq 0 ] && echo "❌ ANCRE MANQUANTE : '$emoji' absent d'un ## header" && ERRORS=$((ERRORS+1))
+done
+
 lines=$(wc -l < "$FILE")
 [ "$lines" -gt 120 ] && echo "⚠️  $lines lignes (limite recommandée : 100)"
 
