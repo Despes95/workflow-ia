@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 # gemini-git-info.sh — Centralise les appels Git pour Gemini CLI
 # Force --no-pager pour éviter les freezes sous Windows/PowerShell.
 # Usage: bash scripts/gemini-git-info.sh [status|log|diff]

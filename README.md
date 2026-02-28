@@ -1,34 +1,36 @@
 # workflow-ia
 
-> Système de workflow IA personnel — 31 commandes cross-outils
+> Système de workflow IA personnel — 33 commandes cross-outils
 
 ## Overview
 
-workflow-ia est un projet template pour valider le workflow IA du tuto v2.6. Il fournit un système de commands unifié pour **Claude Code**, **Gemini CLI** et **OpenCode**.
+workflow-ia est un projet template pour valider le workflow IA du tuto v2.6. Il fournit un système de commandes unifié pour **Claude Code**, **Gemini CLI** et **OpenCode**.
 
 ## Daily Notes
 
-Les commands Pensée lisent automatiquement tes daily notes Obsidian pour fournir un contexte plus riche. Le chemin est défini dans `scripts/config.env` via `DESPES_NOTES`.
+Les commandes Pensée lisent automatiquement tes daily notes Obsidian pour fournir un contexte plus riche. Le chemin est défini dans `scripts/config.env` via `DESPES_NOTES`.
 
-## Commands (31)
+## Commands (33)
 
-### DEV (12)
+### DEV (14)
 | Command | Description |
 |---------|-------------|
 | `/start` | Démarre une session — contexte complet + git status |
 | `/context` | Recharge le contexte du projet actif |
+| `/focus` | Recommande 1 action selon Polaris, l'énergie et le backlog |
 | `/today` | Rituel du matin — priorités du jour |
-| `/close` | Rituel de fin de journée — vault sync + commit |
+| `/close` | Rituel de fin de session — vault sync + commit |
 | `/close-day` | Revoit la journée, capture les apprentissages |
 | `/backup` | Sauvegarde vault + git push |
 | `/switch` | Passage de relais vers une autre IA |
 | `/schedule` | Planifie la journée selon tes patterns d'énergie |
 | `/7plan` | Reshapes les 7 prochains jours autour des sujets actifs |
 | `/map` | Vue topologique du vault |
-| `/improve` | Propose des améliorations techniques |
+| `/improve` | Propose des améliorations techniques (multi-rapports) |
 | `/audit` | Analyse bugs et refactorisation |
+| `/review-improve` | Analyse et route les rapports `/improve` vers le backlog |
 
-### PENSÉE (16)
+### PENSÉE (19)
 | Command | Description |
 |---------|-------------|
 | `/weekly-learnings` | Résumé hebdomadaire des insights |
@@ -47,6 +49,9 @@ Les commands Pensée lisent automatiquement tes daily notes Obsidian pour fourni
 | `/challenge` | Contre-teste une croyance avec tes propres notes |
 | `/ideas` | Améliorations depuis les patterns récurrents |
 | `/my-world` | Charge tous tes projets actifs |
+| `/check-in` | Note rapide sur l'énergie, le mode et le moral |
+| `/wins` | Capture les victoires de la journée |
+| `/debug` | Aide au débogage avec focus sur le contexte vault |
 
 ## Installation
 
@@ -61,7 +66,7 @@ cd workflow-ia
 #   DESPES_NOTES="${OBSIDIAN_BASE}/DespesNotes"
 nano scripts/config.env
 
-# 2. Installer les commands globalement (optionnel)
+# 2. Installer les commandes globalement (optionnel)
 bash scripts/install-commands.sh --all
 ```
 
@@ -82,36 +87,22 @@ Ce fichier est sourcé par `obsidian-sync.sh` et toutes les commandes Gemini/bas
 
 ```
 workflow-ia/
-├── .claude/commands/     # Commands Claude Code (.md)
-├── .gemini/commands/     # Commands Gemini CLI (.toml)
-├── .opencode/commands/  # Commands OpenCode (.md)
-├── docs/
-│   ├── commands-list.cmd # Liste des commands (Windows)
-│   └── prompts-et-commandes.md
+├── .claude/commands/     # Commandes Claude Code (.md)
+├── .gemini/commands/     # Commandes Gemini CLI (.toml)
+├── .opencode/commands/   # Commandes OpenCode (.md)
+├── docs/                 # Documentation et références
 ├── scripts/
-│   ├── obsidian-sync.sh  # Sync memory.md → vault
-│   ├── install-commands.sh
-│   ├── config.env        # Configuration centralisee
-│   └── check_memory.sh  # Garde-fou integrite
-├── tests/                # Tests unitaires shell
-├── memory.md             # Memory du projet
-├── AGENTS.md            # Regles communes IA
-├── CLAUDE.md            # Directives Claude
+│   ├── obsidian-sync.sh      # Sync memory.md → vault
+│   ├── install-commands.sh   # Déploiement multi-outils
+│   ├── check_memory.sh       # Garde-fou intégrité
+│   ├── gemini-git-info.sh    # Helper Git anti-freeze
+│   ├── gemini-*.sh           # Helpers d'accès au vault
+│   └── config.env            # Configuration centralisée
+├── tests/                # Tests unitaires shell (22/22)
+├── memory.md             # Mémoire court terme du projet
+├── AGENTS.md             # Source unique des règles (tous IA)
+├── CLAUDE.md             # Directive spécifique Claude
 └── README.md
-```
-workflow-ia/
-├── .claude/commands/     # Commands Claude Code (.md)
-├── .gemini/commands/     # Commands Gemini CLI (.toml)
-├── .opencode/commands/   # Commands OpenCode (.md)
-├── docs/
-│   ├── commands-list.cmd # Liste des commands (Windows)
-│   └── prompts-et-commandes.md
-├── scripts/
-│   ├── obsidian-sync.sh  # Sync memory.md → vault
-│   └── install-commands.sh
-├── memory.md
-├── AGENTS.md
-└── CLAUDE.md
 ```
 
 ## Stack

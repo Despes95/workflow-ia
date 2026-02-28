@@ -1,6 +1,6 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (/review-improve N1-N4 backlog + /ideas QuestionsIA 7 items → S1)
+**Dernière mise à jour :** 2026-03-01 (A-reste template, G2/G5 éval, F4 /vault-check)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
@@ -52,7 +52,12 @@
 - `.gitignore` — exclusions standards — Nouveau
 - `new-project.cmd` — launcher Windows bootstrap — Stable
 - `scripts/new-project.sh` — script bootstrap complet — Stable
+- `scripts/templates/memory.md.tpl` — template externe pour bootstrap — Stable
 - `scripts/config.env` — chemins vault portables ($HOME-based) — Stable
+- `scripts/vault-check.sh` — vérifie wikilinks dans vault — Stable
+- `.claude/commands/vault-check.md` — commande Claude — Stable
+- `.gemini/commands/vault-check.toml` — commande Gemini — Stable
+- `.opencode/commands/vault-check.md` — commande OpenCode — Stable
 
 ---
 
@@ -60,13 +65,14 @@
 
 ### Résumé global
 
-- Stack complète : 33 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
+- Stack complète : 34 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
 - Catégories SESSION/PROJET/VAULT. DespesNotes `_daily/` intégré dans commandes VAULT.
 - Infrastructure : hooks versionnés, _commons.sh, obsidian-sync refactorisé, rotation 10 sessions, _global auto.
 
 ### Historique
 
 - 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
+- 2026-03-01 | Claude Code | A-reste template + G2/G5 éval + F4 vault-check | Stable
 - 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
 - 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
 - 2026-02-28 | Claude Code | Fix 28 .toml Gemini $env:→bash, README config.env, backlog ✅ 6 items | Stable

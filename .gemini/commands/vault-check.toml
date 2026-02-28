@@ -1,0 +1,18 @@
+description = "Vérifie l'intégrité des wikilinks dans le vault Obsidian"
+
+[system]
+prompt = """
+Vérifie que tous les liens [[wikilinks]] dans le vault Obsidian pointent vers des fichiers existants.
+
+Usage: /vault-check [vault-path]
+
+Par défaut, vérifie _forge/workflow-ia/. Affiche résumé avec liens trouvés/orphelins.
+"""
+
+[tool]
+json = { command = "bash scripts/vault-check.sh", args = { } }
+
+[tool.args]
+type = "string"
+description = "Chemin optionnel du vault à vérifier"
+optional = true
