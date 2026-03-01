@@ -1,5 +1,21 @@
 #!/bin/bash
-# pre-commit — Garde-fou memory.md (hook versionné dans scripts/hooks/)
-# Appelle check_memory.sh depuis la racine du repo
+# pre-commit — Garde-fou memory.md + syntax bash (hook versionné dans scripts/hooks/)
 REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# 1. Intégrité memory.md
 bash "${REPO_ROOT}/scripts/check_memory.sh"
+
+# 2. Syntax bash — fichiers .sh stagés uniquement
+STAGED_SH=$(git diff --cached --name-only --diff-filter=ACM | grep '\.sh$')
+if [[ -n "$STAGED_SH" ]]; then
+  ERRORS=0
+  while IFS= read -r f; do
+    if ! bash -n "${REPO_ROOT}/$f" 2>/dev/null; then
+      echo "❌ Syntax bash : $f"
+      bash -n "${REPO_ROOT}/$f"
+      ERRORS=$((ERRORS+1))
+    fi
+  done <<< "$STAGED_SH"
+  [[ "$ERRORS" -gt 0 ]] && echo "⛔ $ERRORS fichier(s) avec erreurs syntax bash" && exit 1
+  echo "✅ Syntax bash OK ($(echo "$STAGED_SH" | wc -l | tr -d ' ') fichier(s))"
+fi
