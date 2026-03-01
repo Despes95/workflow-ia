@@ -1,21 +1,21 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (N1, N2, N4 fixés + Workflow /close Gemini stabilisé)
-**Dernier outil CLI utilisé :** Gemini CLI
+**Dernière mise à jour :** 2026-03-01 (N3 ✅ test_workflow_e2e.sh 12/12)
+**Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — 1 HIGH ouvert : N3 (Claude)
-- **Priorité Claude** : N3 test_workflow_e2e.sh + S1 statusline + audits GitHub (G3, H1, H2, H3)
+- **État** : Infrastructure stable ✅ — N3 fermé ✅ — plus aucun HIGH ouvert
+- **Priorité Claude** : S1 statusline + audits GitHub (G3, H1, H2, H3)
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
 
 ---
 
 ## 🧠 Momentum (Handoff)
 
-L'infrastructure Gemini CLI sur Windows est maintenant parfaitement stable grâce aux scripts helpers. Le prochain gros morceau est le test E2E (N3) côté Claude.
+—
 
 ---
 
@@ -69,11 +69,11 @@ L'infrastructure Gemini CLI sur Windows est maintenant parfaitement stable grâc
 
 ### Historique
 
+- 2026-03-01 | Claude Code | N3 ✅ test_workflow_e2e.sh 12/12 — couverture E2E complète | Stable
 - 2026-03-01 | Gemini CLI  | Fix N1, N2, N4 + Stabilisation workflow /close via gemini-close.sh | Stable
 - 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
 - 2026-03-01 | Claude Code | A-reste template + G2/G5 éval + F4 vault-check | Stable
 - 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
-- 2026-02-28 | Claude Code | /review-improve Ph4 (C/A-reste ✅, I1-I4, D3-vérif) + /ideas 6 items + table /simplify+/audit+/improve | Stable
 
 ---
 
