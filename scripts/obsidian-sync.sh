@@ -51,6 +51,24 @@ extract_section() {
   echo "$section"
 }
 
+# ── HELPER : extract_diff_section (G5 — Incrémental) ──────────────────────────
+extract_diff_section() {
+  local pattern="$1"
+  # echo "DEBUG: Looking for $pattern" >&2
+  git --no-pager diff -U10000 HEAD "$MEMORY_FILE" 2>/dev/null | awk -v pat="$pattern" '
+    BEGIN { in_sec=0 }
+    # Détection du début de section (header peut être inchangé " " ou ajouté "+")
+    $0 ~ "^[+ ]##" && $0 ~ pat { in_sec=1; next }
+    # Détection de la fin de section (prochain header)
+    in_sec && $0 ~ "^[+ ]##" { in_sec=0 }
+    # Si on est dans la section, on ne garde que les lignes ajoutées (commençant par +)
+    # On ignore le header du diff (+++)
+    in_sec && $0 ~ "^\\+" && $0 !~ "^\\+\\+\\+" { 
+      print substr($0, 2) 
+    }
+  '
+}
+
 # ── HELPER : append_section (I3) ──────────────────────────────────────────────
 # Ajoute du contenu à un fichier, déduplique et maintient les lignes vides
 append_section() {
@@ -175,15 +193,15 @@ init_file "${PROJECT_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
 > Pistes et idées à explorer
 "
 
-# ── ÉTAPES 4-6 : extraction sections memory.md ────────────────────────────────
-BUGS_CLEANED=$(extract_section "🐛" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' | grep -v '^---' || true)
-LESSONS_CLEANED=$(extract_section "📝" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
-DECISIONS_CLEANED=$(extract_section "📚" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
+# ── ÉTAPES 4-6 : extraction sections memory.md (Incrémental G5) ───────────────
+BUGS_CLEANED=$(extract_diff_section "Bugs" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' | grep -v '^---' || true)
+LESSONS_CLEANED=$(extract_diff_section "Le.ons" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
+DECISIONS_CLEANED=$(extract_diff_section "D.cisions" | grep -v '^[[:space:]]*$' | grep -v -i 'aucune décision' | grep -v '^---' || true)
 
 # ── ÉTAPE 7 : snapshot PARTIEL dans sessions.md ───────────────────────────────
-FOCUS_SNAP=$(extract_section "🎯")
-MOMENTUM_SNAP=$(extract_section "🧠")
-ARCH_SNAP=$(extract_section "🏗️")
+FOCUS_SNAP=$(extract_section "Focus")
+MOMENTUM_SNAP=$(extract_section "Momentum")
+ARCH_SNAP=$(extract_section "Architecture")
 
 {
   echo ""

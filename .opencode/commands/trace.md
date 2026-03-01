@@ -1,21 +1,11 @@
 ---
-description: Évolution d'une décision dans le temps
+description: Trace l'exécution d'un script ou commande
 ---
 
-Sujet à tracer : $ARGUMENTS
+Trace et explique pas à pas l'exécution d'un script ou commande.
 
-Lis dans l'ordre :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (toutes les notes)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md
-4. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md
-
-Trace l'évolution de "$ARGUMENTS" dans le temps.
-
-Format de réponse :
-- Timeline chronologique (date → ce qui s'est passé)
-- Alternatives rejetées et pourquoi
-- Ce qui a changé entre le début et maintenant
-- État actuel et direction probable
-
-⚠️ Ne touche à aucun fichier.
+Affiche :
+1. Commandes exécutées
+2. Variables d'environnement pertinentes
+3. Points de décision
+4. Sortie attendue vs réelle

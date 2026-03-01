@@ -93,7 +93,6 @@
 
 ## 📝 Leçons apprises
 
-- Test G5 : synchronisation incrémentale via git diff fonctionnelle 🌐
 - **SÉCURITÉ CRITIQUE** : Gemini CLI exécute récursivement les motifs `! {` trouvés dans les fichiers chargés par `@{}`. Ne JAMAIS écrire ce motif dans `memory.md` ou `AGENTS.md`. Toujours ajouter un espace : `! {`. 🌐
 - Gemini CLI : les chemins absolus hors workspace sont interdits avec `@{}`. Utiliser `! {type \"...\"}` (Windows) ou `! {cat ...}` (Linux/Mac) pour contourner la sécurité via le shell. 🌐
 - Migration Gemini → `$env:FORGE_DIR/$env:PROJECT_NAME` casse tout : ces vars PowerShell ne sont jamais définies. Pattern correct : `! {bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/file.md"'}` 🌐

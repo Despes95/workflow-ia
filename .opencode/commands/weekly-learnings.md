@@ -1,30 +1,5 @@
 ---
-description: Compile les insights de la semaine depuis les daily notes
+description: Synthèse hebdomadaire des apprentissages
 ---
 
-Lis :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (7 dernières notes)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md (7 dernières entrées)
-
-Compile un résumé hebdomadaire prêt à l'export :
-
-## Semaine du [date de début] au [date de fin]
-
-**Ce qui a avancé**
-- [projets ou sujets qui ont progressé]
-
-**Ce qui a été appris**
-- [insights et leçons de la semaine]
-
-**Décisions prises**
-- [choix importants documentés cette semaine]
-
-**Ce qui reste ouvert**
-- [questions non résolues, travail en cours]
-
-**Insight de la semaine**
-> [la leçon la plus importante en une phrase]
-
-Ton : synthétique, factuel, exportable pour un récap personnel ou professionnel.
-
-⚠️ Ne touche à aucun fichier.
+Génère une synthèse hebdomadaire depuis memory.md et sessions.md vault.

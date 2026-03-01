@@ -1,18 +1,7 @@
 ---
-description: Pression-test mes croyances — contre-exemples depuis mes propres notes
+description: Challenge une décision ou assumption
 ---
 
-Lis :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (10 dernières notes)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md
-4. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md
+Challenge une décision ou assumption récente.
 
-Prends une croyance ou un pattern que je semble avoir
-(ex : "je préfère toujours X", "je déteste Y", "je contourne toujours Z").
-Challenge-la avec des contre-exemples tirés de mes propres notes.
-Pose-moi 2-3 questions qui me forcent à clarifier ou à faire évoluer cette croyance.
-
-Sois bienveillant mais direct.
-
-⚠️ Ne touche à aucun fichier.
+Questionne les présupposés et propose des alternatives.

@@ -1,18 +1,5 @@
 ---
-description: Patterns cross-projets — compare workflow-ia avec les leçons globales
+description: Connecte le projet au vault global
 ---
 
-Lis :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (10 dernières notes)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md
-4. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md
-
-Compare les patterns du projet actuel avec les patterns globaux.
-
-Identifie :
-1. Les leçons du projet actuel qui méritent d'être promues en leçons globales (🌐)
-2. Les patterns globaux qui s'appliquent à des risques visibles dans le projet actuel
-3. Une suggestion d'amélioration du workflow basée sur l'historique cross-projets
-
-⚠️ Ne touche à aucun fichier. Présente les suggestions, attends validation avant toute écriture.
+Crée des liens entre le projet actif et le vault global (Decisions, Bugs, Lessons).

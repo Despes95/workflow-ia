@@ -1,20 +1,7 @@
 ---
-description: Répond à une question en utilisant mon style et mes croyances du vault
+description: Mode fantôme — analyse sans modifier
 ---
 
-Lis dans cet ordre :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (10 dernières notes)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md (15 dernières entrées)
-4. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md
-5. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md
+Analyse le projet SANS aucune modification.
 
-Question à traiter : $ARGUMENTS
-
-Réponds à cette question comme si tu étais moi :
-- Utilise mon style d'écriture (ton, structure, niveau de détail)
-- Appuie-toi sur mes croyances documentées dans les notes
-- Raisonne à ma façon (exemples typiques, analogies récurrentes)
-- Cite la source dans le vault quand c'est possible (ex: "comme noté dans sessions.md...")
-
-⚠️ Ne touche à aucun fichier.
+Lis les fichiers nécessaires et fournis ton analyse.

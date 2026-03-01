@@ -1,20 +1,10 @@
 ---
-description: Extrait les idées des daily notes et propose des titres de notes permanentes
+description: Promouvoir une feature du backlog vers prod
 ---
 
-Lis dans cet ordre :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (15 dernières notes)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md (10 dernières entrées)
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/ideas.md
+Aide à promouvoir une feature du backlog vers la production.
 
-Identifie les idées qui méritent de devenir des notes permanentes :
-- Idées répétées dans plusieurs sessions (signal de persistance)
-- Idées assez mûres pour une note standalone
-- Fragments d'insights qui se complèteraient en note complète
-
-Pour chaque idée candidate :
-- Propose un titre de note permanente (style Zettelkasten : affirmation courte)
-- Résume l'idée en 2-3 phrases
-- Identifie les notes existantes auxquelles elle devrait être liée
-
-⚠️ Ne touche à aucun fichier — propose seulement.
+Étapes :
+1. Lis le backlog
+2. Identifie les critères de done
+3. Propose les vérifications nécessaires

@@ -1,18 +1,9 @@
 ---
-description: Sauvegarde complète du système — vault + git
+description: Backup complet du projet (zip + git push)
 ---
 
-Exécute dans l'ordre :
+1. Crée un backup zip du projet (excluant .git, node_modules, __pycache__)
+2. Sauvegarde dans un dossier backups/ avec date
+3. Commit et push si nécessaire
 
-1. Lance la sync Obsidian :
-   !bash scripts/obsidian-sync.sh
-
-2. Commit memory.md :
-   !git add memory.md && git commit -m "chore: backup session"
-
-3. Push le repo :
-   !git push
-
-4. Confirme : "✅ Sauvegarde terminée — vault + git à jour"
-
-⚠️ Si git push échoue (pas de remote configuré), arrête et signale l'erreur.
+⚠️ Utilise uniquement les fichiers existants, ne crée pas de nouveaux fichiers.

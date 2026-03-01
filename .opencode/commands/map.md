@@ -1,20 +1,11 @@
 ---
-description: Vue topologique du vault : clusters, thèmes, relations
+description: Affiche la carte des fichiers du projet
 ---
 
-Lis dans cet ordre :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md (5 dernières entrées)
-4. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md
-5. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/decisions.md
+Liste les fichiers du projet par catégorie :
+- Scripts
+- Tests
+- Config
+- Docs
 
-Produis une vue topologique :
-- Quels thèmes dominent le vault ?
-- Quels clusters d'idées existent (groupes de concepts liés) ?
-- Comment les grandes idées se relient-elles entre elles ?
-- Quelles zones sont denses ? Quelles zones sont isolées ou sous-développées ?
-
-Présente comme une carte mentale textuelle avec des nœuds et des connexions.
-
-⚠️ Ne touche à aucun fichier.
+Affiche les dépendances si pertinent.

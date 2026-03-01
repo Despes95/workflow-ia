@@ -35,7 +35,7 @@ Après avoir présenté le rapport dans la session, **appende-le** dans `improve
 (racine du projet) avec ce format exact :
 
 ```
-## Rapport /audit — OpenCode — [DATE_AUJOURD'HUI]
+## Rapport /audit — OpenCode — 2026-03-01
 
 [reproduis ici le rapport complet]
 

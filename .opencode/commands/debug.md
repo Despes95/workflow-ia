@@ -1,28 +1,12 @@
 ---
-description: Analyse un bug précis — contexte, hypothèses, prochaine action
+description: Aide au debugging (analyse erreur + propose solutions)
 ---
 
-Bug décrit : $ARGUMENTS
+Analyse l'erreur/problème décrit et propose des solutions.
 
-Lis dans cet ordre :
-1. Le(s) fichier(s) mentionné(s) dans la description
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/bugs.md
-3. @memory.md
+Format attendu :
+1. Description de l'erreur
+2. Contexte (commande, fichier, ligne)
+3. Solutions potentielles avec优先级
 
-Structure ta réponse :
-
-## Contexte
-Fichier(s) impliqué(s), fonction(s) concernée(s)
-
-## Symptôme
-Ce qui se passe vs ce qui devrait se passer
-
-## 3 Hypothèses (de la plus probable à la moins probable)
-1. ...
-2. ...
-3. ...
-
-## Prochaine action
-La plus petite action pour confirmer l'hypothèse 1
-
-⚠️ Ne touche à aucun fichier — analyse seulement.
+Lis d'abord les fichiers pertinents pour comprendre le contexte.

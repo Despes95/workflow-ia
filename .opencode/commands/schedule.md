@@ -1,16 +1,7 @@
 ---
-description: Planifie la journée selon les priorités et patterns d'énergie du vault
+description: Affiche ou planifie des tâches
 ---
 
-Lis dans cet ordre :
-1. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/sessions.md (3 dernières entrées)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/lessons.md
-3. @memory.md (section Focus Actuel)
+Lis @memory.md pour le contexte actuel.
 
-Génère un planning de la journée :
-- Identifie les priorités réelles (pas les intentions)
-- Repère les patterns d'énergie observés dans les sessions
-- Propose des blocs de travail alignés sur ces patterns
-- Signale ce qui risque d'être évité ou procrastiné
-
-⚠️ Ne touche à aucun fichier.
+Affiche le schedule/todo actuel ou propose d'en créer un.

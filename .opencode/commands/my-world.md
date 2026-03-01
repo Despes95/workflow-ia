@@ -1,29 +1,11 @@
 ---
-description: Charge mon monde entier — tous projets actifs + vault global
+description: Mode développement intensif — contexte complet + dev
 ---
 
-Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
+Mode développement intensif :
+1. Lis @memory.md (Focus + Momentum)
+2. Lis vault (index + architecture)
+3. Git status + log
+4. Prêt pour développement
 
-## 1. Daily Notes
-Lis :
-- @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/ (7 dernières notes)
-
-## 2. Vault global
-Lis :
-- @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md
-- @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/index.md
-
-## 3. Projets actifs (workflow-ia)
-Lis :
-- @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md
-- @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md
-
-## 4. Résumé
-Réponds avec exactement 5 points :
-1. Projet le plus actif en ce moment + son état
-2. Ce qui bloque ou risque de bloquer
-3. Pattern récurrent des dernières sessions
-4. Une connexion entre deux projets/idées que tu vois dans le vault
-5. La prochaine action logique
-
-⚠️ Ne touche à aucun fichier. Tu lis, tu résumes, tu poses une question max.
+⚠️ Ne modifie que les fichiers demandés par l'utilisateur.
