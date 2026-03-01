@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (B-reste ✅ Gemini | G4+G3-bis+O1 ✅ OpenCode | K1+J1 ✅ Claude)
-**Dernier outil CLI utilisé :** OpenCode
+**Dernière mise à jour :** 2026-03-01 (Phase 14 complète — backlog vidé ✅)
+**Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — K1 safety-guard global actif
-- **Priorité Claude** : audits G3-H1-H2-H3-J2-J3 ✅ — K2/K3/K4 en backlog
-- **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
+- **État** : Backlog quasi vide ✅ — K1+K2+K3+G4+G3-bis+B-reste+F4 livrés
+- **MCPs actifs** : Context7 ✅ + DeepWiki ✅ (scope C:\IA)
+- **User actions** : T0 (Windows Terminal UTF-8 + Starship) — seul item restant
 
 ---
 
@@ -78,11 +78,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | T1 Tokscale + T2 Context7 MCP + K4 DeepWiki MCP installés | Stable
 - 2026-03-01 | OpenCode | O1 tests Python generate_commands.py (10 cas) + vault_sync.py (13 cas) | Stable
 - 2026-03-01 | Gemini CLI  | B-reste (nexus_hive/openfun) + F4 Fix vault-check.toml + Pre-commit syntax | Stable
 - 2026-03-01 | Claude Code | Audits G3-H1-H2-H3-J2-J3 + K1 safety-guard global + J1 README /simplify | Stable
 - 2026-03-01 | OpenCode | G4 generate_commands.py SSoT + G3-bis vault_sync.py prototype | Stable
-- 2026-03-01 | Claude Code | S1 ✅ statusline (Python+bash, 4 scénarios) + N3 ✅ E2E 12/12 | Stable
 - 2026-03-01 | Gemini CLI  | Fix N1, N2, N4 + Stabilisation workflow /close via gemini-close.sh | Stable
 
 ---
