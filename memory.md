@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (N3 ✅ test_workflow_e2e.sh 12/12)
+**Dernière mise à jour :** 2026-03-01 (N3 ✅ + S1 ✅ statusline)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — N3 fermé ✅ — plus aucun HIGH ouvert
-- **Priorité Claude** : S1 statusline + audits GitHub (G3, H1, H2, H3)
+- **État** : Infrastructure stable ✅ — N3 ✅ + S1 ✅ — aucun HIGH ouvert
+- **Priorité Claude** : audits GitHub (G3, H1, H2, H3)
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
 
 ---
@@ -69,7 +69,7 @@
 
 ### Historique
 
-- 2026-03-01 | Claude Code | N3 ✅ test_workflow_e2e.sh 12/12 — couverture E2E complète | Stable
+- 2026-03-01 | Claude Code | S1 ✅ statusline (Python+bash, 4 scénarios) + N3 ✅ E2E 12/12 | Stable
 - 2026-03-01 | Gemini CLI  | Fix N1, N2, N4 + Stabilisation workflow /close via gemini-close.sh | Stable
 - 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
 - 2026-03-01 | Claude Code | A-reste template + G2/G5 éval + F4 vault-check | Stable
