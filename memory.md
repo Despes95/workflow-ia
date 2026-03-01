@@ -131,6 +131,7 @@
 - Bash tests : lire un fichier une fois dans `$content`, réutiliser — évite N subprocesses pour N assertions sur le même fichier 🌐
 - 12 tests E2E valident le workflow complet (sync → vault → rotation → _global) 🌐
 - `/review-improve` : items LOW = vivier v2.md, items HIGH = backlog v1 — filtre naturel anti-pollution du backlog 🌐
+- `/ideas` workflow voulu : rapport d'abord → validation utilisateur → PUIS écriture fichiers + effacement QuestionsIA (pas tout en un seul pass) 🌐
 
 ---
 
