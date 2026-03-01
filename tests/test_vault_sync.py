@@ -287,7 +287,7 @@ def test_T12_update_index_stats():
         
         index_file = Path(tmpdir) / "index.md"
         index_file.write_text(
-            "> Derni\u00e8re sync : 2026-01-01 00:00\n-**Sessions**: 5\n-**Le\u00e7ons**: 3\n-**Bugs r\u00e9solus**: 2\n",
+            "> Derni\u00e8re sync : 2026-01-01 00:00\n- **Sessions**: 5\n- **Le\u00e7ons**: 3\n- **Bugs r\u00e9solus**: 2\n",
             encoding="utf-8"
         )
         

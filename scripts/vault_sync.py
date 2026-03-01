@@ -122,20 +122,26 @@ def update_index_stats(index_file, session_count, lesson_count, bug_count):
         content
     )
     content = re.sub(
-        r"-\*\*Sessions\*\*: \d+",
-        f"-**Sessions**: {session_count}",
+        r"- \*\*Sessions\*\*: \d+",
+        f"- **Sessions**: {session_count}",
         content
     )
     content = re.sub(
-        r"-\*\*Leçons\*\*: \d+",
-        f"-**Leçons**: {lesson_count}",
+        r"- \*\*Leçons\*\*: \d+",
+        f"- **Leçons**: {lesson_count}",
         content
     )
     content = re.sub(
-        r"-\*\*Bugs résolus\*\*: \d+",
-        f"-**Bugs résolus**: {bug_count}",
+        r"- \*\*Bugs résolus\*\*: \d+",
+        f"- **Bugs résolus**: {bug_count}",
         content
     )
+    if "- **Sessions**:" not in content:
+        content = re.sub(
+            r"(> Dernière sync : .*)",
+            f"\\1\n- **Sessions**: {session_count}\n- **Leçons**: {lesson_count}\n- **Bugs résolus**: {bug_count}",
+            content
+        )
     
     with open(index_file, "w", encoding="utf-8") as f:
         f.write(content)
