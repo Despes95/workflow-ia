@@ -1,6 +1,6 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (L3+M5+G5+O2 ✅ — backlog v1 vidé — AGENTS.md enrichi)
+**Dernière mise à jour :** 2026-03-01 (S1 opencode-mem → backlog v2 HNSW storage layer)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
@@ -52,11 +52,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | S1 opencode-mem → backlog v2 HNSW vs sqlite-vss | Stable
 - 2026-03-01 | Claude Code | L3 verify-secrets + M5 close→HTML + O2 model routing + G5 ✅ | Stable
 - 2026-03-01 | Multi-IA    | M6 audit cross-IA + fix L2 régression — 34 cmd × 3 outils stables | Stable
 - 2026-03-01 | Claude Code | M2 /ideas auto-routing + M4 improve-inbox auto-create | Stable
 - 2026-03-01 | Gemini CLI  | L2 gemini-tools.sh (7→1) + M1 _forge/Projects/ réorg complète | Stable
-- 2026-03-01 | Claude Code | ADR-001 + C4 FigJam — stack Palier 1 Python+SQLite décidée | Stable
 
 ---
 
@@ -135,6 +135,7 @@
 - **ADR-001 (Accepté)** : Python + SQLite pour Palier 1 — `vault_sync.py` comme base, `sqlite3` stdlib, Rust reste cible finale v2 🌐
 - Diagrammes C4 Contexte + Conteneurs créés dans FigJam (2026-03-01) 🌐
 - `reports/` = dossier pour les rapports HTML de session générés par `/close` (étape 8 optionnelle) 🌐
+- `opencode-mem` (SQLite+HNSW) = référence archi storage v2 — arbitrer HNSW vs sqlite-vss avant Palier 2 🌐
 
 ---
 
