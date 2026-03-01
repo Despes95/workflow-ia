@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (L2+M1 Gemini + M2+M4 Claude)
+**Dernière mise à jour :** 2026-03-01 (M6 ✅ — 34 commandes × 3 outils stables — v2 prête)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : L2 ✅ gemini-tools.sh — M1 ✅ _forge/Projects/ — M2 ✅ /ideas auto — M4 ✅ improve-inbox auto
-- **v2** : Prochaine étape → implémenter `scripts/vault_bridge.py` (CLI unifié Palier 1)
-- **Vault** : déplacer `_forge/workflow-ia/` → `_forge/Projects/workflow-ia/` manuellement (iCloud)
+- **État** : M6 ✅ — 34 commandes × 3 outils alignées — backlog v1 vidé (reste L3 optionnel)
+- **v2** : Prêt à démarrer → `scripts/vault_bridge.py` + vault `_forge/Projects/workflow-ia-v2/`
+- **Next** : L3 (verify-secrets hook) ou Palier 1 v2
 
 ---
 
@@ -52,11 +52,11 @@
 
 ### Historique
 
+- 2026-03-01 | Multi-IA    | M6 audit cross-IA + fix L2 régression — 34 cmd × 3 outils stables | Stable
 - 2026-03-01 | Claude Code | M2 /ideas auto-routing + M4 improve-inbox auto-create | Stable
 - 2026-03-01 | Gemini CLI  | L2 gemini-tools.sh (7→1) + M1 _forge/Projects/ réorg complète | Stable
 - 2026-03-01 | Claude Code | ADR-001 + C4 FigJam — stack Palier 1 Python+SQLite décidée | Stable
 - 2026-03-01 | Claude Code | /ideas 13 items + openclaw vault + archi v2 Python Bridge | Stable
-- 2026-03-01 | OpenCode | O1 tests Python generate_commands.py (10 cas) + vault_sync.py (13 cas) | Stable
 
 ---
 
@@ -106,6 +106,10 @@
 - 12 tests E2E valident le workflow complet (sync → vault → rotation → _global) 🌐
 - `/review-improve` : items LOW = vivier v2.md, items HIGH = backlog v1 — filtre naturel anti-pollution du backlog 🌐
 - `/ideas` workflow (M2) : traite+écrit directement sans confirmation, présente rapport comme récapitulatif — ancien comportement avec pause supprimé 🌐
+- Consolidation scripts : mettre à jour TOUS les appelants (*.toml, *.md) en même temps — sinon régression garantie (leçon L2) 🌐
+- Claude Code `settings.local.json` : `maxCost` n'existe pas — vérifier les sources avant d'ajouter en backlog "XS" 🌐
+- FigJam `generate_diagram` : liens expirent en 7j → sauvegarder immédiatement dans l'ADR au moment de la génération 🌐
+- iCloud Windows : `mv` sur dossiers vault refusé en bash (Permission denied) → Explorateur Windows obligatoire 🌐
 
 ---
 
@@ -123,6 +127,8 @@
 - Fonctions obsidian-sync.sh copiées inline dans test_sync.sh (pas sourcées) — évite sourcing config.env/iCloud, compromis intentionnel
 - `gemini-tools.sh` = script unifié Gemini (remplace 7 scripts séparés) — sous-commandes : vault/start/close/git/global/notes/daily 🌐
 - `v2.md` dans `_forge/Projects/workflow-ia/` = design doc vision long terme — items structurels/spéculatifs → v2.md (pas backlog)
+- vault docs v2 = dossier séparé `workflow-ia-v2/` dans `_forge/Projects/` — pas sous-dossier de workflow-ia 🌐
+- M6 : rapport d'audit cross-IA AVANT modifications = standard pour tout refactor multi-outils 🌐
 - Stack v2 : Python Bridge (Palier 1) + FastAPI REST (Palier 2) + SvelteKit dashboard (Palier 3) — xterm.js pour terminaux intégrés
 - **ADR-001 (Accepté)** : Python + SQLite pour Palier 1 — `vault_sync.py` comme base, `sqlite3` stdlib, Rust reste cible finale v2 🌐
 - Diagrammes C4 Contexte + Conteneurs créés dans FigJam (2026-03-01) 🌐
