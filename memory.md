@@ -1,7 +1,7 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (G4+G3-bis ✅ OpenCode | K1+J1 ✅ Claude)
-**Dernier outil CLI utilisé :** Claude Code
+**Dernière mise à jour :** 2026-03-01 (B-reste ✅ Gemini | G4+G3-bis ✅ OpenCode | K1+J1 ✅ Claude)
+**Dernier outil CLI utilisé :** Gemini CLI
 
 ---
 
@@ -37,7 +37,7 @@
 - `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — Stable
 - `scripts/check_memory.sh` — garde-fou intégrité memory.md — Stable
 - `.claude/commands/*.md` — 33 custom slash commands Claude — Stable
-- `.gemini/commands/*.toml` — 33 commands Gemini CLI (TOML) — Stable
+- `.gemini/commands/*.toml` — 33 commands Gemini CLI (TOML) — Stable (Fix vault-check)
 - `.opencode/commands/*.md` — 33 commands OpenCode (MD) — Stable
 - `scripts/gemini-*.sh` — 6 helpers accès vault + git pour Gemini CLI Windows — Stable
 - `scripts/gemini-git-info.sh` — git --no-pager centralisé (évite freezes) — Stable
@@ -47,7 +47,7 @@
 - `tests/test_sync.sh` — tests helpers obsidian-sync.sh (5 cas) — Stable
 - `improve-inbox.md` — inbox rapports /improve multi-IA (gitignored) — Stable
 - `vault/backlog.md` — backlog actif améliorations (vault, hors repo) — Stable
-- `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh) — Stable
+- `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh + syntax check) — Stable
 - `scripts/_commons.sh` — couleurs ANSI partagées — Stable
 - `README.md` — documentation principale — Nouveau
 - `.gitignore` — exclusions standards — Nouveau
@@ -72,14 +72,15 @@
 - Stack complète : 34 commands × 3 outils (Claude/Gemini/OpenCode), vault Obsidian, bootstrapper.
 - Catégories SESSION/PROJET/VAULT. DespesNotes `_daily/` intégré dans commandes VAULT.
 - Infrastructure : hooks versionnés, _commons.sh, obsidian-sync refactorisé, rotation 10 sessions, _global auto.
+- B-reste : nexus_hive & openfun branchés sur standard v2.6 (sessions/lessons/decisions).
 
 ### Historique
 
-- 2026-03-01 | Claude Code | Audits G3-H3-J2-J3 + K1 safety-guard global + J1 README /simplify | Stable
+- 2026-03-01 | Gemini CLI  | B-reste (nexus_hive/openfun) + F4 Fix vault-check.toml + Pre-commit syntax | Stable
+- 2026-03-01 | Claude Code | Audits G3-H1-H2-H3-J2-J3 + K1 safety-guard global + J1 README /simplify | Stable
 - 2026-03-01 | OpenCode | G4 generate_commands.py SSoT + G3-bis vault_sync.py prototype | Stable
 - 2026-03-01 | Claude Code | S1 ✅ statusline (Python+bash, 4 scénarios) + N3 ✅ E2E 12/12 | Stable
 - 2026-03-01 | Gemini CLI  | Fix N1, N2, N4 + Stabilisation workflow /close via gemini-close.sh | Stable
-- 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
 
 ---
 
