@@ -1141,3 +1141,45 @@ python tests/test_vault_sync.py
 | rtk | Token killer (60-90% économies) | À tester |
 | cli-continues | Cross-tool session manager | Non adopté — sur-engineering |
 | GitHub MCP | PAT-based, global | Adopté ✅ |
+
+---
+
+## Phase 15 — /ideas workflow + git-info mode all (session 2026-03-01)
+
+**Objectif :** Workflow /ideas affiné + optimisation Gemini CLI.
+
+| Item | Description |
+|------|-------------|
+| K5 | `/ideas` workflow : rapport d'abord → validation → PUIS écriture fichiers |
+| G6 | Mode `all` dans gemini-git-info.sh : consolide status+log+diff en un appel |
+| L1 | Bug vault_sync.py regex : stats index.md jamais mises à jour |
+
+### /ideas workflow — Anti-pattern à éviter
+
+**Problème :** Tout faire en un seul pass (rapport + écriture fichiers + effacement QuestionsIA) → risques de corruption si validation échoue.
+
+**Pattern adopté :**
+1. Phase 0 : Lire vault + index.md pour routing précis
+2. Phase 1 : Générer rapport brut (pas d'écriture)
+3. Phase 2 : Soumettre à utilisateur pour validation
+4. Phase 3 : SI validé → écrire fichiers PUIS effacer QuestionsIA
+5. Phase 4 : Commit autonome
+
+### gemini-git-info.sh — Mode `all`
+
+**Avant :** 3 appels séquentiels dans close.toml
+```toml
+!{bash.exe scripts/gemini-git-info.sh status}
+!{bash.exe scripts/gemini-git-info.sh log}
+!{bash.exe scripts/gemini-git-info.sh diff}
+```
+
+**Après :** 1 seul appel
+```toml
+!{bash.exe scripts/gemini-git-info.sh all}
+```
+
+**Avantages :**
+- 1 seul spawn shell au lieu de 3
+- Réduit risques de freeze sous Windows
+- Plus lisible dans le prompt
