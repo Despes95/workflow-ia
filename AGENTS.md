@@ -39,8 +39,8 @@ Usage en cascade recommandé : `/simplify` → `/audit` → `/improve`.
 
 ## Vault Obsidian
 
-Le vault `_forge/workflow-ia/` contient la mémoire long terme du projet.
-Chemin d'accès direct : `C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\_forge\workflow-ia\`
+Le vault `_forge/Projects/workflow-ia/` contient la mémoire long terme du projet.
+Chemin d'accès direct : `C:\Users\Despes\iCloudDrive\iCloud~md~obsidian\_forge\Projects\workflow-ia\`
 
 Fichiers à lire en début de session si le contexte est flou :
 - `index.md` → point d'entrée, liens vers tout le reste
@@ -51,6 +51,18 @@ Fichiers à lire en début de session si le contexte est flou :
 - `lessons.md` → leçons réutilisables
 
 Règle d'or : tu lis le vault, tu ne l'écris pas sans validation explicite.
+
+## Optimisation tokens
+
+| Outil | Tâche simple (lecture, résumé) | Tâche complexe (code, archi) |
+|-------|-------------------------------|------------------------------|
+| Claude Code | `/fast` (Sonnet rapide) | mode standard |
+| Gemini CLI | `gemini-2.0-flash` (défaut) | `gemini-2.5-pro` si raisonnement |
+| OpenCode | `claude-haiku-4-5` | `claude-sonnet-4-6` |
+
+- **Init lean** : si `memory.md` est à jour, `/context` seul suffit (skip vault)
+- **Init complet** : `/start` pour une longue session ou reprise après plusieurs jours
+- **Prompt caching** : AGENTS.md + CLAUDE.md chargés une fois en tête de session — ne pas les dupliquer dans les commandes individuelles
 
 ## Règle de reprise (Handoff)
 

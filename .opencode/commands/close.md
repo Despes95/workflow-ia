@@ -33,3 +33,10 @@ Puis :
       - Si leçons → `→ [[lessons]]`
    d. !git add memory.md && git commit -m "chore: fin de session" && git push
    e. Revois ce qui a été accompli et identifie les changements à reporter dans docs/tutorial-valider.md
+
+7. (Optionnel) Génération rapport HTML de session :
+   Crée `reports/$(date +%Y-%m-%d)-session.html` avec :
+   - En-tête résumé (titre, date, projet, nb commits de la session)
+   - Mermaid flowchart des étapes accomplies
+   - Liste des items backlog complétés (issues ✅)
+   - CSS inline dark + CDN Mermaid + CDN Chart.js (zéro dépendance build)

@@ -19,3 +19,6 @@ if [[ -n "$STAGED_SH" ]]; then
   [[ "$ERRORS" -gt 0 ]] && echo "⛔ $ERRORS fichier(s) avec erreurs syntax bash" && exit 1
   echo "✅ Syntax bash OK ($(echo "$STAGED_SH" | wc -l | tr -d ' ') fichier(s))"
 fi
+
+# 3. Vérification secrets
+bash "${REPO_ROOT}/scripts/check_secrets.sh"

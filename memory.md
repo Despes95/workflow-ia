@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (M6 ✅ — 34 commandes × 3 outils stables — v2 prête)
+**Dernière mise à jour :** 2026-03-01 (L3+M5+G5+O2 ✅ — backlog v1 vidé — AGENTS.md enrichi)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : M6 ✅ — 34 commandes × 3 outils alignées — backlog v1 vidé (reste L3 optionnel)
+- **État** : L3+M5+G5+O2 ✅ — backlog v1 complètement vidé
 - **v2** : Prêt à démarrer → `scripts/vault_bridge.py` + vault `_forge/Projects/workflow-ia-v2/`
-- **Next** : L3 (verify-secrets hook) ou Palier 1 v2
+- **Next** : Palier 1 v2 (Python Bridge)
 
 ---
 
@@ -52,11 +52,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | L3 verify-secrets + M5 close→HTML + O2 model routing + G5 ✅ | Stable
 - 2026-03-01 | Multi-IA    | M6 audit cross-IA + fix L2 régression — 34 cmd × 3 outils stables | Stable
 - 2026-03-01 | Claude Code | M2 /ideas auto-routing + M4 improve-inbox auto-create | Stable
 - 2026-03-01 | Gemini CLI  | L2 gemini-tools.sh (7→1) + M1 _forge/Projects/ réorg complète | Stable
 - 2026-03-01 | Claude Code | ADR-001 + C4 FigJam — stack Palier 1 Python+SQLite décidée | Stable
-- 2026-03-01 | Claude Code | /ideas 13 items + openclaw vault + archi v2 Python Bridge | Stable
 
 ---
 
@@ -129,9 +129,12 @@
 - `v2.md` dans `_forge/Projects/workflow-ia/` = design doc vision long terme — items structurels/spéculatifs → v2.md (pas backlog)
 - vault docs v2 = dossier séparé `workflow-ia-v2/` dans `_forge/Projects/` — pas sous-dossier de workflow-ia 🌐
 - M6 : rapport d'audit cross-IA AVANT modifications = standard pour tout refactor multi-outils 🌐
+- check_secrets.sh scanne uniquement les fichiers stagés via `git show ":file"` — évite faux positifs historique 🌐
+- AGENTS.md vault path corrigé : `_forge/workflow-ia/` → `_forge/Projects/workflow-ia/` (O2) 🌐
 - Stack v2 : Python Bridge (Palier 1) + FastAPI REST (Palier 2) + SvelteKit dashboard (Palier 3) — xterm.js pour terminaux intégrés
 - **ADR-001 (Accepté)** : Python + SQLite pour Palier 1 — `vault_sync.py` comme base, `sqlite3` stdlib, Rust reste cible finale v2 🌐
 - Diagrammes C4 Contexte + Conteneurs créés dans FigJam (2026-03-01) 🌐
+- `reports/` = dossier pour les rapports HTML de session générés par `/close` (étape 8 optionnelle) 🌐
 
 ---
 
