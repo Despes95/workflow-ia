@@ -16,8 +16,16 @@ case "$MODE" in
   diff)
     git --no-pager diff HEAD
     ;;
+  all)
+    echo "=== GIT STATUS ==="
+    git --no-pager status
+    echo -e "\n=== GIT LOG ==="
+    git --no-pager log -n 5 --oneline
+    echo -e "\n=== GIT DIFF ==="
+    git --no-pager diff HEAD
+    ;;
   *)
-    echo "Usage: $0 [status|log|diff]"
+    echo "Usage: $0 [status|log|diff|all]"
     exit 1
     ;;
 esac
