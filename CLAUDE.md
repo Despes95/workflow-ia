@@ -7,3 +7,12 @@
 - Toujours utiliser Plan Mode avant de toucher au code
 - Confirmer avec l'utilisateur avant tout refactor touchant plus de 3 fichiers
 - Ne jamais modifier un fichier sans montrer le diff d'abord
+
+## Délégation IA
+
+| Tâche | Déléguer à |
+|-------|------------|
+| Fix .sh / .toml / vault Obsidian | Gemini |
+| Écriture et tests Python | OpenCode |
+| Architecture, refactor multi-fichiers | Claude |
+| Décisions, review diff final | Claude |
