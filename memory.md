@@ -56,6 +56,9 @@
 - `scripts/templates/memory.md.tpl` — template externe pour bootstrap — Stable
 - `scripts/config.env` — chemins vault portables ($HOME-based) — Stable
 - `scripts/vault-check.sh` — vérifie wikilinks dans vault — Stable
+- `scripts/statusline.sh` — prompt bash avec statusline (4 scénarios) — Stable
+- `scripts/statusline.py` — prompt Python avec statusline — Stable
+- `tests/test_workflow_e2e.sh` — tests E2E workflow complet (12/12) — Stable
 
 ---
 
@@ -119,6 +122,7 @@
 - `grep -qF "## Session 1"` matche aussi "## Session 10" — toujours `grep -q "^pattern$"` pour vérifier une ligne exacte 🌐
 - `grep -m1` au lieu de `grep | head -1` = un subprocess de moins, arrêt dès le 1er match 🌐
 - Bash tests : lire un fichier une fois dans `$content`, réutiliser — évite N subprocesses pour N assertions sur le même fichier 🌐
+- 12 tests E2E valident le workflow complet (sync → vault → rotation → _global) 🌐
 
 ---
 
@@ -134,6 +138,7 @@
 - Cascade analyse : `/simplify` → `/audit` → `/improve` — voir section dédiée dans `AGENTS.md`
 - `tests/test_helpers.sh` = source unique helpers de test (ok/fail/assert_*) — sourcer dans tout nouveau script de test
 - Fonctions obsidian-sync.sh copiées inline dans test_sync.sh (pas sourcées) — évite sourcing config.env/iCloud, compromis intentionnel
+- `gemini-close.sh` = script unifié pour clore session Gemini (sync + add + commit + push) — évite les freezes des commandes git directes dans les blocs `!{}` 🌐
 
 ---
 
