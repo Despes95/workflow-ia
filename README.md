@@ -111,6 +111,25 @@ workflow-ia/
 - **Tools IA** : Claude Code, Gemini CLI, OpenCode
 - **Vault** : Obsidian (iCloud Drive)
 
+## Prérequis — Nouveau disque
+
+### 1. Outils système (winget)
+```bash
+winget import scripts/setup-windows.json
+# Installe : Git, Node.js, Python 3.11, GitHub CLI, Starship
+```
+
+### 2. CLI IA (npm)
+```bash
+npm install -g @google/gemini-cli
+npm install -g opencode-ai
+npm install -g @anthropic-ai/claude-code
+```
+
+### 3. Terminal (Git Bash UTF-8 + Starship)
+Copier `~/.bashrc` et `~/.config/starship.toml` depuis l'ancien disque,
+ou relancer T0 : ajouter `env LANG/LC_ALL` dans Windows Terminal settings.json.
+
 ## License
 
 MIT

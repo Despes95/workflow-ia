@@ -1,0 +1,21 @@
+{
+  "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+  "CreationDate": "2026-03-01",
+  "Sources": [
+    {
+      "Packages": [
+        { "PackageIdentifier": "Starship.Starship" },
+        { "PackageIdentifier": "OpenJS.NodeJS" },
+        { "PackageIdentifier": "Python.Python.3.11" },
+        { "PackageIdentifier": "GitHub.cli" },
+        { "PackageIdentifier": "Git.Git" }
+      ],
+      "SourceDetails": {
+        "Argument": "https://cdn.winget.microsoft.com/cache",
+        "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+        "Name": "winget",
+        "Type": "Microsoft.PreIndexed.Package"
+      }
+    }
+  ]
+}
