@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (review-improve + v2.md créé)
+**Dernière mise à jour :** 2026-03-01 (session /ideas + openclaw + archi v2 Python Bridge)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Backlog v1 restructuré — L1/L2/L3 ajoutés, G3-bis/G4/J4/D4 → v2.md
-- **v2.md** : design doc créé dans vault (_forge/workflow-ia/v2.md)
+- **État** : Backlog complet — N1+L1-L3+M1-M6+O1-O2 organisés, _global/backlog.md créé
+- **v2** : Python Bridge → FastAPI → SvelteKit — ADR+C4 à rédiger (N1 High)
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) — seul item restant
 
 ---
@@ -78,11 +78,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | /ideas 13 items + openclaw vault + archi v2 Python Bridge | Stable
 - 2026-03-01 | Claude Code | /review-improve 3 rapports → L1+L2+L3 backlog + v2.md créé | Stable
 - 2026-03-01 | Claude Code | T1 Tokscale + T2 Context7 MCP + K4 DeepWiki MCP installés | Stable
 - 2026-03-01 | OpenCode | O1 tests Python generate_commands.py (10 cas) + vault_sync.py (13 cas) | Stable
 - 2026-03-01 | Gemini CLI  | B-reste (nexus_hive/openfun) + F4 Fix vault-check.toml + Pre-commit syntax | Stable
-- 2026-03-01 | Claude Code | Audits G3-H1-H2-H3-J2-J3 + K1 safety-guard global + J1 README /simplify | Stable
 
 ---
 
@@ -149,6 +149,8 @@
 - Fonctions obsidian-sync.sh copiées inline dans test_sync.sh (pas sourcées) — évite sourcing config.env/iCloud, compromis intentionnel
 - `gemini-close.sh` = script unifié pour clore session Gemini (sync + add + commit + push) — évite les freezes des commandes git directes dans les blocs `!{}` 🌐
 - `v2.md` dans `_forge/workflow-ia/` = design doc vision long terme — items structurels/spéculatifs → v2.md (pas backlog)
+- Stack v2 : Python Bridge (Palier 1) + FastAPI REST (Palier 2) + SvelteKit dashboard (Palier 3) — xterm.js pour terminaux intégrés
+- ADR + Diagramme C4 = contexte structuré injecté en début de session — à créer avant tout code v2 (→ N1 backlog) 🌐
 
 ---
 
