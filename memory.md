@@ -7,8 +7,8 @@
 
 ## 🎯 Focus Actuel
 
-- **État** : Backlog complet — N1+L1-L3+M1-M6+O1-O2 organisés, _global/backlog.md créé
-- **v2** : Python Bridge → FastAPI → SvelteKit — ADR+C4 à rédiger (N1 High)
+- **État** : ADR-001 + C4 créés (N1 complété) — stack Palier 1 décidée : Python + SQLite
+- **v2** : Prochaine étape → implémenter `scripts/vault_bridge.py` (CLI unifié)
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) — seul item restant
 
 ---
@@ -78,11 +78,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | ADR-001 + C4 FigJam — stack Palier 1 Python+SQLite décidée | Stable
 - 2026-03-01 | Claude Code | /ideas 13 items + openclaw vault + archi v2 Python Bridge | Stable
 - 2026-03-01 | Claude Code | /review-improve 3 rapports → L1+L2+L3 backlog + v2.md créé | Stable
 - 2026-03-01 | Claude Code | T1 Tokscale + T2 Context7 MCP + K4 DeepWiki MCP installés | Stable
 - 2026-03-01 | OpenCode | O1 tests Python generate_commands.py (10 cas) + vault_sync.py (13 cas) | Stable
-- 2026-03-01 | Gemini CLI  | B-reste (nexus_hive/openfun) + F4 Fix vault-check.toml + Pre-commit syntax | Stable
 
 ---
 
@@ -150,7 +150,8 @@
 - `gemini-close.sh` = script unifié pour clore session Gemini (sync + add + commit + push) — évite les freezes des commandes git directes dans les blocs `!{}` 🌐
 - `v2.md` dans `_forge/workflow-ia/` = design doc vision long terme — items structurels/spéculatifs → v2.md (pas backlog)
 - Stack v2 : Python Bridge (Palier 1) + FastAPI REST (Palier 2) + SvelteKit dashboard (Palier 3) — xterm.js pour terminaux intégrés
-- ADR + Diagramme C4 = contexte structuré injecté en début de session — à créer avant tout code v2 (→ N1 backlog) 🌐
+- **ADR-001 (Accepté)** : Python + SQLite pour Palier 1 — `vault_sync.py` comme base, `sqlite3` stdlib, Rust reste cible finale v2 🌐
+- Diagrammes C4 Contexte + Conteneurs créés dans FigJam (2026-03-01) 🌐
 
 ---
 
