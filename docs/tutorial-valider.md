@@ -1091,3 +1091,53 @@ Avantages :
 - Évite les freezes Gemini avec les blocs `!{}`
 - Une seule autorisation (vs 3)
 - Réutilise `obsidian-sync.sh` pour la sync vault
+
+---
+
+## Phase 14 — Tests Python + cli-continues verdict ✅ (session 2026-03-01)
+
+**Objectif :** Ajouter des tests Python pour les scripts Python, évaluer cli-continues.
+
+| Item | Fichier créé | Description |
+|------|-------------|-------------|
+| O1 | `tests/test_generate_commands.py` | 10 tests pour generate_commands.py (15 assertions) |
+| O1 | `tests/test_vault_sync.py` | 12 tests pour vault_sync.py (13 assertions) |
+| G5-bis | Évaluation cli-continues | Outil cross-tool session manager |
+
+### Tests Python — Pattern adopté
+
+Pour les scripts Python, préférer des tests Python dédiés plutôt que des tests bash :
+
+```bash
+# Exécution
+python tests/test_generate_commands.py
+python tests/test_vault_sync.py
+
+# Résultat attendu : 28 OK / 0 FAIL
+```
+
+**Patterns adoptés :**
+- **Emojis dans print()** : Windows cp1252 ne supporte pas les emojis → utiliser `[OK]` / `[FAIL]`
+- **Import module** : `importlib.util.spec_from_file_location()` + `module_from_spec()` + `loader.exec_module()`
+- **Fichiers temporaires** : `tempfile.TemporaryDirectory()` avec cleanup automatique
+- **Assertions** : assert_exit, assert_file_exists, assert_file_contains (style identique aux helpers bash)
+
+### cli-continues — Verdict : Sur-engineering
+
+**Analyse :**
+- Fonctionne (164 sessions détectées)
+- Cross-tool handoff (`--in claude`) timeout lors du test
+- Dépendance npm externe + indexation continue
+- 164 sessions = bruit, pas de valeur ajoutée pour mon usage
+
+**Conclusion :** Garder en watchlist, utiliser `/start` + `memory.md` pour reprendre un projet.
+
+---
+
+## Rappels outils MCP
+
+| Outil | Évaluation | Statut |
+|-------|-----------|--------|
+| rtk | Token killer (60-90% économies) | À tester |
+| cli-continues | Cross-tool session manager | Non adopté — sur-engineering |
+| GitHub MCP | PAT-based, global | Adopté ✅ |
