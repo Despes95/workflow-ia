@@ -7,9 +7,9 @@
 
 ## 🎯 Focus Actuel
 
-- **État** : ADR-001 + C4 créés (N1 complété) — stack Palier 1 décidée : Python + SQLite
-- **v2** : Prochaine étape → implémenter `scripts/vault_bridge.py` (CLI unifié)
-- **User actions** : T0 (Windows Terminal UTF-8 + Starship) — seul item restant
+- **État** : N1 ✅ ADR-001+C4 — T0 ✅ Starship v1.24.2 opérationnel — plus aucun item User actions
+- **v2** : Prochaine étape → implémenter `scripts/vault_bridge.py` (CLI unifié Palier 1)
+- **M1** : Réorg `_forge/Projects/` — backlog Medium, session dédiée future
 
 ---
 
