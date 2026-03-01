@@ -24,6 +24,7 @@
 | Phase 10 — Vault infra | ✅ Stable | session 2026-02-28 | ~45 min |
 | Phase 11 — Tests shell + git-info | ✅ Stable | `d31468a` | ~30 min |
 | Phase 12 — A-reste + F4 + G2/G5 | ✅ Stable | `190a50a` | ~20 min |
+| Phase 13 — S1 statusline + N3 E2E + gemini-close.sh | ✅ Stable | `a714734` | ~30 min |
 
 ---
 
@@ -1040,3 +1041,53 @@ Usage `/vault-check` :
 /vault-check                          # Vérifie _forge/workflow-ia/
 /vault-check C:\path\to\vault        # Vérifie un autre vault
 ```
+
+---
+
+## Phase 13 — S1 statusline + N3 E2E + gemini-close.sh ✅ (commit `a714734`)
+
+### Objectif
+
+Validation finale de l'infrastructure :
+- **S1** : Statusline bash + Python (4 scénarios)
+- **N3** : Tests E2E workflow complet (12/12)
+- **gemini-close.sh** : Script unifié pour clore session
+
+### Contenu
+
+#### S1 — Statusline
+
+Scripts créés :
+- `scripts/statusline.sh` — Prompt bash avec statusline
+- `scripts/statusline.py` — Prompt Python avec statusline
+
+4 scénarios testés :
+1. ✅ Session normale
+2. ✅ Git dirty (fichiers modifiés)
+3. ✅ Git ahead (commits en attente)
+4. ✅ Combiné (dirty + ahead)
+
+#### N3 — Test E2E
+
+Fichier : `tests/test_workflow_e2e.sh`
+
+12 tests couvrant :
+- T1 : Sync sans erreur sur vault mock
+- T2 : sessions.md contient snapshot
+- T3 : Rotation sessions (11 → 10)
+- T4 : _global/lessons.md reçoit les leçons 🌐
+
+#### gemini-close.sh
+
+Script unifié qui remplace les commandes git directes dans `/close.toml` :
+```bash
+# Équivalent de :
+git add memory.md
+git commit -m "chore: fin de session"
+git push
+```
+
+Avantages :
+- Évite les freezes Gemini avec les blocs `!{}`
+- Une seule autorisation (vs 3)
+- Réutilise `obsidian-sync.sh` pour la sync vault
