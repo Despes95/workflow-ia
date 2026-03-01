@@ -1,14 +1,14 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (N3 ✅ + S1 ✅ statusline)
+**Dernière mise à jour :** 2026-03-01 (G4+G3-bis ✅ OpenCode | K1+J1 ✅ Claude)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : Infrastructure stable ✅ — N3 ✅ + S1 ✅ — aucun HIGH ouvert
-- **Priorité Claude** : audits GitHub (G3, H1, H2, H3)
+- **État** : Infrastructure stable ✅ — K1 safety-guard global actif
+- **Priorité Claude** : audits G3-H1-H2-H3-J2-J3 ✅ — K2/K3/K4 en backlog
 - **User actions** : T0 (Windows Terminal UTF-8 + Starship) + T1 (Tokscale) + T2 (Context7)
 
 ---
@@ -59,6 +59,9 @@
 - `scripts/statusline.sh` — prompt bash avec statusline (4 scénarios) — Stable
 - `scripts/statusline.py` — prompt Python avec statusline — Stable
 - `tests/test_workflow_e2e.sh` — tests E2E workflow complet (12/12) — Stable
+- `scripts/generate_commands.py` — SSoT Python génère 34 commands OpenCode — Nouveau
+- `scripts/vault_sync.py` — prototype Python standalone de obsidian-sync.sh — Nouveau
+- `scripts/hooks/safety-guard.sh` — hook global anti-destructif (source versionnée) — Nouveau
 
 ---
 
@@ -72,11 +75,11 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | Audits G3-H3-J2-J3 + K1 safety-guard global + J1 README /simplify | Stable
+- 2026-03-01 | OpenCode | G4 generate_commands.py SSoT + G3-bis vault_sync.py prototype | Stable
 - 2026-03-01 | Claude Code | S1 ✅ statusline (Python+bash, 4 scénarios) + N3 ✅ E2E 12/12 | Stable
 - 2026-03-01 | Gemini CLI  | Fix N1, N2, N4 + Stabilisation workflow /close via gemini-close.sh | Stable
 - 2026-03-01 | Claude Code | /review-improve 6 rapports → N1-N4 backlog + /ideas QuestionsIA → S1 statusline | Stable
-- 2026-03-01 | Claude Code | A-reste template + G2/G5 éval + F4 vault-check | Stable
-- 2026-02-28 | Claude Code | /audit K1-K3 (bugs scripts) + /ideas format enrichi ×3 outils + D3-vérif ✅ | Stable
 
 ---
 
@@ -90,6 +93,7 @@
 
 ## 📝 Leçons apprises
 
+- Test G5 : synchronisation incrémentale via git diff fonctionnelle 🌐
 - **SÉCURITÉ CRITIQUE** : Gemini CLI exécute récursivement les motifs `! {` trouvés dans les fichiers chargés par `@{}`. Ne JAMAIS écrire ce motif dans `memory.md` ou `AGENTS.md`. Toujours ajouter un espace : `! {`. 🌐
 - Gemini CLI : les chemins absolus hors workspace sont interdits avec `@{}`. Utiliser `! {type \"...\"}` (Windows) ou `! {cat ...}` (Linux/Mac) pour contourner la sécurité via le shell. 🌐
 - Migration Gemini → `$env:FORGE_DIR/$env:PROJECT_NAME` casse tout : ces vars PowerShell ne sont jamais définies. Pattern correct : `! {bash -c 'source scripts/config.env; cat "$FORGE_DIR/$(basename $(pwd))/file.md"'}` 🌐

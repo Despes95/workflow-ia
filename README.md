@@ -27,8 +27,11 @@ Les commandes Pensée lisent automatiquement tes daily notes Obsidian pour fourn
 | `/7plan` | Reshapes les 7 prochains jours autour des sujets actifs |
 | `/map` | Vue topologique du vault |
 | `/improve` | Propose des améliorations techniques (multi-rapports) |
-| `/audit` | Analyse bugs et refactorisation |
+| `/audit` | Analyse bugs et refactorisation — vue macro, session dédiée |
 | `/review-improve` | Analyse et route les rapports `/improve` vers le backlog |
+
+> **Built-in Claude Code** : `/simplify` revoit le code récemment modifié (`git diff HEAD~1`).
+> Cascade recommandée : `/simplify` (micro, post-edit) → `/audit` (macro, session) → `/improve` (prospectif).
 
 ### PENSÉE (19)
 | Command | Description |
