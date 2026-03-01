@@ -2,7 +2,7 @@ description = "Démarre une session avec contexte complet + vault + git"
 prompt = """
 Lis dans cet ordre :
 1. @{memory.md}
-2. !{bash.exe scripts/gemini-start.sh}
+2. !{bash.exe scripts/gemini-tools.sh start}
 
 Résume en 5 points :
 1. État actuel du projet

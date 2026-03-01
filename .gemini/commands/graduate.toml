@@ -1,8 +1,8 @@
 description = "Extrait les idées des daily notes et propose des titres de notes permanentes"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-daily.sh 15}
-2. !{bash.exe scripts/gemini-vault.sh sessions.md ideas.md}
+1. !{bash.exe scripts/gemini-tools.sh daily 15}
+2. !{bash.exe scripts/gemini-tools.sh vault sessions.md ideas.md}
 
 Identifie les idées qui méritent de devenir des notes permanentes :
 - Idées répétées dans plusieurs sessions (signal de persistance)

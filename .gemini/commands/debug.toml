@@ -2,7 +2,7 @@ description = "Analyse un bug précis : contexte, hypothèses, prochaine action"
 prompt = """
 Lis dans cet ordre :
 1. Le(s) fichier(s) mentionné(s) dans la description via @{fichier}
-2. !{bash.exe scripts/gemini-vault.sh bugs.md}
+2. !{bash.exe scripts/gemini-tools.sh vault bugs.md}
 3. @{memory.md}
 
 Structure ta réponse :

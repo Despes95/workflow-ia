@@ -1,7 +1,7 @@
 description = "Vue topologique du vault : clusters, thèmes, relations"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-vault.sh index.md architecture.md sessions.md lessons.md decisions.md}
+1. !{bash.exe scripts/gemini-tools.sh vault index.md architecture.md sessions.md lessons.md decisions.md}
 
 Produis une vue topologique :
 - Quels thèmes dominent le vault ?

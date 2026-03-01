@@ -2,12 +2,19 @@ description = "Inbox QuestionsIA avec routing intelligent + patterns du projet c
 prompt = """
 ## Phase 0 — Inbox QuestionsIA
 
-Lis : !{bash.exe scripts/gemini-global.sh QuestionsIA.md}
+Lis :
+1. !{bash.exe scripts/gemini-tools.sh global index.md}
+2. !{bash.exe scripts/gemini-tools.sh global QuestionsIA.md}
 
-Si le fichier contient des URLs ou des idées :
+Projets actifs connus (depuis index.md) :
+- `workflow-ia` — stack IA + Obsidian + bash, workflow dev quotidien
+- `nexus_hive` — orchestrateur multi-agents
+- `openfun` — projet openfun
+
+Si QuestionsIA.md contient des URLs ou des idées :
 - Pour chaque item : fetch le README ou la page principale si c'est une URL
 - Analyse et classe avec routing intelligent :
-  - 🔧 Amélioration d'un projet existant → précise lequel
+  - 🔧 Amélioration d'un projet existant → précise lequel parmi les projets actifs
   - 🚀 Idée de nouveau projet dev/tech → `_global/ideas.md`
   - 💰 Idée SaaS / business / source de revenu → `_global/saas-ideas.md`
   - ❌ Hors scope → une ligne d'explication, pas d'ajout
@@ -21,22 +28,19 @@ Rapport par item — format enrichi :
 > → **À faire** : [action concrète — pas juste un titre, un premier pas réel]
 
 Après le rapport :
-- Items 🔧 → ajoute dans `_forge/{projet}/backlog.md`
+- Items 🔧 → ajoute dans `_forge/Projects/{projet}/backlog.md`
 - Items 🚀 → ajoute dans `_global/ideas.md`
 - Items 💰 → ajoute dans `_global/saas-ideas.md`
 - Supprime tous les items traités de QuestionsIA.md
 
-Projets connus dans le vault :
-- `workflow-ia` : stack IA + Obsidian + bash, workflow dev quotidien
-
-Si le fichier est vide : passe directement à Phase 1.
+Si QuestionsIA.md est vide : passe directement à Phase 1.
 
 ## Phase 1 — Patterns du projet courant
 
 Lis :
-1. !{bash.exe scripts/gemini-daily.sh 15}
-2. !{bash.exe scripts/gemini-vault.sh sessions.md lessons.md ideas.md}
-5. @{memory.md}
+1. !{bash.exe scripts/gemini-tools.sh daily 15}
+2. !{bash.exe scripts/gemini-tools.sh vault sessions.md lessons.md ideas.md}
+3. @{memory.md}
 
 Analyse les patterns récurrents et les problèmes contournés plutôt que résolus.
 

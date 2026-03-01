@@ -1,8 +1,8 @@
 description = "Trouve les notes qui devraient se lier mais ne le font pas encore"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-daily.sh 10}
-2. !{bash.exe scripts/gemini-vault.sh sessions.md lessons.md ideas.md}
+1. !{bash.exe scripts/gemini-tools.sh daily 10}
+2. !{bash.exe scripts/gemini-tools.sh vault sessions.md lessons.md ideas.md}
 
 Identifie des paires de notes ou d'idées qui devraient se référencer mutuellement mais ne le font pas encore.
 

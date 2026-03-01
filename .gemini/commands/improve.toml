@@ -4,9 +4,9 @@ Analyse le projet actif et propose des améliorations.
 
 Lis dans cet ordre :
 1. @{memory.md} (sections Focus Actuel, Architecture, Fichiers clés, Bugs connus)
-2. !{bash.exe scripts/gemini-vault.sh bugs.md} (bugs ouverts du vault)
-3. !{bash.exe scripts/gemini-vault.sh backlog.md} (backlog actif du vault)
-4. !{bash.exe scripts/gemini-vault.sh architecture.md}
+2. !{bash.exe scripts/gemini-tools.sh vault bugs.md} (bugs ouverts du vault)
+3. !{bash.exe scripts/gemini-tools.sh vault backlog.md} (backlog actif du vault)
+4. !{bash.exe scripts/gemini-tools.sh vault architecture.md}
 5. Liste les fichiers du projet (cherche les fichiers source : .js, .ts, .py, .sh, etc.)
 
 ⚠️ Avant de proposer quoi que ce soit : croise avec les bugs connus de memory.md et bugs.md.

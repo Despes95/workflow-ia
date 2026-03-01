@@ -4,15 +4,15 @@ Tu es mon partenaire de pensée. Charge tout ce contexte avant de répondre.
 
 ## 1. Daily Notes
 Lis :
-- !{bash.exe scripts/gemini-daily.sh 7}
+- !{bash.exe scripts/gemini-tools.sh daily 7}
 
 ## 2. Vault global
 Lis :
-- !{bash.exe scripts/gemini-global.sh lessons.md index.md}
+- !{bash.exe scripts/gemini-tools.sh global lessons.md index.md}
 
 ## 3. Projets actifs (workflow-ia)
 Lis :
-- !{bash.exe scripts/gemini-vault.sh index.md architecture.md}
+- !{bash.exe scripts/gemini-tools.sh vault index.md architecture.md}
 
 ## 4. Résumé
 Réponds avec exactement 5 points :

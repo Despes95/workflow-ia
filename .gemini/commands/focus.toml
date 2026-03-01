@@ -1,9 +1,9 @@
 description = "Sur quoi travailler là, maintenant ?"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-notes.sh Polaris.md} (boussole)
-2. !{bash.exe scripts/gemini-global.sh index.md} (état tous projets)
-3. !{bash.exe scripts/gemini-daily.sh 3} (énergie / mode)
+1. !{bash.exe scripts/gemini-tools.sh notes Polaris.md} (boussole)
+2. !{bash.exe scripts/gemini-tools.sh global index.md} (état tous projets)
+3. !{bash.exe scripts/gemini-tools.sh daily 3} (énergie / mode)
 4. @{memory.md} (projet actif)
 
 Recommande exactement :

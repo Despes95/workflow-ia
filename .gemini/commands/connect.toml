@@ -1,9 +1,9 @@
 description = "Ponts entre domaines — connexions non-évidentes entre patterns"
 prompt = """
 Lis :
-1. !{bash.exe scripts/gemini-daily.sh 10}
-2. !{bash.exe scripts/gemini-vault.sh bugs.md lessons.md decisions.md}
-3. !{bash.exe scripts/gemini-global.sh lessons.md}
+1. !{bash.exe scripts/gemini-tools.sh daily 10}
+2. !{bash.exe scripts/gemini-tools.sh vault bugs.md lessons.md decisions.md}
+3. !{bash.exe scripts/gemini-tools.sh global lessons.md}
 
 Trouve 3 connexions non-évidentes entre les patterns de ces fichiers.
 

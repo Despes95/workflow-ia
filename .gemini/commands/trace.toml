@@ -1,8 +1,8 @@
 description = "Évolution d'une décision dans le temps"
 prompt = """
 Lis dans l'ordre :
-1. !{bash.exe scripts/gemini-daily.sh all}
-2. !{bash.exe scripts/gemini-vault.sh decisions.md sessions.md architecture.md}
+1. !{bash.exe scripts/gemini-tools.sh daily all}
+2. !{bash.exe scripts/gemini-tools.sh vault decisions.md sessions.md architecture.md}
 
 Trace l'évolution du sujet fourni dans le temps.
 

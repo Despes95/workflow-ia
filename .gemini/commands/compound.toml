@@ -1,8 +1,8 @@
 description = "Trace l'évolution d'une question à différents moments dans le vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-daily.sh all}
-2. !{bash.exe scripts/gemini-vault.sh sessions.md decisions.md}
+1. !{bash.exe scripts/gemini-tools.sh daily all}
+2. !{bash.exe scripts/gemini-tools.sh vault sessions.md decisions.md}
 
 Trouve comment ma réponse à la question fournie a évolué sur différentes périodes du vault :
 - Période ancienne : quelle était ma position initiale ?

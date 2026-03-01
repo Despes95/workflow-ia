@@ -1,7 +1,7 @@
 description = "Reshapes les 7 prochains jours autour de ce qui est vivant dans le vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-vault.sh sessions.md ideas.md}
+1. !{bash.exe scripts/gemini-tools.sh vault sessions.md ideas.md}
 2. @{memory.md} (section Todo)
 
 Génère un plan sur 7 jours :

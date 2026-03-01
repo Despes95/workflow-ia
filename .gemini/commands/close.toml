@@ -3,7 +3,7 @@ prompt = """
 Analyse la session en cours.
 
 Données git :
-!{bash.exe scripts/gemini-git-info.sh all}
+!{bash.exe scripts/gemini-tools.sh git all}
 
 Contenu memory.md actuel :
 @{memory.md}
@@ -20,7 +20,7 @@ Puis :
    - Si memory.md est déjà à jour : enchaîne directement
 
 6. Après analyse et modification de memory.md :
-   a. Finalise tout en lançant : ! {bash.exe scripts/gemini-close.sh}
+   a. Finalise tout en lançant : ! {bash.exe scripts/gemini-tools.sh close}
    b. Dans l'entrée sessions.md créée, remplis les callouts :
       - `> [!decision]` ← décisions identifiées
       - `> [!insight]` ← leçons identifiées

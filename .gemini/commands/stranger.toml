@@ -1,9 +1,9 @@
 description = "Portrait de toi vu par un observateur extérieur basé sur le vault"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-daily.sh 15}
-2. !{bash.exe scripts/gemini-global.sh lessons.md}
-3. !{bash.exe scripts/gemini-vault.sh sessions.md decisions.md lessons.md}
+1. !{bash.exe scripts/gemini-tools.sh daily 15}
+2. !{bash.exe scripts/gemini-tools.sh global lessons.md}
+3. !{bash.exe scripts/gemini-tools.sh vault sessions.md decisions.md lessons.md}
 
 Écris un portrait de moi vu par quelqu'un qui ne me connaît pas.
 Ce stranger n'a accès qu'aux notes — pas à moi directement.

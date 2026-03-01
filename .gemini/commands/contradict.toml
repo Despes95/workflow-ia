@@ -1,8 +1,8 @@
 description = "Trouve les croyances incompatibles que je tiens simultanément dans mes notes"
 prompt = """
 Lis dans cet ordre :
-1. !{bash.exe scripts/gemini-daily.sh 15}
-2. !{bash.exe scripts/gemini-vault.sh decisions.md lessons.md sessions.md}
+1. !{bash.exe scripts/gemini-tools.sh daily 15}
+2. !{bash.exe scripts/gemini-tools.sh vault decisions.md lessons.md sessions.md}
 
 Trouve 2-3 couples de croyances incompatibles que je tiens simultanément dans mes notes.
 

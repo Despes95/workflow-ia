@@ -4,7 +4,7 @@ Analyse le projet actif pour identifier les bugs potentiels et les opportunités
 
 Lis dans cet ordre :
 1. @{memory.md} (sections Bugs connus, Todo)
-2. !{bash.exe scripts/gemini-vault.sh bugs.md}
+2. !{bash.exe scripts/gemini-tools.sh vault bugs.md}
 3. Liste les fichiers du projet
 
 ## Bugs potentiels à détecter

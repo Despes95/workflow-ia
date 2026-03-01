@@ -31,11 +31,19 @@ Lis dans cet ordre :
 
 Présente les résultats par catégorie avec severity (critical/warning/info).
 
+Si `improve-inbox.md` n'existe pas à la racine du projet, crée-le avec l'en-tête :
+```
+## Improve Inbox
+
+---
+
+```
+
 Après avoir présenté le rapport dans la session, **appende-le** dans `improve-inbox.md`
 (racine du projet) avec ce format exact :
 
 ```
-## Rapport /audit — OpenCode — 2026-03-01
+## Rapport /audit — OpenCode — {{DATE}}
 
 [reproduis ici le rapport complet]
 
