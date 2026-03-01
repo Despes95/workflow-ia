@@ -8,7 +8,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_commons.sh"
 source "${SCRIPT_DIR}/config.env"
 
-VAULT_PATH="${1:-${FORGE_DIR}}"
+PROJECT_NAME="$(basename "$PWD")"
+VAULT_PATH="${1:-${PROJECTS_DIR}/${PROJECT_NAME}}"
 
 if [[ ! -d "$VAULT_PATH" ]]; then
   echo -e "${RED}❌ Vault non trouvé : $VAULT_PATH${NC}"

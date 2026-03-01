@@ -27,7 +27,7 @@ Rapport par item — format enrichi :
 > → **À faire** : [action concrète — pas juste un titre, un premier pas réel]
 
 Après le rapport :
-- Items 🔧 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/[projet]/backlog.md`
+- Items 🔧 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/[projet]/backlog.md`
 - Items 🚀 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/ideas.md`
 - Items 💰 → ajoute dans `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/saas-ideas.md`
 - Supprime tous les items traités de `QuestionsIA.md`
@@ -41,9 +41,9 @@ Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
 
 Lis :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (15 dernières notes)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (30 dernières entrées)
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/ideas.md`
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (30 dernières entrées)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/ideas.md`
 5. `memory.md`
 
 Analyse les patterns récurrents et les problèmes contournés plutôt que résolus.

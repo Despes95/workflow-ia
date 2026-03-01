@@ -22,8 +22,8 @@ description: {description}
 
 Lis dans cet ordre :
 1. @memory.md (état court terme du projet)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/index.md
-3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/architecture.md
+2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/workflow-ia/index.md
+3. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/workflow-ia/architecture.md
 
 Résume en 5 points :
 1. État actuel du projet
@@ -84,7 +84,7 @@ Analyse le projet actif pour identifier les bugs potentiels et les opportunités
 
 Lis dans cet ordre :
 1. @memory.md (sections Bugs connus, Todo)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md
+2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/bugs.md
 3. Liste les fichiers du projet
 
 ## Bugs potentiels à détecter
@@ -147,7 +147,7 @@ Propose des améliorations pour le projet actif.
 
 Lis d'abord :
 1. @memory.md (section Leçons, Décisions)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/backlog.md
+2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/workflow-ia/backlog.md
 3. Liste les fichiers du projet
 
 Catégories suggérées :

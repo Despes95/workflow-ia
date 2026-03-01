@@ -34,7 +34,7 @@ Présente sous ce format :
 ## Phase 4 — Actions
 
 - Items **HIGH** non déjà dans backlog → appende dans
-  `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/{PROJECT_NAME}/backlog.md`
+  `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/{PROJECT_NAME}/backlog.md`
   Format : `### [Titre court]\n[description + rationale ROI]`
 - Items **MEDIUM** → liste-les, demande confirmation avant d'agir
 - Items **LOW** → mentionne en une ligne, ignore

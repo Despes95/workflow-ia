@@ -2,7 +2,7 @@
 
 Lis dans cet ordre :
 1. Le(s) fichier(s) mentionné(s) dans la description ci-dessous
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/bugs.md`
 3. `memory.md` (section Bugs connus)
 
 Structure ta réponse :

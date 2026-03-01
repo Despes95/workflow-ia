@@ -6,7 +6,7 @@ Analyse le projet actif pour identifier les bugs potentiels et les opportunités
 
 Lis dans cet ordre :
 1. @memory.md (sections Bugs connus, Todo)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md
+2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/bugs.md
 3. Liste les fichiers du projet
 
 ## Bugs potentiels à détecter

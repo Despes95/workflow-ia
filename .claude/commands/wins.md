@@ -5,7 +5,7 @@ Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
 
 Lis dans cet ordre :
 1. `git log --oneline --since="7 days ago"` (historique des commits)
-2. Les 5 dernières sessions de `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md`
+2. Les 5 dernières sessions de `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md`
 3. Les 5 dernières daily notes de `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/`
 
 Liste uniquement les victoires :

@@ -6,7 +6,7 @@ Propose des améliorations pour le projet actif.
 
 Lis d'abord :
 1. @memory.md (section Leçons, Décisions)
-2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/workflow-ia/backlog.md
+2. @C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/workflow-ia/backlog.md
 3. Liste les fichiers du projet
 
 Catégories suggérées :

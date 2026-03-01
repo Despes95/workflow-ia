@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (session /ideas + openclaw + archi v2 Python Bridge)
+**Dernière mise à jour :** 2026-03-01 (L2+M1 Gemini + M2+M4 Claude)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : N1 ✅ ADR-001+C4 — T0 ✅ Starship v1.24.2 opérationnel — plus aucun item User actions
+- **État** : L2 ✅ gemini-tools.sh — M1 ✅ _forge/Projects/ — M2 ✅ /ideas auto — M4 ✅ improve-inbox auto
 - **v2** : Prochaine étape → implémenter `scripts/vault_bridge.py` (CLI unifié Palier 1)
-- **M1** : Réorg `_forge/Projects/` — backlog Medium, session dédiée future
+- **Vault** : déplacer `_forge/workflow-ia/` → `_forge/Projects/workflow-ia/` manuellement (iCloud)
 
 ---
 
@@ -22,48 +22,22 @@
 ## 🏗️ Architecture
 
 - **Objectif** : Projet test pour valider le workflow IA du tuto v2.6
-- **Stack** : Markdown + Git Bash + Windows 11
+- **Stack** : Markdown + Git Bash + Windows 11 + Python (Bridge)
 - **Workflow dev** : Lire tuto → créer fichiers → vérifier → commit
 
 ---
 
 ## 📁 Fichiers clés
 
-- `AGENTS.md` — règles communes à tous les outils IA — Stable
-- `CLAUDE.md` — directive @AGENTS.md + règles spécifiques Claude — Stable
-- `docs/tutorial-optimisation-v2.6.md` — référence tuto (lecture seule) — Stable
-- `docs/prompts-et-commandes.md` — référence opérationnelle 33 commandes — Stable
-- `docs/commands-list.cmd` — Windows batch, affiche 33 commandes — Stable
-- `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — Stable
-- `scripts/check_memory.sh` — garde-fou intégrité memory.md — Stable
-- `.claude/commands/*.md` — 33 custom slash commands Claude — Stable
-- `.gemini/commands/*.toml` — 33 commands Gemini CLI (TOML) — Stable (Fix vault-check)
-- `.opencode/commands/*.md` — 33 commands OpenCode (MD) — Stable
-- `scripts/gemini-*.sh` — 6 helpers accès vault + git pour Gemini CLI Windows — Stable
-- `scripts/gemini-git-info.sh` — git --no-pager centralisé (évite freezes) — Stable
-- `scripts/gemini-close.sh` — script de clôture unifié (sync + commit + push) — Stable
-- `tests/test_helpers.sh` — helpers partagés ok/fail/assert_* — Stable
-- `tests/test_check_memory.sh` — tests unitaires check_memory.sh (5 cas) — Stable
-- `tests/test_sync.sh` — tests helpers obsidian-sync.sh (5 cas) — Stable
-- `improve-inbox.md` — inbox rapports /improve multi-IA (gitignored) — Stable
-- `vault/backlog.md` — backlog actif améliorations (vault, hors repo) — Stable
-- `scripts/hooks/pre-commit` — hook versionné (délègue à check_memory.sh + syntax check) — Stable
-- `scripts/_commons.sh` — couleurs ANSI partagées — Stable
-- `README.md` — documentation principale — Nouveau
-- `.gitignore` — exclusions standards — Nouveau
-- `new-project.cmd` — launcher Windows bootstrap — Stable
-- `scripts/new-project.sh` — script bootstrap complet — Stable
-- `scripts/templates/memory.md.tpl` — template externe pour bootstrap — Stable
-- `scripts/config.env` — chemins vault portables ($HOME-based) — Stable
-- `scripts/vault-check.sh` — vérifie wikilinks dans vault — Stable
-- `scripts/statusline.sh` — prompt bash avec statusline (4 scénarios) — Stable
-- `scripts/statusline.py` — prompt Python avec statusline — Stable
-- `tests/test_workflow_e2e.sh` — tests E2E workflow complet (12/12) — Stable
-- `tests/test_generate_commands.py` — tests Python pour generate_commands.py (10 cas) — Stable
-- `tests/test_vault_sync.py` — tests Python pour vault_sync.py (13 cas) — Stable
-- `scripts/generate_commands.py` — SSoT Python génère 34 commands OpenCode — Stable
-- `scripts/vault_sync.py` — prototype Python standalone de obsidian-sync.sh — Nouveau
-- `scripts/hooks/safety-guard.sh` — hook global anti-destructif (source versionnée) — Nouveau
+- `scripts/gemini-tools.sh` — helper unifié pour Gemini CLI (remplace 7 scripts) — Stable (L2)
+- `scripts/config.env` — chemins vault portables ($HOME-based) — v2.6.2 (M1)
+- `scripts/obsidian-sync.sh` — sync memory.md → vault Obsidian — v2.6.2 (M1)
+- `scripts/vault-check.sh` — vérifie wikilinks dans vault — v2.6.2 (M1)
+- `scripts/generate_commands.py` — SSoT Python génère 34 commands OpenCode — v2.6.2 (M1)
+- `.claude/commands/*.md` — 34 custom slash commands Claude — v2.6.2 (M1)
+- `.gemini/commands/*.toml` — 34 commands Gemini CLI (TOML) — v2.6.2 (L2+M1)
+- `.opencode/commands/*.md` — 34 commands OpenCode (MD) — v2.6.2 (M1)
+
 
 ---
 
@@ -78,10 +52,10 @@
 
 ### Historique
 
+- 2026-03-01 | Claude Code | M2 /ideas auto-routing + M4 improve-inbox auto-create | Stable
+- 2026-03-01 | Gemini CLI  | L2 gemini-tools.sh (7→1) + M1 _forge/Projects/ réorg complète | Stable
 - 2026-03-01 | Claude Code | ADR-001 + C4 FigJam — stack Palier 1 Python+SQLite décidée | Stable
 - 2026-03-01 | Claude Code | /ideas 13 items + openclaw vault + archi v2 Python Bridge | Stable
-- 2026-03-01 | Claude Code | /review-improve 3 rapports → L1+L2+L3 backlog + v2.md créé | Stable
-- 2026-03-01 | Claude Code | T1 Tokscale + T2 Context7 MCP + K4 DeepWiki MCP installés | Stable
 - 2026-03-01 | OpenCode | O1 tests Python generate_commands.py (10 cas) + vault_sync.py (13 cas) | Stable
 
 ---
@@ -131,7 +105,7 @@
 - Bash tests : lire un fichier une fois dans `$content`, réutiliser — évite N subprocesses pour N assertions sur le même fichier 🌐
 - 12 tests E2E valident le workflow complet (sync → vault → rotation → _global) 🌐
 - `/review-improve` : items LOW = vivier v2.md, items HIGH = backlog v1 — filtre naturel anti-pollution du backlog 🌐
-- `/ideas` workflow voulu : rapport d'abord → validation utilisateur → PUIS écriture fichiers + effacement QuestionsIA (pas tout en un seul pass) 🌐
+- `/ideas` workflow (M2) : traite+écrit directement sans confirmation, présente rapport comme récapitulatif — ancien comportement avec pause supprimé 🌐
 
 ---
 
@@ -147,8 +121,8 @@
 - Cascade analyse : `/simplify` → `/audit` → `/improve` — voir section dédiée dans `AGENTS.md`
 - `tests/test_helpers.sh` = source unique helpers de test (ok/fail/assert_*) — sourcer dans tout nouveau script de test
 - Fonctions obsidian-sync.sh copiées inline dans test_sync.sh (pas sourcées) — évite sourcing config.env/iCloud, compromis intentionnel
-- `gemini-close.sh` = script unifié pour clore session Gemini (sync + add + commit + push) — évite les freezes des commandes git directes dans les blocs `!{}` 🌐
-- `v2.md` dans `_forge/workflow-ia/` = design doc vision long terme — items structurels/spéculatifs → v2.md (pas backlog)
+- `gemini-tools.sh` = script unifié Gemini (remplace 7 scripts séparés) — sous-commandes : vault/start/close/git/global/notes/daily 🌐
+- `v2.md` dans `_forge/Projects/workflow-ia/` = design doc vision long terme — items structurels/spéculatifs → v2.md (pas backlog)
 - Stack v2 : Python Bridge (Palier 1) + FastAPI REST (Palier 2) + SvelteKit dashboard (Palier 3) — xterm.js pour terminaux intégrés
 - **ADR-001 (Accepté)** : Python + SQLite pour Palier 1 — `vault_sync.py` comme base, `sqlite3` stdlib, Rust reste cible finale v2 🌐
 - Diagrammes C4 Contexte + Conteneurs créés dans FigJam (2026-03-01) 🌐

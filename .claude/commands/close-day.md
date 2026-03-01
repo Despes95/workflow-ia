@@ -4,7 +4,7 @@ Détermine d'abord le PROJECT_NAME depuis le dossier de travail actuel (basename
 Ex : si tu es dans `/c/IA/Projects/workflow-ia`, PROJECT_NAME = `workflow-ia`.
 
 Lis dans cet ordre :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (dernière entrée)
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (dernière entrée)
 2. `memory.md`
 
 Réponds aux 3 questions :

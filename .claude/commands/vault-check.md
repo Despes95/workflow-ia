@@ -10,7 +10,7 @@ Vérifie que tous les liens `[[wikilinks]]` dans le vault Obsidian pointent vers
 
 ## Description
 
-- Par défaut, vérifie `_forge/workflow-ia/`
+- Par défaut, vérifie `_forge/Projects/workflow-ia/`
 - Accepte un chemin optionnel vers un autre vault
 - Affiche le nombre de liens trouvés et d'orphelins
 - Exit code 0 si OK, 1 si liens cassés

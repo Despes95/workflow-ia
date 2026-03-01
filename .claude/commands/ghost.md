@@ -2,9 +2,9 @@
 
 Lis dans cet ordre :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (10 dernières notes)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (15 dernières entrées)
-4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/lessons.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (15 dernières entrées)
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/decisions.md`
 5. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
 
 Réponds à la question fournie comme si tu étais moi :

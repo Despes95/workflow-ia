@@ -2,8 +2,8 @@
 
 Lis dans cet ordre :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (7 dernières notes)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (5 dernières entrées)
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (5 dernières entrées)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/lessons.md`
 
 Produis un post structuré "What I Learned" :
 

@@ -2,7 +2,7 @@
 
 Lis :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (7 dernières notes)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (7 dernières entrées)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (7 dernières entrées)
 
 Compile un résumé hebdomadaire prêt à l'export :
 

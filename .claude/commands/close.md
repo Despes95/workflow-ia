@@ -8,7 +8,7 @@ Puis :
 2. Identifie décisions (→ decisions.md)
 3. Identifie bugs (→ bugs.md)
 4. Identifie leçons (→ lessons.md, 🌐 si transversal)
-5. Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/backlog.md`
+5. Lis `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/backlog.md`
    - Croise avec les commits de la session
    - Marque ✅ les items clairement terminés (préfixe la ligne du titre : `### ✅ F1. ...`)
    - Ne touche pas aux items partiels ou incertains

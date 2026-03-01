@@ -3,8 +3,8 @@
 Lis :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (10 dernières notes)
 2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/_global/lessons.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/lessons.md`
-4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/bugs.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/lessons.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/bugs.md`
 
 Compare les patterns du projet actuel avec les patterns globaux.
 

@@ -3,8 +3,8 @@
 Lis dans cet ordre :
 1. `CLAUDE.md` (→ `AGENTS.md`)
 2. `memory.md`
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/index.md`
-4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/architecture.md`
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/index.md`
+4. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/architecture.md`
 
 Fais `git status` + `git log --oneline -10`.
 

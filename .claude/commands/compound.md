@@ -2,8 +2,8 @@
 
 Lis dans cet ordre :
 1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/DespesNotes/_daily/` (toutes les notes)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (toutes les entrées)
-3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/decisions.md`
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (toutes les entrées)
+3. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/decisions.md`
 
 Trouve comment ma réponse à la question fournie a évolué sur différentes périodes du vault :
 - Période ancienne : quelle était ma position initiale ?

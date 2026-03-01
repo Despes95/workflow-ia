@@ -1,8 +1,8 @@
 # /7plan — Reshapes les 7 prochains jours autour des sujets actifs
 
 Lis dans cet ordre :
-1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/sessions.md` (10 dernières entrées)
-2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/$PROJECT_NAME/ideas.md`
+1. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/sessions.md` (10 dernières entrées)
+2. `C:/Users/Despes/iCloudDrive/iCloud~md~obsidian/_forge/Projects/$PROJECT_NAME/ideas.md`
 3. `memory.md` (section Todo)
 
 Génère un plan sur 7 jours :
