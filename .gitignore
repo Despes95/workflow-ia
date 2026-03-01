@@ -38,3 +38,6 @@ tui.json
 __pycache__/
 *.pyc
 *.pyo
+
+# Rapports de session (générés par scripts/generate_session_report.sh)
+reports/*.html
