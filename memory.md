@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-01 (S1 opencode-mem → backlog v2 HNSW storage layer)
+**Dernière mise à jour :** 2026-03-02 (cadrage v2 → discovery.md + Persona.md + nom atelier)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : L3+M5+G5+O2 ✅ — backlog v1 complètement vidé
-- **v2** : Prêt à démarrer → `scripts/vault_bridge.py` + vault `_forge/Projects/workflow-ia-v2/`
-- **Next** : Palier 1 v2 (Python Bridge)
+- **État** : cadrage v2 en cours — `discovery.md` (35 questions) + `Install.md` créés dans `workflow-ia-v2/`
+- **Nom v2** : atelier / AtelierIA / MemAtelier — décision prochaine session
+- **Next** : tester `new-project.sh` → `C:\IA\Projects\atelier` + remplir `discovery.md`
 
 ---
 
@@ -52,11 +52,13 @@
 
 ### Historique
 
+- 2026-03-02 | Claude Code | /ideas 11 URLs → V1-V4 v2 + CAR nexus_hive + Persona.md × 4 projets + discovery.md | Stable
 - 2026-03-01 | Claude Code | S1 opencode-mem → backlog v2 HNSW vs sqlite-vss | Stable
 - 2026-03-01 | Claude Code | L3 verify-secrets + M5 close→HTML + O2 model routing + G5 ✅ | Stable
 - 2026-03-01 | Multi-IA    | M6 audit cross-IA + fix L2 régression — 34 cmd × 3 outils stables | Stable
 - 2026-03-01 | Claude Code | M2 /ideas auto-routing + M4 improve-inbox auto-create | Stable
 - 2026-03-01 | Gemini CLI  | L2 gemini-tools.sh (7→1) + M1 _forge/Projects/ réorg complète | Stable
+
 
 ---
 
@@ -135,7 +137,11 @@
 - **ADR-001 (Accepté)** : Python + SQLite pour Palier 1 — `vault_sync.py` comme base, `sqlite3` stdlib, Rust reste cible finale v2 🌐
 - Diagrammes C4 Contexte + Conteneurs créés dans FigJam (2026-03-01) 🌐
 - `reports/` = dossier pour les rapports HTML de session générés par `/close` (étape 8 optionnelle) 🌐
+- "déjà couvert" ≠ "hors scope" — FigJam statique ≠ tldraw SDK interactif : deux outils, deux usages distincts 🌐
+- 3 IAs sur le même input = triangulation utile — les désaccords entre outils sont un signal, pas du bruit 🌐
 - `opencode-mem` (SQLite+HNSW) = référence archi storage v2 — arbitrer HNSW vs sqlite-vss avant Palier 2 🌐
+- OpenClaw = couche d'accès mobile/conversationnel (Telegram/Discord) au-dessus d'atelier — pas un 4e outil, pas un remplacement 🌐
+- Persona.md : v1 = enrichissement manuel via `/close` | v2 = auto-capture via `vault_bridge.py` (pattern mem0) 🌐
 
 ---
 
