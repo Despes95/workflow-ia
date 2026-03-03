@@ -89,11 +89,14 @@ sed -e "s|PROJECT_NAME|$PROJECT_NAME|g" \
     -e "s|DATE_PLACEHOLDER|$DATE|g" \
     "${SCRIPT_DIR}/templates/memory.md.tpl" > "$TARGET/memory.md"
 
-# ── 5. .claude/ — copie brute ────────────────────────────────────────────────
+# ── 5. .claude/ — copie + sed ────────────────────────────────────────────────
 echo -e "   📂 .claude/..."
 mkdir -p "$TARGET/.claude/commands"
 [[ -f "$TEMPLATE/.claude/settings.local.json" ]] && cp "$TEMPLATE/.claude/settings.local.json" "$TARGET/.claude/" || true
-cp "$TEMPLATE/.claude/commands/"*.md "$TARGET/.claude/commands/"
+for src in "$TEMPLATE/.claude/commands/"*.md; do
+  fname="$(basename "$src")"
+  sed "s|workflow-ia|$PROJECT_NAME|g" "$src" > "$TARGET/.claude/commands/$fname"
+done
 
 # ── 6. .gemini/commands/ — copie + sed ──────────────────────────────────────
 echo -e "   📂 .gemini/commands/..."
@@ -115,6 +118,10 @@ done
 echo -e "   📂 scripts/..."
 mkdir -p "$TARGET/scripts"
 cp "$TEMPLATE/scripts/"*.sh "$TARGET/scripts/"
+cp "$TEMPLATE/scripts/"*.py "$TARGET/scripts/" 2>/dev/null || true
+cp "$TEMPLATE/scripts/config.env" "$TARGET/scripts/"
+[[ -f "$TEMPLATE/scripts/setup-windows.json" ]] && cp "$TEMPLATE/scripts/setup-windows.json" "$TARGET/scripts/" || true
+[[ -d "$TEMPLATE/scripts/templates" ]] && cp -r "$TEMPLATE/scripts/templates" "$TARGET/scripts/" || true
 chmod +x "$TARGET/scripts/"*.sh
 mkdir -p "$TARGET/scripts/hooks"
 cp "$TEMPLATE/scripts/hooks/pre-commit" "$TARGET/scripts/hooks/"

@@ -96,7 +96,7 @@ rotate_sessions() {
   local file="$1"
   local max="${2:-10}"
   local count
-  count=$(grep -c "^## Session" "$file" 2>/dev/null || echo 0)
+  count=$(grep -c "^## Session" "$file" 2>/dev/null || true)
   [[ "$count" -le "$max" ]] && return 0
 
   local to_skip=$(( count - max ))
@@ -244,9 +244,9 @@ echo "  📸 Snapshot ajouté : sessions.md"
 # ── ÉTAPE 11 : mise à jour "Dernière sync" et Stats (F5) dans index.md ────────
 if [[ -f "${PROJECT_DIR}/index.md" ]]; then
   # Stats dynamiques
-  S_COUNT=$(grep -c "^## Session" "${PROJECT_DIR}/sessions.md" || echo 0)
-  L_COUNT=$(grep -c "^### Leçons du" "${PROJECT_DIR}/lessons.md" || echo 0)
-  B_COUNT=$(grep -c "^### Extrait du" "${PROJECT_DIR}/bugs.md" || echo 0)
+  S_COUNT=$(grep -c "^## Session" "${PROJECT_DIR}/sessions.md" || true)
+  L_COUNT=$(grep -c "^### Leçons du" "${PROJECT_DIR}/lessons.md" || true)
+  B_COUNT=$(grep -c "^### Extrait du" "${PROJECT_DIR}/bugs.md" || true)
 
   sed -i "s/^> Dernière sync :.*$/> Dernière sync : ${TIMESTAMP}/" "${PROJECT_DIR}/index.md"
   sed -i "s/- \*\*Sessions\*\* :.*/- \*\*Sessions\*\* : ${S_COUNT}/" "${PROJECT_DIR}/index.md"
