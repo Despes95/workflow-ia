@@ -18,9 +18,8 @@ Puis :
 
 7. Après analyse :
    a. Lance `bash scripts/obsidian-sync.sh` (génère callouts + wikilinks automatiquement)
-   b. `git add memory.md && git commit -m "chore: fin de session" && git push`
-      - Revois ce qui a été accompli et identifie les changements à reporter dans `docs/tutorial-valider.md`
-      - Si le tuto général a évolué, mets à jour `docs/tutorial-valider.md` en conséquence
+   b. `git add memory.md && git commit -m "chore: fin de session"`
+      - Si un remote est configuré (`git remote -v` non vide) : `git push`
 
 8. (Optionnel) Génération rapport HTML de session :
    `bash scripts/generate_session_report.sh`
