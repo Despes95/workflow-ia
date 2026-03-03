@@ -66,6 +66,12 @@ _Aucune encore_
 
 ---
 
+## 📚 Décisions
+
+_Aucune encore_
+
+---
+
 ## ⛔ Contraintes & Interdits
 
 - Ne jamais modifier AGENTS.md sans validation explicite

@@ -1,6 +1,6 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-02 (cadrage v2 → discovery.md + Persona.md + nom atelier)
+**Dernière mise à jour :** 2026-03-02 (ai_collab — fix get_ready_tasks() + leçon rapports bugs IA)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
@@ -96,6 +96,7 @@
 - iCloud Drive Windows : La lecture de fichiers (cat) peut geler si le fichier est un "placeholder" non synchronisé. Utiliser `timeout 3s cat` dans les scripts helpers pour garantir un retour immédiat. 🌐
 - Git Bash Windows : Éviter `${HOME}` dans `config.env` car il peut être résolu avec des backslashes mal échappés (ex: `C:UsersDespes`). Préférer le chemin canonique Git Bash `/c/Users/Despes`. 🌐
 - `approvalMode: "yolo"` dans `~/.gemini/settings.json` = supprime tous les prompts d'autorisation `! {}` — fallback : `gemini --yolo` 🌐
+- Rapports de bugs générés par IA : taux de faux positifs élevé — toujours lire le code source avant de valider. Ex: `FileLockTimeout` "manquant" était importé ligne 25, stubs `NotImplementedError` intentionnels et documentés 🌐
 - `/ideas` routing : vision "réécriture complète" d'un projet = 🚀 futur projet, pas 🔧 amélioration — trop grand pour un backlog item normal 🌐
 - Outils MCP : toujours évaluer sous double angle (complément / remplacement) avant de router — le MCP natif change la catégorie de pertinence 🌐
 - Python Windows `print()` avec emojis → `UnicodeEncodeError` cp1252 — toujours `PYTHONIOENCODING=utf-8` ou supprimer les emojis des print() 🌐

@@ -3,7 +3,7 @@
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 # 1. Intégrité memory.md
-bash "${REPO_ROOT}/scripts/check_memory.sh"
+bash "${REPO_ROOT}/scripts/check_memory.sh" || exit 1
 
 # 2. Syntax bash — fichiers .sh stagés uniquement
 STAGED_SH=$(git diff --cached --name-only --diff-filter=ACM | grep '\.sh$')
@@ -21,4 +21,4 @@ if [[ -n "$STAGED_SH" ]]; then
 fi
 
 # 3. Vérification secrets
-bash "${REPO_ROOT}/scripts/check_secrets.sh"
+bash "${REPO_ROOT}/scripts/check_secrets.sh" || exit 1
