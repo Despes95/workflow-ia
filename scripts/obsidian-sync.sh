@@ -193,6 +193,11 @@ init_file "${PROJECT_DIR}/ideas.md" "# ${PROJECT_NAME} — Idées
 > Pistes et idées à explorer
 "
 
+init_file "${PROJECT_DIR}/backlog.md" "# ${PROJECT_NAME} — Backlog actif
+
+> Tâches détaillées avec rationale
+"
+
 # ── ÉTAPES 4-6 : extraction sections memory.md (Incrémental G5) ───────────────
 BUGS_CLEANED=$(extract_diff_section "Bugs" | grep -v '^[[:space:]]*$' | grep -v -i 'aucun connu' | grep -v '^---' || true)
 LESSONS_CLEANED=$(extract_diff_section "Le.ons" | grep -v '^[[:space:]]*$' | grep -v '^---' || true)
