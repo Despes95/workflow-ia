@@ -1,15 +1,15 @@
 # workflow-ia — Memory
 
-**Dernière mise à jour :** 2026-03-02 (ai_collab — fix get_ready_tasks() + leçon rapports bugs IA)
+**Dernière mise à jour :** 2026-03-04 (docs mémoire Claude Code + statusline powerline + discovery atelier)
 **Dernier outil CLI utilisé :** Claude Code
 
 ---
 
 ## 🎯 Focus Actuel
 
-- **État** : cadrage v2 en cours — `discovery.md` (35 questions) + `Install.md` créés dans `workflow-ia-v2/`
-- **Nom v2** : atelier / AtelierIA / MemAtelier — décision prochaine session
-- **Next** : tester `new-project.sh` → `C:\IA\Projects\atelier` + remplir `discovery.md`
+- **État** : atelier lancé — discovery.md Q36-Q38 ajoutés, backlog CC1-CC5 (memory native Claude Code)
+- **Nom v2** : **atelier** ✅ — projet à `C:\IA\Projects\atelier`
+- **Next** : remplir discovery.md (Q1-Q38) + tester `new-project.sh`
 
 ---
 
@@ -52,12 +52,11 @@
 
 ### Historique
 
+- 2026-03-04 | Claude Code | docs memory Claude Code + CC1-CC5 backlog atelier + statusline powerline + discovery Q36-Q38 | Stable
 - 2026-03-02 | Claude Code | /ideas 11 URLs → V1-V4 v2 + CAR nexus_hive + Persona.md × 4 projets + discovery.md | Stable
 - 2026-03-01 | Claude Code | S1 opencode-mem → backlog v2 HNSW vs sqlite-vss | Stable
 - 2026-03-01 | Claude Code | L3 verify-secrets + M5 close→HTML + O2 model routing + G5 ✅ | Stable
 - 2026-03-01 | Multi-IA    | M6 audit cross-IA + fix L2 régression — 34 cmd × 3 outils stables | Stable
-- 2026-03-01 | Claude Code | M2 /ideas auto-routing + M4 improve-inbox auto-create | Stable
-- 2026-03-01 | Gemini CLI  | L2 gemini-tools.sh (7→1) + M1 _forge/Projects/ réorg complète | Stable
 
 
 ---
@@ -113,6 +112,9 @@
 - Claude Code `settings.local.json` : `maxCost` n'existe pas — vérifier les sources avant d'ajouter en backlog "XS" 🌐
 - FigJam `generate_diagram` : liens expirent en 7j → sauvegarder immédiatement dans l'ADR au moment de la génération 🌐
 - iCloud Windows : `mv` sur dossiers vault refusé en bash (Permission denied) → Explorateur Windows obligatoire 🌐
+- Barre statusline : fond coloré + `█` même couleur = invisible → `█` en couleur contrastée sur fond sombre 🌐
+- Triangle powerline `\ue0b0` = Private Use Area Unicode — Nerd Font requise dans le terminal 🌐
+- ANSI `\033[4Xm` (background) + FG blanc = segments powerline sans framework externe 🌐
 
 ---
 
@@ -143,6 +145,10 @@
 - `opencode-mem` (SQLite+HNSW) = référence archi storage v2 — arbitrer HNSW vs sqlite-vss avant Palier 2 🌐
 - OpenClaw = couche d'accès mobile/conversationnel (Telegram/Discord) au-dessus d'atelier — pas un 4e outil, pas un remplacement 🌐
 - Persona.md : v1 = enrichissement manuel via `/close` | v2 = auto-capture via `vault_bridge.py` (pattern mem0) 🌐
+- Nom v2 = **atelier** ✅ — `C:\IA\Projects\atelier` — source unique `Docs/discovery.md`
+- Statusline powerline : triangles `\ue0b0`, BG segments (cyan/bleu/jaune/magenta), € 2 déc., barre fond jaune + `█` vert→orange→rouge
+- `~/.claude/statusline.py` = source unique config statusline Claude Code 🌐
+- vault docs v2 = dossier `_forge/Projects/atelier/` (renommé depuis `workflow-ia-v2/`)
 
 ---
 
